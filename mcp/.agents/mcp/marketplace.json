@@ -3,5 +3,13 @@
   "interface": {
     "displayName": "NextsAI MCP"
   },
-  "mcp": []
+  "mcp": [
+    {
+      "name": "zhipu-web-search",
+      "source": {
+        "source": "local",
+        "path": "./zhipu-web-search"
+      }
+    }
+  ]
 }
