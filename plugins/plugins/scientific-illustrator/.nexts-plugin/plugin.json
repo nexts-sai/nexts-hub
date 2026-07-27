@@ -35,7 +35,9 @@
       "在 draw.io 中逐步复刻这张参考图，保持文字、图形、表格、图表和连接线可编辑。",
       "根据研究内容选择 draw.io 或 PowerPoint，设计一张布局整齐、箭头清晰的可编辑科学插图。"
     ],
-    "brandColor": "#F08705"
+    "brandColor": "#F08705",
+    "composerIcon": "./assets/icon.png",
+    "logo": "./assets/logo.png"
   },
   "mcpServers": "./.mcp.json"
 }
