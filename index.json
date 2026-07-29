@@ -21,7 +21,7 @@
       "path": "./assistants",
       "registry": "./assistants/.agents/assistants/marketplace.json",
       "installTo": "assistants",
-      "hash": "sha256:9ab0f6a171907203845868491d31f3a035ee107ae38d60c6136080950e44c976"
+      "hash": "sha256:03e7a6451159e516b91d706e93e7c60e54c86160a9db951b75bda0f5feb90b64"
     },
     "mcp": {
       "version": 1,

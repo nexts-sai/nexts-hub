@@ -40,6 +40,13 @@
       }
     },
     {
+      "name": "interview_assistant",
+      "source": {
+        "source": "local",
+        "path": "./interview_assistant"
+      }
+    },
+    {
       "name": "legal_review",
       "source": {
         "source": "local",
