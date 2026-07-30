@@ -5,6 +5,13 @@
   },
   "skills": [
     {
+      "name": "cangjie-skill",
+      "source": {
+        "source": "local",
+        "path": "./skills/cangjie-skill"
+      }
+    },
+    {
       "name": "contract-review",
       "source": {
         "source": "local",
