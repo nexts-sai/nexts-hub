@@ -20,6 +20,7 @@ export function buildAllRegistries(baseDir = root) {
     buildSkillsRegistry(baseDir),
     buildDirCategoryRegistry(baseDir, "assistants", "NextsAI Assistants"),
     buildDirCategoryRegistry(baseDir, "mcp", "NextsAI MCP"),
+    buildApplicationsCatalog(baseDir),
   ];
 }
 
@@ -202,6 +203,43 @@ function buildDirCategoryRegistry(baseDir, category, displayName) {
       interface: { displayName },
       [category]: entries,
     }),
+  };
+}
+
+export function buildApplicationsCatalog(baseDir = root) {
+  const catalogRoot = join(baseDir, "mcp", "_adapters", "catalog", "apps");
+  const applications = existsSync(catalogRoot)
+    ? readdirSync(catalogRoot)
+        .filter((fileName) => fileName.endsWith(".json"))
+        .sort()
+        .map((fileName) => compactApplicationDefinition(readJsonFile(join(catalogRoot, fileName))))
+    : [];
+
+  return {
+    category: "applications",
+    filePath: join(baseDir, "mcp", "_adapters", "catalog", "marketplace.json"),
+    content: stableJson({
+      name: "nextsai-applications",
+      interface: { displayName: "NextsAI Applications" },
+      applications,
+    }),
+  };
+}
+
+function compactApplicationDefinition(definition) {
+  return {
+    service: definition.service,
+    displayName: definition.displayName,
+    categories: definition.categories,
+    authTypes: definition.authTypes,
+    homepageUrl: definition.homepageUrl,
+    ...(definition.description ? { description: definition.description } : {}),
+    auth: definition.auth,
+    actions: (definition.actions ?? []).map((action) => ({
+      id: action.id,
+      ...(action.description ? { description: action.description } : {}),
+      ...(action.access ? { access: action.access } : {}),
+    })),
   };
 }
 
