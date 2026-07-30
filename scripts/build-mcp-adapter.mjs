@@ -83,12 +83,12 @@ function credential() {
   return Object.keys(values).length ? { authType: 'custom_credential', values, profile: { accountId: 'local', displayName: 'Local account', grantedScopes: [] }, metadata: {} } : { authType: 'no_auth' };
 }
 async function refreshOAuth(force) {
-  if (!oauthRefreshToken || !process.env.NEXTS_ACCOUNT_BASE_URL || !process.env.NEXTS_ACCOUNT_ACCESS_TOKEN || !process.env.NEXTS_OAUTH_SERVICE) return false;
+  if (!process.env.NEXTS_ACCOUNT_BASE_URL || !process.env.NEXTS_ACCOUNT_ACCESS_TOKEN || !process.env.NEXTS_OAUTH_SERVICE) return false;
   if (!force && (!oauthExpiresAt || oauthExpiresAt - Date.now() > 60000)) return false;
   const base = process.env.NEXTS_ACCOUNT_BASE_URL.replace(/\\\/+$/, '');
   const parsed = new URL(base);
   if (parsed.protocol !== 'https:' && !(parsed.protocol === 'http:' && (parsed.hostname === '127.0.0.1' || parsed.hostname === 'localhost'))) throw new Error('Unsafe account service URL for OAuth refresh');
-  const response = await fetch(base + '/connected-apps/oauth/refresh', { method: 'POST', headers: { 'content-type': 'application/json', authorization: 'Bearer ' + process.env.NEXTS_ACCOUNT_ACCESS_TOKEN }, body: JSON.stringify({ service: process.env.NEXTS_OAUTH_SERVICE, refreshToken: oauthRefreshToken }), redirect: 'error' });
+  const response = await fetch(base + '/connected-apps/oauth/refresh', { method: 'POST', headers: { 'content-type': 'application/json', authorization: 'Bearer ' + process.env.NEXTS_ACCOUNT_ACCESS_TOKEN }, body: JSON.stringify({ service: process.env.NEXTS_OAUTH_SERVICE }), redirect: 'error' });
   const body = await response.json().catch(() => ({}));
   if (!response.ok || !body.accessToken) throw new Error(body?.error?.message || 'OAuth token refresh failed');
   oauthAccessToken = body.accessToken; oauthRefreshToken = body.refreshToken || oauthRefreshToken; oauthExpiresAt = body.expiresAt ? Date.parse(body.expiresAt) : 0; return true;
@@ -106,7 +106,7 @@ async function handle(message) {
     try {
       await refreshOAuth(false);
       let result = await executor(message.params?.arguments || {}, { getCredential: async (requested) => requested === service ? credential() : undefined });
-      if (!result.ok && oauthRefreshToken && authFailure(result) && await refreshOAuth(true)) result = await executor(message.params?.arguments || {}, { getCredential: async (requested) => requested === service ? credential() : undefined });
+      if (!result.ok && authFailure(result) && await refreshOAuth(true)) result = await executor(message.params?.arguments || {}, { getCredential: async (requested) => requested === service ? credential() : undefined });
       if (!result.ok) throw new Error((result.error?.code ? result.error.code + ': ' : '') + (result.error?.message || 'Connector action failed'));
       return send({ jsonrpc: '2.0', id: message.id, result: { content: [{ type: 'text', text: JSON.stringify(result.output) }], structuredContent: result.output } });
     } catch (error) { return send({ jsonrpc: '2.0', id: message.id, result: { isError: true, content: [{ type: 'text', text: error instanceof Error ? error.message : String(error) }] } }); }
