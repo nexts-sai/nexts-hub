@@ -5,6 +5,13 @@
   },
   "mcp": [
     {
+      "name": "nexts-canvas",
+      "source": {
+        "source": "local",
+        "path": "./nexts-canvas"
+      }
+    },
+    {
       "name": "zhipu-web-search",
       "source": {
         "source": "local",

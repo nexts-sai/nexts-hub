@@ -1,0 +1,42 @@
+{
+  "id": "nexts-canvas",
+  "display_name": "Nexts Canvas",
+  "description": "让 Nexts Agent 读取和操作当前画布，创建节点、连接工作流并触发图片或视频生成。",
+  "summary": "通过本地 Canvas Agent MCP 操作 Nexts Canvas。",
+  "homepage_url": "http://frps-sf.cencs.com:3319/",
+  "icon_url": "http://frps-sf.cencs.com:3319/nexts-canvas-logo.png",
+  "category": "Productivity",
+  "tags": [
+    "canvas",
+    "creative",
+    "image",
+    "video",
+    "agent"
+  ],
+  "publisher": "Nexts AI",
+  "verified": true,
+  "distribution_type": "community_npm",
+  "auth_types": [
+    "none"
+  ],
+  "version": "0.3.0",
+  "min_nexts_version": "0.1.21",
+  "kernel_api": "mcp-2025-03-26",
+  "transport": "stdio",
+  "command": "npx",
+  "args": [
+    "-y",
+    "@nextsai/canvas-agent",
+    "mcp"
+  ],
+  "env": {},
+  "url": null,
+  "headers": {},
+  "configuration_fields": [],
+  "enabled_by_default": true,
+  "platforms": [
+    "windows",
+    "macos",
+    "linux"
+  ]
+}
