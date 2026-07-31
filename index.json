@@ -1,6 +1,6 @@
 {
   "name": "nexts-hub",
-  "description": "Unified content hub for Nexts: skills, plugins, assistants, and MCP servers.",
+  "description": "Unified content hub for Nexts: skills, plugins, assistants, applications, and MCP servers.",
   "categories": {
     "skills": {
       "version": 2,
@@ -22,6 +22,13 @@
       "registry": "./assistants/.agents/assistants/marketplace.json",
       "installTo": "assistants",
       "hash": "sha256:03e7a6451159e516b91d706e93e7c60e54c86160a9db951b75bda0f5feb90b64"
+    },
+    "apps": {
+      "version": 1,
+      "path": "./apps/apps",
+      "registry": "./apps/.agents/apps/marketplace.json",
+      "installTo": "apps",
+      "hash": "sha256:ac83ea0432e455c7f1cc845c96f2702a84bff2460ae33acb12c66ba8cc4b9f79"
     },
     "mcp": {
       "version": 3,

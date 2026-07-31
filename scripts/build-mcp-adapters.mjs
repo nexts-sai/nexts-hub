@@ -5,7 +5,7 @@ import { mkdirSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 
 const root = resolve(import.meta.dirname, "..");
-const catalogRoot = resolve(root, "mcp/_adapters/catalog/apps");
+const catalogRoot = resolve(root, "apps/apps");
 const selection = argument("--selection")?.trim() || "all";
 const version = argument("--version") ?? "1.0.0";
 const concurrency = integerArgument("--concurrency", 4, 1, 16);

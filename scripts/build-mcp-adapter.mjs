@@ -11,7 +11,7 @@ const adapters = resolve(root, "mcp/_adapters");
 const service = argument("--service");
 const version = argument("--version") ?? "1.0.0";
 if (!service || !/^[a-z0-9]+(?:[-_][a-z0-9]+)*$/.test(service)) throw new Error("--service is required");
-const definition = JSON.parse(readFileSync(resolve(adapters, `catalog/apps/${service}.json`), "utf8"));
+const definition = JSON.parse(readFileSync(resolve(root, `apps/apps/${service}.json`), "utf8"));
 if (definition.service !== service) throw new Error(`Catalog service mismatch for ${service}`);
 
 const outputRoot = resolve(argument("--output-dir") ?? resolve(root, `dist/mcp/${service}`));

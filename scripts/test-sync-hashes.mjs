@@ -16,7 +16,7 @@ try {
   assert.equal(windowsHash, linuxHash, "text hashes must be identical for CRLF and LF checkouts");
   assert.equal(canonicalHashPath("skills\\example\\SKILL.md"), "skills/example/SKILL.md");
 
-  const catalogDirectory = join(directory, "mcp", "_adapters", "catalog", "apps");
+  const catalogDirectory = join(directory, "apps", "apps");
   mkdirSync(catalogDirectory, { recursive: true });
   writeFileSync(join(catalogDirectory, "github.json"), JSON.stringify({
     service: "github",

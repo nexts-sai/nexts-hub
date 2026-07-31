@@ -1,6 +1,6 @@
 # Development
 
-This repository is the unified content hub for skills, plugins, assistants, and MCP servers. Root npm scripts are the supported entry points for creating content, refreshing category registries, and validating the hub.
+This repository is the unified content hub for skills, plugins, assistants, applications, and MCP servers. Root npm scripts are the supported entry points for creating content, refreshing category registries, and validating the hub.
 
 ## Scripts
 

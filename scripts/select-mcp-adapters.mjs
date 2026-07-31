@@ -4,7 +4,7 @@ import { existsSync, readdirSync } from "node:fs";
 import { resolve } from "node:path";
 
 const root = resolve(import.meta.dirname, "..");
-const catalogRoot = resolve(root, "mcp/_adapters/catalog/apps");
+const catalogRoot = resolve(root, "apps/apps");
 const selection = argument("--selection")?.trim() || "all";
 const batchSize = Number.parseInt(argument("--batch-size") ?? "25", 10);
 if (!Number.isInteger(batchSize) || batchSize < 1 || batchSize > 100) {

@@ -14,7 +14,7 @@ const apiBase = (process.env.GITHUB_API_URL ?? "https://api.github.com").replace
 if (!token) throw new Error("GITHUB_TOKEN is required for local release upload");
 if (!/^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/.test(repository)) throw new Error("--repository must use owner/name format");
 
-const available = readdirSync(resolve(root, "mcp/_adapters/catalog/apps")).filter((name) => name.endsWith(".json")).map((name) => name.slice(0, -5)).sort();
+const available = readdirSync(resolve(root, "apps/apps")).filter((name) => name.endsWith(".json")).map((name) => name.slice(0, -5)).sort();
 const availableSet = new Set(available);
 const services = selection.toLowerCase() === "all"
   ? available

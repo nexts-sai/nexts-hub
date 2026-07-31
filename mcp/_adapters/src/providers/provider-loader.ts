@@ -17,7 +17,7 @@ export interface ExecutorModules {
  * Loads provider executor modules only when an action is executed.
  *
  * Provider definitions are intentionally not exposed here. Runtime catalog
- * reads should use generated `catalog/apps/*.json` instead of importing
+ * reads should use `apps/apps/*.json` instead of importing
  * hundreds of provider definition modules at startup.
  */
 export interface IProviderLoader {

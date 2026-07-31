@@ -7,7 +7,7 @@ import { build } from "esbuild";
 const root = resolve(import.meta.dirname, "..");
 const adapters = resolve(root, "mcp/_adapters");
 const providers = resolve(adapters, "src/providers");
-const services = readdirSync(resolve(adapters, "catalog/apps"))
+const services = readdirSync(resolve(root, "apps/apps"))
   .filter((name) => name.endsWith(".json"))
   .map((name) => name.slice(0, -5))
   .sort();
