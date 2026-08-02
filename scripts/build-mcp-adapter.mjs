@@ -8,6 +8,8 @@ const root = resolve(import.meta.dirname, "..");
 const adapters = resolve(root, "mcp/_adapters");
 const service = argument("--service");
 const version = argument("--version") ?? "1.0.0";
+const sourceRef = argument("--source-ref") ?? "main";
+const sourceRevision = argument("--source-revision") ?? null;
 if (!service || !/^[a-z0-9]+(?:[-_][a-z0-9]+)*$/.test(service)) throw new Error("--service is required");
 const definition = JSON.parse(readFileSync(resolve(root, `apps/apps/${service}.json`), "utf8"));
 if (definition.service !== service) throw new Error(`Catalog service mismatch for ${service}`);
@@ -31,7 +33,11 @@ const runtime = {
   service,
   version,
   entrypoint: "server.mjs",
-  source: { repositoryUrl: "https://github.com/nexts-sai/nexts-hub.git", ref: "main" },
+  source: {
+    repositoryUrl: "https://github.com/nexts-sai/nexts-hub.git",
+    ref: sourceRef,
+    ...(sourceRevision ? { revision: sourceRevision } : {})
+  },
   configurationFields: configurationFields(definition)
 };
 writeFileSync(resolve(outputRoot, "runtime.json"), `${JSON.stringify(runtime, null, 2)}\n`, "utf8");
