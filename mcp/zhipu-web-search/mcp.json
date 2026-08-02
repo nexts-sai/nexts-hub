@@ -4,7 +4,7 @@
   "description": "通过智谱官方远程 MCP 搜索互联网，获取实时、可追溯的网页标题、摘要、链接和发布时间。",
   "summary": "使用智谱 Web Search 获取实时网页结果和来源链接。",
   "homepage_url": "https://docs.bigmodel.cn/cn/coding-plan/mcp/search-mcp-server",
-  "icon_url": "https://www.google.com/s2/favicons?sz=64&domain=open.bigmodel.cn",
+  "icon_url": "https://static.bigmodel.cn/wd-paas-front/static/images/favicon.png",
   "category": "Search",
   "tags": ["search", "web", "zhipu", "glm"],
   "publisher": "智谱 AI",

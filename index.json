@@ -35,7 +35,7 @@
       "path": "./mcp",
       "registry": "./mcp/.agents/mcp/marketplace.json",
       "installTo": "mcp",
-      "hash": "sha256:79cd85c371bb5bd704ed1c65a530cfe04f51ad88d74dc1ad27207f0211cef5ff"
+      "hash": "sha256:fe431cd9ef7362c2499294476456667bd13b1ea853668ed6b1df45e9a32eb821"
     }
   }
 }
