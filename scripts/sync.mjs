@@ -231,6 +231,7 @@ export function buildApplicationsCatalog(baseDir = root) {
 function compactApplicationDefinition(definition) {
   return {
     service: definition.service,
+    ...(definition.version ? { version: definition.version } : {}),
     displayName: definition.displayName,
     categories: definition.categories,
     authTypes: definition.authTypes,

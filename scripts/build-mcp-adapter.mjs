@@ -1,8 +1,6 @@
 #!/usr/bin/env node
 
-import { createHash } from "node:crypto";
-import { execFileSync } from "node:child_process";
-import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { build } from "esbuild";
 
@@ -14,13 +12,14 @@ if (!service || !/^[a-z0-9]+(?:[-_][a-z0-9]+)*$/.test(service)) throw new Error(
 const definition = JSON.parse(readFileSync(resolve(root, `apps/apps/${service}.json`), "utf8"));
 if (definition.service !== service) throw new Error(`Catalog service mismatch for ${service}`);
 
-const outputRoot = resolve(argument("--output-dir") ?? resolve(root, `dist/mcp/${service}`));
+const outputRoot = resolve(argument("--output-dir") ?? resolve(root, `.runtime/apps/${service}/${version}`));
 const temporary = resolve(root, `.tmp/mcp-${service}`);
-const packageRoot = resolve(temporary, "package");
 const entry = resolve(temporary, "server.ts");
-const bundledEntry = resolve(packageRoot, "dist/server.mjs");
+const bundledEntry = resolve(outputRoot, "server.mjs");
 rmSync(temporary, { recursive: true, force: true });
+rmSync(outputRoot, { recursive: true, force: true });
 mkdirSync(dirname(bundledEntry), { recursive: true });
+mkdirSync(dirname(entry), { recursive: true });
 writeFileSync(entry, runtimeSource(definition), "utf8");
 
 await build({
@@ -28,42 +27,15 @@ await build({
   legalComments: "eof", absWorkingDir: adapters, logLevel: "warning",
   banner: { js: "#!/usr/bin/env node\nimport { createRequire as __nextsCreateRequire } from 'node:module'; const require = __nextsCreateRequire(import.meta.url);" }
 });
-writeFileSync(resolve(packageRoot, "package.json"), `${JSON.stringify({
-  name: service.replaceAll("_", "-"),
-  version,
-  type: "module",
-  bin: { [`mcp-${service.replaceAll("_", "-")}`]: "dist/server.mjs" },
-  engines: { node: ">=20" }
-}, null, 2)}\n`, "utf8");
-
-rmSync(outputRoot, { recursive: true, force: true });
-mkdirSync(outputRoot, { recursive: true });
-const npmArguments = ["pack", packageRoot, "--pack-destination", outputRoot, "--json"];
-const npmCli = [
-  process.env.npm_execpath,
-  resolve(dirname(process.execPath), "node_modules/npm/bin/npm-cli.js"),
-  resolve(dirname(process.execPath), "../lib/node_modules/npm/bin/npm-cli.js")
-].find((candidate) => candidate && existsSync(candidate));
-if (!npmCli) throw new Error("Unable to locate npm-cli.js; install npm next to the active Node.js runtime");
-const packedOutput = execFileSync(process.execPath, [npmCli, ...npmArguments], { cwd: root, encoding: "utf8" });
-const packed = JSON.parse(packedOutput);
-const filename = packed[0].filename;
-const artifactPath = resolve(outputRoot, filename);
-const sha256 = createHash("sha256").update(readFileSync(artifactPath)).digest("hex");
-const releaseTag = argument("--release-tag") ?? `mcp-${service}-v${version}`;
-const artifactUrl = `https://github.com/nexts-cc/nexts-hub/releases/download/${encodeURIComponent(releaseTag)}/${filename}`;
-const release = {
+const runtime = {
   service,
-  distributionType: "nexts_hub",
   version,
-  sha256,
-  artifactPath: filename,
-  artifactUrl,
-  runtime: { transport: "stdio", command: "npx", args: ["-y", artifactUrl], url: null, env: {}, headers: {} },
+  entrypoint: "server.mjs",
+  source: { repositoryUrl: "https://github.com/nexts-sai/nexts-hub.git", ref: "main" },
   configurationFields: configurationFields(definition)
 };
-writeFileSync(resolve(outputRoot, "catalog-release.json"), `${JSON.stringify(release, null, 2)}\n`, "utf8");
-process.stdout.write(`${JSON.stringify(release, null, 2)}\n`);
+writeFileSync(resolve(outputRoot, "runtime.json"), `${JSON.stringify(runtime, null, 2)}\n`, "utf8");
+process.stdout.write(`${JSON.stringify({ ...runtime, outputDirectory: outputRoot }, null, 2)}\n`);
 
 function runtimeSource(app) {
   const executorPath = resolve(adapters, `src/providers/${app.service}/executors.ts`).replaceAll("\\", "/");
