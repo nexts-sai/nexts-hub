@@ -19,6 +19,13 @@
       }
     },
     {
+      "name": "diagram-design",
+      "source": {
+        "source": "local",
+        "path": "./skills/diagram-design"
+      }
+    },
+    {
       "name": "find-skills",
       "source": {
         "source": "local",
