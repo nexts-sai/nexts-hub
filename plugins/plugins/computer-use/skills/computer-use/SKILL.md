@@ -17,9 +17,10 @@ This plugin is host-managed. Do not use PowerShell, shell screenshot scripts, Se
 4. If the target window is already open, continue from that window with `get_window_state({ window_id, include_screenshot: true })`; do not restart the task or call `launch_app`.
 5. Use `launch_app` only when the target app is not already visible/running, or when the user explicitly asks to open a fresh app/window.
 6. Use the smallest passive observation tool that can answer the question.
-7. For stable coordinate work, batch related actions with `run_sequence`, then verify once with `get_window_state` or `screenshot`.
-8. Use single input tools only when one action needs a separate confirmation or the UI may have changed.
-9. Before claiming the desktop task is complete, take a final observation of the target window with `get_window_state({ window_id, include_screenshot: true })` when a target window exists, or `screenshot({})` for whole-desktop tasks. Use that final observation to confirm the requested visible result is actually present. If the final observation does not show the expected result, continue or report the exact mismatch instead of saying the task is complete.
+7. For buttons, text fields, toggles, list items, expandable controls, and scrollable UIA controls, call `get_accessibility_tree` and prefer `perform_semantic_action` when its `supported_patterns` contains the required pattern.
+8. For stable coordinate work, batch related actions with `run_sequence`, then verify once with `get_window_state` or `screenshot`.
+9. Use single input tools only when one action needs a separate confirmation or the UI may have changed.
+10. Before claiming the desktop task is complete, take a final observation of the target window with `get_window_state({ window_id, include_screenshot: true })` when a target window exists, or `screenshot({})` for whole-desktop tasks. Use that final observation to confirm the requested visible result is actually present. If the final observation does not show the expected result, continue or report the exact mismatch instead of saying the task is complete.
 
 ## Visual-First Coordinate Logic
 
@@ -93,7 +94,15 @@ Do not say that no Computer Use interface is available after this skill is loade
 
 Coordinates are screen coordinates and must stay within the virtual screen bounds. Input tools require confirmation.
 
-`get_accessibility_tree` first tries to read the target window through Windows UI Automation and returns indexed controls with role, name, bounds, and available automation metadata. If UI Automation is unavailable for that window, it falls back to indexed visible-window pseudo-elements. `click_element` clicks the center of the indexed element; after layout changes, refresh the tree before reusing an index.
+### Semantic UI Automation
+
+- `perform_semantic_action({ element_ref, action, value?, horizontal_amount?, vertical_amount? })`
+
+`get_accessibility_tree` first tries to read the target window through Windows UI Automation and returns indexed controls with role, name, bounds, opaque `element_ref`, `supported_patterns`, and enabled/offscreen/focus/password state. Match actions to patterns: `invoke`, `value` (`set_value`/`get_value`), `text` (`get_text`), `toggle`, `selection_item` (`select`), `scroll`, `scroll_item` (`scroll_into_view`), and `expand_collapse` (`expand`/`collapse`).
+
+Prefer `perform_semantic_action` over `click_element`, keyboard typing, or coordinate tools when the target exposes the required pattern. It addresses the original window and does not move the physical pointer. It refuses password reads/writes, disabled mutation targets, and unsupported patterns. It never silently falls back to mouse input. An `element_ref` is observation-scoped: after layout or navigation changes, refresh the accessibility tree. If it returns a stale-reference error, refresh and select the target again.
+
+If UI Automation is unavailable, the tree falls back to indexed visible-window pseudo-elements without an `element_ref`. In that case, or for canvas, games, video, custom-rendered controls, and weakly accessible webviews, use visual coordinate tools deliberately. `click_element` remains a compatibility fallback that clicks the center of an indexed element and therefore uses physical pointer input.
 
 Use `run_sequence` when you already have a stable screenshot, canvas, or work surface and need several related actions, such as multiple drawing drags, click + type + Enter, or focus + keyboard shortcuts. Supported action tools are `move_mouse`, `left_click`, `right_click`, `middle_click`, `double_click`, `scroll`, `drag`, `key_press`, `type_text`, and `wait`. After a sequence that may change layout, take one fresh observation before choosing new coordinates or element indexes.
 

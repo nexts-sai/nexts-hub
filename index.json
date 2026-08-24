@@ -10,11 +10,11 @@
       "hash": "sha256:4c05ef9c228495252a5eb04251f1beb6070c253d7941a0604cecb30a2ac995e8"
     },
     "plugins": {
-      "version": 1,
+      "version": 2,
       "path": "./plugins/plugins",
       "registry": "./plugins/.agents/plugins/marketplace.json",
       "installTo": "plugins",
-      "hash": "sha256:f190ce485f47fc4d4494ff68e9ed8a9281d54ff215ae7c58521c4330bbcb0e41"
+      "hash": "sha256:bad3e3fadecfca4db61790a51206c343e44c6b8230a51221e7399584a12344fc"
     },
     "assistants": {
       "version": 1,

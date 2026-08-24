@@ -1,6 +1,6 @@
 {
   "name": "computer-use",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Control desktop apps on Windows from Nexts through Computer Use.",
   "author": {
     "name": "Nexts AI",
@@ -186,7 +186,7 @@
     },
     {
       "name": "get_accessibility_tree",
-      "description": "Return an indexed Windows UI Automation control tree for a target window after access is granted. Falls back to visible-window pseudo-elements if UIA is unavailable.",
+      "description": "Return an indexed Windows UI Automation control tree with opaque element_ref values, supported semantic patterns, and control state for a target window after access is granted. Falls back to visible-window pseudo-elements if UIA is unavailable.",
       "parameters": {
         "type": "object",
         "properties": {
@@ -196,6 +196,65 @@
         }
       },
       "requires_confirmation": false
+    },
+    {
+      "name": "perform_semantic_action",
+      "description": "Perform a Windows UI Automation pattern action on an element_ref without moving the physical pointer. Refresh the accessibility tree if the reference is stale. This tool never silently falls back to coordinate input.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "element_ref": {
+            "type": "string",
+            "description": "Opaque reference returned by get_accessibility_tree."
+          },
+          "action": {
+            "type": "string",
+            "enum": [
+              "invoke",
+              "set_value",
+              "get_value",
+              "get_text",
+              "toggle",
+              "select",
+              "scroll",
+              "scroll_into_view",
+              "expand",
+              "collapse"
+            ]
+          },
+          "value": {
+            "type": "string",
+            "description": "Required only for set_value."
+          },
+          "horizontal_amount": {
+            "type": "string",
+            "enum": [
+              "large_decrement",
+              "small_decrement",
+              "no_amount",
+              "large_increment",
+              "small_increment"
+            ],
+            "default": "no_amount"
+          },
+          "vertical_amount": {
+            "type": "string",
+            "enum": [
+              "large_decrement",
+              "small_decrement",
+              "no_amount",
+              "large_increment",
+              "small_increment"
+            ],
+            "default": "no_amount"
+          }
+        },
+        "required": [
+          "element_ref",
+          "action"
+        ]
+      },
+      "requires_confirmation": true
     },
     {
       "name": "click_element",
