@@ -8,12 +8,28 @@ $ErrorActionPreference = "Stop"
 $RootDir = (Resolve-Path "$PSScriptRoot\..").Path
 $EnvFile = if ($env:BROWSER_AGENT_BRIDGE_ENV_FILE) { $env:BROWSER_AGENT_BRIDGE_ENV_FILE } else { Join-Path $env:USERPROFILE ".browser-agent-bridge.env" }
 
-if (-not (Test-Path $EnvFile)) {
+$ExistingToken = $null
+if (Test-Path -LiteralPath $EnvFile -PathType Leaf) {
+    $TokenLine = Get-Content -LiteralPath $EnvFile -ErrorAction SilentlyContinue |
+        Where-Object { $_ -match '^BROWSER_AGENT_BRIDGE_TOKEN=' } |
+        Select-Object -First 1
+    if ($TokenLine) {
+        $ExistingToken = (($TokenLine -split '=', 2)[1]).Trim().Trim('"').Trim("'")
+    }
+}
+
+if ([string]::IsNullOrWhiteSpace($ExistingToken)) {
+    $EnvDir = Split-Path -Parent $EnvFile
+    if ($EnvDir -and -not (Test-Path -LiteralPath $EnvDir)) {
+        New-Item -ItemType Directory -Path $EnvDir -Force | Out-Null
+    }
     $bytes = New-Object Byte[] 16
     [System.Security.Cryptography.RandomNumberGenerator]::Create().GetBytes($bytes)
     $token = -join ($bytes | ForEach-Object { $_.ToString("x2") })
     [System.IO.File]::WriteAllText($EnvFile, "BROWSER_AGENT_BRIDGE_TOKEN=$token`r`n", [System.Text.Encoding]::ASCII)
     Write-Host "Security token generated and saved in $EnvFile"
+} else {
+    Write-Host "Existing security token found in $EnvFile"
 }
 
 $ManifestSrc = Join-Path $RootDir "native\com.local.browser_agent_bridge.json"

@@ -10,6 +10,7 @@ import base64
 import hashlib
 import hmac
 import re
+import secrets
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from pathlib import Path
 from socketserver import ThreadingTCPServer
@@ -33,6 +34,57 @@ ROOT = Path(__file__).resolve().parent.parent
 # host resolve the same directory in every deployment (repo, release, installed).
 SITE_PATTERNS_DIR = ROOT / "skills" / "control-chrome" / "runtime" / "site-patterns"
 DATA_URL_RE = re.compile(r'^data:([^;,]+)?(;base64)?,(.*)$', re.DOTALL)
+
+
+def _bridge_env_file():
+    configured = os.environ.get('BROWSER_AGENT_BRIDGE_ENV_FILE', '').strip()
+    return Path(configured).expanduser() if configured else Path.home() / '.browser-agent-bridge.env'
+
+
+def _read_bridge_token(env_file):
+    try:
+        for line in env_file.read_text(encoding='utf-8').splitlines():
+            if line.startswith('BROWSER_AGENT_BRIDGE_TOKEN='):
+                value = line.split('=', 1)[1].strip().strip("'\"")
+                return value or None
+    except OSError:
+        return None
+    return None
+
+
+def _write_bridge_token(env_file, token):
+    env_file.parent.mkdir(parents=True, exist_ok=True)
+    temp_file = env_file.with_name(f'.{env_file.name}.{os.getpid()}.tmp')
+    temp_file.write_text(
+        f'BROWSER_AGENT_BRIDGE_TOKEN={token}\n',
+        encoding='ascii',
+    )
+    try:
+        temp_file.chmod(0o600)
+    except OSError:
+        pass
+    os.replace(temp_file, env_file)
+
+
+def load_or_create_auth_token():
+    """Load the shared bridge token, repairing a missing/blank env file."""
+    configured = os.environ.get('BROWSER_AGENT_BRIDGE_TOKEN', '').strip()
+    if configured:
+        return configured
+
+    env_file = _bridge_env_file()
+    existing = _read_bridge_token(env_file)
+    if existing:
+        return existing
+
+    token = secrets.token_hex(16)
+    try:
+        _write_bridge_token(env_file, token)
+    except OSError as error:
+        sys.stderr.write(f'[browser-agent-native] Failed to persist bridge token: {error}\n')
+        sys.stderr.flush()
+        return ''
+    return token
 
 extension_ready = False
 extension_version = None
@@ -781,6 +833,10 @@ class RpcRequestHandler(BaseHTTPRequestHandler):
             })
 
 def main():
+    global AUTH_TOKEN
+    if not AUTH_TOKEN and not ALLOW_NO_AUTH:
+        AUTH_TOKEN = load_or_create_auth_token()
+
     # Run the Native Messaging listener in a daemon background thread
     reader_thread = threading.Thread(target=native_reader_loop, name="NativeReader")
     reader_thread.daemon = True
