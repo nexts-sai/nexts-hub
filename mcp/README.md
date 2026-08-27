@@ -6,7 +6,7 @@ The MCP category contains launch definitions and the source for adapters maintai
 
 1. `official_npm`: an npm MCP package published by the official product/vendor. NEXTS stores its package specifier and runs it directly with `npx`.
 2. `community_npm`: an npm MCP package published by an independent community maintainer. NEXTS stores its package specifier and identifies it as third-party.
-3. `nexts_hub`: an adapter maintained by NEXTS. Its runtime source lives under `mcp/_adapters`, while application metadata lives under `apps/apps`; each service is built into its own versioned `.tgz` release asset.
+3. `nexts_hub`: an adapter maintained by NEXTS. Its source lives under `mcp/_adapters`, while application metadata lives under `apps/apps`; official runtimes are prebuilt as versioned ZIP packages and published under `extend/mcp/` or `extend/apps/`. Desktop clients download those packages and never clone this repository.
 4. `remote_mcp`: an HTTPS Streamable HTTP MCP endpoint. The client connects to the endpoint and does not install a local npm package.
 
 ## Layout

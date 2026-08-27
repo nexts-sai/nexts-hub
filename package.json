@@ -18,6 +18,11 @@
     "test:plugin-packages": "node --test scripts/test-package-plugins.mjs",
     "package:plugins": "node scripts/package-plugins.mjs --all",
     "publish:plugins": "node scripts/package-plugins.mjs --all --publish",
+    "package:skills": "node scripts/package-skills.mjs --all",
+    "publish:skills": "node scripts/package-skills.mjs --all --publish",
+    "package:apps": "node scripts/package-apps.mjs --all",
+    "publish:apps": "node scripts/package-apps.mjs --all --publish",
+    "package:extend": "npm run package:plugins && npm run package:skills && npm run package:apps",
     "build:app-runtime": "node scripts/build-mcp-adapter.mjs"
   },
   "devDependencies": {

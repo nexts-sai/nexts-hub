@@ -127,13 +127,13 @@ export function parseEnvFile(content) {
   return values;
 }
 
-function apiBaseUrl(values, override) {
+export function apiBaseUrl(values, override) {
   const configured = override || values.NEXTS_ACCOUNT_API_BASE_URL || values.ACCOUNT_PUBLIC_BASE_URL || "https://nexts.ai";
   const normalized = configured.replace(/\/+$/, "");
   return normalized.endsWith("/api/v1") ? normalized : `${normalized}/api/v1`;
 }
 
-async function responseJson(response, label) {
+export async function responseJson(response, label) {
   const payload = await response.json().catch(() => null);
   if (!response.ok) {
     const message = payload?.error?.message || payload?.message || `${response.status} ${response.statusText}`;
