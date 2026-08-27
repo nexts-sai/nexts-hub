@@ -40,6 +40,20 @@ Two delivery paths, either or both:
 1. **Bundled at package time** — the installer ships this repo (or selected categories) inside the app resources and seeds the data directory on first launch.
 2. **Online updates** — the app pulls this repo from GitHub, compares versions in `index.json`, and updates the data directory incrementally.
 
+Marketplace plugin installation uses independent versioned ZIP packages instead of cloning this repository. Build every plugin locally with:
+
+```bash
+npm run package:plugins
+```
+
+Packages are written to the ignored `dist/extend/plugins/<plugin>/<version>/` directory. Published objects use the matching `extend/plugins/<plugin>/<version>/` namespace. The sibling `extend/skills/`, `extend/apps/`, and `extend/mcp/` namespaces are reserved for their corresponding extension assets. To publish plugin packages through the authenticated Nexts account-service package API:
+
+```bash
+node scripts/package-plugins.mjs --all --publish --env-file /path/to/protected.env --api-base https://nexts.ai/api/v1
+```
+
+The protected environment must provide `NEXTS_ADMIN_ACCESS_TOKEN`, or `NEXTS_ADMIN_EMAIL` and `NEXTS_ADMIN_PASSWORD` (the existing `ADMIN_BOOTSTRAP_EMAIL` and `ADMIN_BOOTSTRAP_PASSWORD` names are also accepted). The account service uploads each ZIP and its SHA-256 checksum to configured S3-compatible storage and updates `packageUrl`. This publisher intentionally does not create or upload digital signature files.
+
 Content in the data directory is a **runtime copy**. User-created content (custom assistants, agent-written site patterns, …) lives alongside pulled content and must never be overwritten by updates.
 
 ## Maintenance

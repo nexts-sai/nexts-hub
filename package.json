@@ -15,9 +15,13 @@
     "audit:mcp-deps": "node scripts/audit-mcp-dependencies.mjs",
     "check:mcp": "node scripts/check-mcp-adapters.mjs",
     "test:hashes": "node scripts/test-sync-hashes.mjs",
+    "test:plugin-packages": "node --test scripts/test-package-plugins.mjs",
+    "package:plugins": "node scripts/package-plugins.mjs --all",
+    "publish:plugins": "node scripts/package-plugins.mjs --all --publish",
     "build:app-runtime": "node scripts/build-mcp-adapter.mjs"
   },
   "devDependencies": {
+    "archiver": "^8.0.0",
     "esbuild": "^0.28.1"
   },
   "dependencies": {

@@ -39,6 +39,20 @@ nexts-hub/
 
 数据目录里的内容是**运行时副本**;用户自建内容(自定义助手、agent 写的 site-patterns 等)与拉取内容共存,更新时不得覆盖用户自建。
 
+插件市场安装使用独立版本 ZIP，不再为了安装一个插件克隆整个仓库。本地打包全部插件：
+
+```bash
+npm run package:plugins
+```
+
+产物写入已忽略的 `dist/extend/plugins/<plugin>/<version>/`，云端也使用对应的 `extend/plugins/<plugin>/<version>/` 路径。`extend/skills/`、`extend/apps/`、`extend/mcp/` 作为同级命名空间预留给各自扩展资源。通过 Nexts 账号服务的认证上传接口发布：
+
+```bash
+node scripts/package-plugins.mjs --all --publish --env-file /path/to/protected.env --api-base https://nexts.ai/api/v1
+```
+
+受保护环境需要提供 `NEXTS_ADMIN_ACCESS_TOKEN`，或者 `NEXTS_ADMIN_EMAIL` 与 `NEXTS_ADMIN_PASSWORD`；也兼容现有的 `ADMIN_BOOTSTRAP_EMAIL` 与 `ADMIN_BOOTSTRAP_PASSWORD`。账号服务会把每个 ZIP 和 SHA-256 校验文件上传到已配置的 S3 兼容对象存储，并回写 `packageUrl`。该发布脚本不会生成或上传数字签名文件。
+
 ## 维护约定
 
 - 新增技能:`skills/skills/<name>/SKILL.md`(参考 `skills/templates/`)。
