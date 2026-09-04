@@ -47,6 +47,13 @@
       }
     },
     {
+      "name": "officecli",
+      "source": {
+        "source": "local",
+        "path": "./skills/officecli"
+      }
+    },
+    {
       "name": "resume-screen",
       "source": {
         "source": "local",
