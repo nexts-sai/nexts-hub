@@ -2,6 +2,9 @@ node_modules/
 dist/
 .tmp/
 .runtime/
+.env
+.env.*
+!.env.example
 .DS_Store
 *.log
 __pycache__/
