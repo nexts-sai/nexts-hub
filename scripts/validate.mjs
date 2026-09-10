@@ -51,8 +51,8 @@ function validateMcpAdapterSources() {
   }
 
   const catalogFiles = readdirSync(catalogRoot).filter((entry) => entry.endsWith(".json"));
-  if (catalogFiles.length !== 1075) {
-    errors.push(`apps/apps must contain 1075 catalog entries; found ${catalogFiles.length}`);
+  if (catalogFiles.length !== 1076) {
+    errors.push(`apps/apps must contain 1076 catalog entries; found ${catalogFiles.length}`);
   }
   for (const file of catalogFiles) {
     const service = file.slice(0, -5);

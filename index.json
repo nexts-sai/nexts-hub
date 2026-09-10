@@ -24,11 +24,11 @@
       "hash": "sha256:03e7a6451159e516b91d706e93e7c60e54c86160a9db951b75bda0f5feb90b64"
     },
     "apps": {
-      "version": 1,
+      "version": 2,
       "path": "./apps/apps",
       "registry": "./apps/.agents/apps/marketplace.json",
       "installTo": "apps",
-      "hash": "sha256:ab79dfd48bd65121df1dbd31729fc3f516c4fc8cebaaf4d49f2608355d36b2b4"
+      "hash": "sha256:74c0bd81ad028ca470065f3ca7dd24518d9782c2e284bfec675d326ea0231fe5"
     },
     "mcp": {
       "version": 3,

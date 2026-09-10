@@ -3,6 +3,7 @@ import type { MailProtocol } from "./protocol.ts";
 import { describe, expect, it, vi } from "vitest";
 import { neteaseMailRuntimeConfig } from "../../providers/netease_mail/config.ts";
 import { qqMailRuntimeConfig } from "../../providers/qq_mail/config.ts";
+import { gmailImapSmtpRuntimeConfig } from "../../providers/gmail_imap_smtp/config.ts";
 import { createMailActions } from "./actions.ts";
 import { MailProtocolError } from "./errors.ts";
 import { createMailProtocol } from "./protocol.ts";
@@ -168,6 +169,14 @@ describe("IMAP/SMTP mail runtime", () => {
     );
     expect(mapProtocolError(error, "connect", neteaseMailRuntimeConfig).message).toBe(
       neteaseMailRuntimeConfig.connectAuthMessage,
+    );
+  });
+
+  it("uses Gmail app-password guidance for runtime authentication errors", () => {
+    const error = new MailProtocolError("auth", "authentication failed");
+
+    expect(mapProtocolError(error, "execute", gmailImapSmtpRuntimeConfig).message).toContain(
+      "16-character Google app password",
     );
   });
 });

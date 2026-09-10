@@ -27685,6 +27685,99 @@
       ]
     },
     {
+      "service": "gmail_imap_smtp",
+      "version": "1.0.1",
+      "displayName": "Gmail (IMAP/SMTP)",
+      "categories": [
+        "Communication",
+        "Productivity"
+      ],
+      "authTypes": [
+        "custom_credential"
+      ],
+      "homepageUrl": "https://mail.google.com/",
+      "description": "Connect Gmail directly over IMAP and SMTP with a Google app password stored on this device.",
+      "auth": [
+        {
+          "type": "custom_credential",
+          "fields": [
+            {
+              "key": "EMAIL_ADDRESS",
+              "label": "Email address",
+              "inputType": "text",
+              "required": true,
+              "secret": false,
+              "placeholder": "name@gmail.com",
+              "description": "Mailbox address used for this connection."
+            },
+            {
+              "key": "EMAIL_PASSWORD",
+              "label": "App password",
+              "inputType": "password",
+              "required": true,
+              "secret": true,
+              "placeholder": "16-character app password",
+              "description": "Use the Google app password generated after enabling 2-Step Verification. Do not use your regular Google Account password."
+            }
+          ],
+          "testAction": {
+            "actionName": "list_folders",
+            "input": {}
+          }
+        }
+      ],
+      "actions": [
+        {
+          "id": "gmail_imap_smtp.delete_email",
+          "description": "Delete one Gmail message from a folder."
+        },
+        {
+          "id": "gmail_imap_smtp.download_attachment",
+          "description": "Download one Gmail attachment by IMAP body part identifier."
+        },
+        {
+          "id": "gmail_imap_smtp.forward_email",
+          "description": "Forward one Gmail email using SMTP with quoted original content."
+        },
+        {
+          "id": "gmail_imap_smtp.get_email",
+          "description": "Fetch and parse one Gmail message without marking it as read."
+        },
+        {
+          "id": "gmail_imap_smtp.get_folder_status",
+          "description": "Get lightweight message counters for one Gmail folder."
+        },
+        {
+          "id": "gmail_imap_smtp.list_folders",
+          "description": "List folders visible to the connected Gmail account."
+        },
+        {
+          "id": "gmail_imap_smtp.mark_email_read",
+          "description": "Mark one Gmail message as read."
+        },
+        {
+          "id": "gmail_imap_smtp.mark_email_unread",
+          "description": "Mark one Gmail message as unread."
+        },
+        {
+          "id": "gmail_imap_smtp.move_email",
+          "description": "Move one Gmail message to another folder."
+        },
+        {
+          "id": "gmail_imap_smtp.reply_email",
+          "description": "Reply to one Gmail email using SMTP reply headers and quoted content."
+        },
+        {
+          "id": "gmail_imap_smtp.search_emails",
+          "description": "Search one Gmail folder and return lightweight email summaries."
+        },
+        {
+          "id": "gmail_imap_smtp.send_email",
+          "description": "Send an email through Gmail SMTP."
+        }
+      ]
+    },
+    {
       "service": "godial",
       "displayName": "GoDial",
       "categories": [

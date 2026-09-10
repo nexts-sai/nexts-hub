@@ -35,6 +35,7 @@ export interface MailRuntimeConfig {
   displayName: string;
   attachmentFallbackPrefix: string;
   connectAuthMessage: string;
+  executeAuthMessage?: string;
   readCredential(values: Record<string, string>): MailCredential;
 }
 
@@ -793,7 +794,8 @@ export function mapProtocolError(
           ? new ProviderRequestError(400, config.connectAuthMessage)
           : new ProviderRequestError(
               401,
-              `${config.displayName} rejected the stored authorization code. Reconnect the account with a fresh ${config.displayName} authorization code.`,
+              config.executeAuthMessage
+                ?? `${config.displayName} rejected the stored authorization code. Reconnect the account with a fresh ${config.displayName} authorization code.`,
             );
       case "folder_not_found":
         return new ProviderRequestError(400, `${config.displayName} folder does not exist.`);
