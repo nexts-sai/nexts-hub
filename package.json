@@ -21,8 +21,9 @@
     "package:skills": "node scripts/package-skills.mjs --all",
     "publish:skills": "node scripts/package-skills.mjs --all --publish",
     "package:apps": "node scripts/package-apps.mjs --all",
+    "package:mcp": "node scripts/package-mcp-servers.mjs --all",
     "publish:apps": "node scripts/package-apps.mjs --all --publish",
-    "package:extend": "npm run package:plugins && npm run package:skills && npm run package:apps",
+    "package:extend": "npm run package:plugins && npm run package:skills && npm run package:apps && npm run package:mcp",
     "build:app-runtime": "node scripts/build-mcp-adapter.mjs"
   },
   "devDependencies": {

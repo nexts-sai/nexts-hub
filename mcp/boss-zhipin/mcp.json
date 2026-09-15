@@ -1,0 +1,129 @@
+{
+  "id": "boss-zhipin",
+  "display_name": "BOSS 直聘招聘工作流",
+  "description": "通过 Nexts Chrome 插件操作用户已登录的 BOSS 直聘招聘页面，为可组合工作流提供登录状态检查、候选人搜索和候选人查看工具。候选人数据仅在用户本机处理，不绕过登录或安全验证，也不会自动发送招呼。",
+  "summary": "将 BOSS 直聘候选人搜索作为本地招聘工作流的一环。",
+  "homepage_url": "https://www.zhipin.com",
+  "icon_url": null,
+  "category": "Productivity",
+  "tags": [
+    "recruiting",
+    "workflow",
+    "chrome",
+    "boss-zhipin"
+  ],
+  "publisher": "Nexts AI",
+  "verified": true,
+  "distribution_type": "nexts_hub",
+  "auth_types": [
+    "custom_credential"
+  ],
+  "version": "0.1.0",
+  "min_nexts_version": "0.1.21",
+  "kernel_api": "mcp-2025-03-26",
+  "transport": "stdio",
+  "command": null,
+  "args": [],
+  "env": {},
+  "url": null,
+  "headers": {},
+  "configuration_fields": [
+    {
+      "key": "bridgeToken",
+      "label": "Chrome bridge token",
+      "target": "env",
+      "target_key": "NEXTS_CREDENTIAL_BRIDGETOKEN",
+      "required": true,
+      "secret": true,
+      "placeholder": "Local Chrome Control bridge token",
+      "description": "The local BROWSER_AGENT_BRIDGE_TOKEN configured by the Nexts Chrome plugin."
+    }
+  ],
+  "operations": [
+    {
+      "name": "open_recruiter",
+      "description": "Open a managed BOSS recruiter tab.",
+      "access": "write",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "sessionName": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 80,
+            "description": "Optional label for the managed Chrome session."
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "check_status",
+      "description": "Check login and verification readiness.",
+      "access": "read",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "tabId": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "The managed Chrome tab id returned by open_recruiter."
+          }
+        },
+        "required": ["tabId"],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "search_candidates",
+      "description": "Search and return visible candidate cards for a workflow.",
+      "access": "read",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "tabId": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "keyword": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 50,
+            "default": 20
+          }
+        },
+        "required": ["tabId", "keyword"],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "open_candidate",
+      "description": "Open one candidate detail view without contacting the candidate.",
+      "access": "write",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "tabId": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "index": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "required": ["tabId", "index"],
+        "additionalProperties": false
+      }
+    }
+  ],
+  "enabled_by_default": false,
+  "platforms": [
+    "windows"
+  ]
+}

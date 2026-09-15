@@ -5,6 +5,13 @@
   },
   "mcp": [
     {
+      "name": "boss-zhipin",
+      "source": {
+        "source": "local",
+        "path": "./boss-zhipin"
+      }
+    },
+    {
       "name": "nexts-canvas",
       "source": {
         "source": "local",

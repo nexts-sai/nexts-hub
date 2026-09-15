@@ -31,11 +31,11 @@
       "hash": "sha256:74c0bd81ad028ca470065f3ca7dd24518d9782c2e284bfec675d326ea0231fe5"
     },
     "mcp": {
-      "version": 3,
+      "version": 4,
       "path": "./mcp",
       "registry": "./mcp/.agents/mcp/marketplace.json",
       "installTo": "mcp",
-      "hash": "sha256:fe431cd9ef7362c2499294476456667bd13b1ea853668ed6b1df45e9a32eb821"
+      "hash": "sha256:4da390fa08ba31a0f35ede660eb6a3c7a294fb24597700c861eb471ef5a3fcb9"
     }
   }
 }
