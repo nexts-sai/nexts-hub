@@ -1,8 +1,8 @@
 {
   "id": "boss-zhipin",
   "display_name": "BOSS 直聘招聘工作流",
-  "description": "通过 Nexts Chrome 插件操作用户已登录的 BOSS 直聘招聘页面，为可组合工作流提供登录状态检查、候选人搜索和候选人查看工具。候选人数据仅在用户本机处理，不绕过登录或安全验证，也不会自动发送招呼。",
-  "summary": "将 BOSS 直聘候选人搜索作为本地招聘工作流的一环。",
+  "description": "通过 Nexts Chrome 插件操作用户已登录的 BOSS 直聘招聘页面，为可组合工作流提供搜索、批量去重、简历查看、候选人数据库、筛选评分、报告和候选人沟通工具。数据仅在用户本机处理，不绕过登录或安全验证，沟通工具需要明确确认。",
+  "summary": "完整的本地 BOSS 直聘招聘搜索、筛选、报告和沟通工作流。",
   "homepage_url": "https://www.zhipin.com",
   "icon_url": null,
   "category": "Productivity",
@@ -18,7 +18,7 @@
   "auth_types": [
     "custom_credential"
   ],
-  "version": "0.1.0",
+  "version": "0.2.0",
   "min_nexts_version": "0.1.21",
   "kernel_api": "mcp-2025-03-26",
   "transport": "stdio",
@@ -37,90 +37,46 @@
       "secret": true,
       "placeholder": "Local Chrome Control bridge token",
       "description": "The local BROWSER_AGENT_BRIDGE_TOKEN configured by the Nexts Chrome plugin."
+    },
+    {
+      "key": "dataDirectory",
+      "label": "Local candidate data directory",
+      "target": "env",
+      "target_key": "BOSS_ZHIPIN_DATA_DIR",
+      "required": false,
+      "secret": false,
+      "placeholder": "Optional local directory",
+      "description": "Stores the candidate database and generated reports locally on the desktop."
+    },
+    {
+      "key": "profilePath",
+      "label": "Search profile YAML path",
+      "target": "env",
+      "target_key": "BOSS_ZHIPIN_PROFILE_PATH",
+      "required": false,
+      "secret": false,
+      "placeholder": "Optional path to search_profile.yaml",
+      "description": "Loads keywords, job requirements, filters, and scoring rules from a local YAML file."
     }
   ],
   "operations": [
-    {
-      "name": "open_recruiter",
-      "description": "Open a managed BOSS recruiter tab.",
-      "access": "write",
-      "input_schema": {
-        "type": "object",
-        "properties": {
-          "sessionName": {
-            "type": "string",
-            "minLength": 1,
-            "maxLength": 80,
-            "description": "Optional label for the managed Chrome session."
-          }
-        },
-        "additionalProperties": false
-      }
-    },
-    {
-      "name": "check_status",
-      "description": "Check login and verification readiness.",
-      "access": "read",
-      "input_schema": {
-        "type": "object",
-        "properties": {
-          "tabId": {
-            "type": "integer",
-            "minimum": 1,
-            "description": "The managed Chrome tab id returned by open_recruiter."
-          }
-        },
-        "required": ["tabId"],
-        "additionalProperties": false
-      }
-    },
-    {
-      "name": "search_candidates",
-      "description": "Search and return visible candidate cards for a workflow.",
-      "access": "read",
-      "input_schema": {
-        "type": "object",
-        "properties": {
-          "tabId": {
-            "type": "integer",
-            "minimum": 1
-          },
-          "keyword": {
-            "type": "string",
-            "minLength": 1,
-            "maxLength": 120
-          },
-          "limit": {
-            "type": "integer",
-            "minimum": 1,
-            "maximum": 50,
-            "default": 20
-          }
-        },
-        "required": ["tabId", "keyword"],
-        "additionalProperties": false
-      }
-    },
-    {
-      "name": "open_candidate",
-      "description": "Open one candidate detail view without contacting the candidate.",
-      "access": "write",
-      "input_schema": {
-        "type": "object",
-        "properties": {
-          "tabId": {
-            "type": "integer",
-            "minimum": 1
-          },
-          "index": {
-            "type": "integer",
-            "minimum": 0
-          }
-        },
-        "required": ["tabId", "index"],
-        "additionalProperties": false
-      }
-    }
+    { "name": "boss_login", "description": "Open the recruiter page and check login or verification status.", "access": "write", "input_schema": { "type": "object", "additionalProperties": false } },
+    { "name": "boss_search_candidates", "description": "Search, scroll, deduplicate, and persist candidates locally.", "access": "write", "input_schema": { "type": "object", "properties": { "keyword": { "type": "string" }, "city": { "type": "string" }, "experience": { "type": "string" }, "salary": { "type": "string" }, "count": { "type": "integer", "minimum": 1, "maximum": 300 }, "tabId": { "type": "integer", "minimum": 1 } }, "required": ["keyword"], "additionalProperties": false } },
+    { "name": "boss_multi_search", "description": "Run a deduplicated multi-keyword search pipeline with optional automatic viewing.", "access": "write", "input_schema": { "type": "object", "properties": { "keywords": { "type": "array", "items": { "type": "string" } }, "city": { "type": "string" }, "experience": { "type": "string" }, "count_per_keyword": { "type": "integer", "minimum": 1, "maximum": 300 }, "auto_view": { "type": "boolean" }, "tabId": { "type": "integer", "minimum": 1 } }, "additionalProperties": false } },
+    { "name": "boss_clear_dedup", "description": "Clear local candidate records by ID, status, date, or all records.", "access": "write", "input_schema": { "type": "object", "properties": { "expect_ids": { "type": "array", "items": { "type": "string" } }, "status": { "type": "string" }, "before_date": { "type": "string" } }, "additionalProperties": false } },
+    { "name": "boss_view_candidate", "description": "View a candidate profile URL and save a local screenshot.", "access": "read", "input_schema": { "type": "object", "properties": { "profile_url": { "type": "string" }, "tabId": { "type": "integer", "minimum": 1 } }, "required": ["profile_url"], "additionalProperties": false } },
+    { "name": "boss_view_by_index", "description": "Open a candidate by index, save resume screenshots, and extract a share link when available.", "access": "write", "input_schema": { "type": "object", "properties": { "index": { "type": "integer", "minimum": 0 }, "tabId": { "type": "integer", "minimum": 1 } }, "required": ["index"], "additionalProperties": false } },
+    { "name": "boss_view_by_expect_id", "description": "Find and view a visible candidate by expectId.", "access": "write", "input_schema": { "type": "object", "properties": { "expect_id": { "type": "string" }, "tabId": { "type": "integer", "minimum": 1 } }, "required": ["expect_id"], "additionalProperties": false } },
+    { "name": "boss_greet_by_index", "description": "Contact a candidate by result index after explicit confirmation.", "access": "write", "input_schema": { "type": "object", "properties": { "index": { "type": "integer", "minimum": 0 }, "message": { "type": "string" }, "confirm": { "type": "boolean", "const": true }, "tabId": { "type": "integer", "minimum": 1 } }, "required": ["index", "confirm"], "additionalProperties": false } },
+    { "name": "boss_evaluate_candidate", "description": "Evaluate a resume using local job-profile keyword rules.", "access": "read", "input_schema": { "type": "object", "properties": { "resume": { "type": "object" }, "job_requirements": { "type": "string" } }, "required": ["resume"], "additionalProperties": false } },
+    { "name": "boss_send_greeting", "description": "Contact a candidate by profile URL after explicit confirmation.", "access": "write", "input_schema": { "type": "object", "properties": { "profile_url": { "type": "string" }, "message": { "type": "string" }, "confirm": { "type": "boolean", "const": true }, "tabId": { "type": "integer", "minimum": 1 } }, "required": ["profile_url", "confirm"], "additionalProperties": false } },
+    { "name": "boss_query_db", "description": "Query the local candidate database.", "access": "read", "input_schema": { "type": "object", "properties": { "status": { "type": "string" }, "has_share_url": { "type": "boolean" }, "keyword": { "type": "string" }, "date_from": { "type": "string" }, "limit": { "type": "integer", "minimum": 1, "maximum": 10000 } }, "additionalProperties": false } },
+    { "name": "boss_update_candidate", "description": "Update local candidate status, score, notes, or share URL.", "access": "write", "input_schema": { "type": "object", "properties": { "expect_id": { "type": "string" }, "status": { "type": "string" }, "score": { "type": "integer", "minimum": 0, "maximum": 100 }, "notes": { "type": "string" }, "share_url": { "type": "string" } }, "required": ["expect_id"], "additionalProperties": false } },
+    { "name": "boss_pipeline_status", "description": "Return local recruitment-pipeline statistics and recovery suggestions.", "access": "read", "input_schema": { "type": "object", "additionalProperties": false } },
+    { "name": "boss_filter_and_score", "description": "Filter and score candidates using the local search profile.", "access": "write", "input_schema": { "type": "object", "properties": { "top_n": { "type": "integer", "minimum": 1, "maximum": 500 } }, "additionalProperties": false } },
+    { "name": "boss_export_report", "description": "Export shortlisted candidates as a Markdown report.", "access": "read", "input_schema": { "type": "object", "properties": { "top_n": { "type": "integer", "minimum": 1, "maximum": 500 }, "include_detail": { "type": "boolean" } }, "additionalProperties": false } },
+    { "name": "boss_debug_page", "description": "Inspect the current BOSS page DOM structure.", "access": "read", "input_schema": { "type": "object", "properties": { "tabId": { "type": "integer", "minimum": 1 } }, "additionalProperties": false } },
+    { "name": "boss_reload", "description": "Reload the local candidate database and search profile.", "access": "write", "input_schema": { "type": "object", "additionalProperties": false } }
   ],
   "enabled_by_default": false,
   "platforms": [

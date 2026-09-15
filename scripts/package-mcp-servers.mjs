@@ -41,7 +41,7 @@ export async function run(argv = process.argv.slice(2)) {
     const runtimeDirectory = join(root, ".runtime", "mcp", item.id, item.version);
     await rm(runtimeDirectory, { recursive: true, force: true });
     await mkdir(runtimeDirectory, { recursive: true });
-    const runtimeFiles = (await readdir(item.directory)).filter((filename) => filename.endsWith(".mjs"));
+    const runtimeFiles = (await readdir(item.directory)).filter((filename) => filename.endsWith(".mjs") || filename.endsWith(".yaml"));
     for (const filename of runtimeFiles) await copyFile(join(item.directory, filename), join(runtimeDirectory, filename));
     await writeFile(join(runtimeDirectory, "runtime.json"), `${JSON.stringify({
       service: item.id,

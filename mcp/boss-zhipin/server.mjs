@@ -3,33 +3,24 @@
 import { pathToFileURL } from "node:url";
 import { createChromeBridgeClient } from "./bridge-client.mjs";
 import { createBossZhipinService } from "./boss-zhipin.mjs";
-
-const tools = [
-  { name: "open_recruiter", description: "Open a managed BOSS Zhipin recruiter tab. Stops when login or verification is required.", inputSchema: { type: "object", properties: { sessionName: { type: "string", minLength: 1, maxLength: 80 } }, additionalProperties: false } },
-  { name: "check_status", description: "Check whether a managed recruiter tab is logged in and ready.", inputSchema: { type: "object", properties: { tabId: { type: "integer", minimum: 1 } }, required: ["tabId"], additionalProperties: false } },
-  { name: "search_candidates", description: "Search visible candidate cards locally. Does not contact candidates and redacts explicit age and gender values.", inputSchema: { type: "object", properties: { tabId: { type: "integer", minimum: 1 }, keyword: { type: "string", minLength: 1, maxLength: 120 }, limit: { type: "integer", minimum: 1, maximum: 50, default: 20 } }, required: ["tabId", "keyword"], additionalProperties: false } },
-  { name: "open_candidate", description: "Open a candidate detail view for review without sending a greeting or message.", inputSchema: { type: "object", properties: { tabId: { type: "integer", minimum: 1 }, index: { type: "integer", minimum: 0 } }, required: ["tabId", "index"], additionalProperties: false } },
-];
+import { tools } from "./tools.mjs";
 
 export function createMcpHandler(service) {
   return async function handle(message) {
     if (!message || message.jsonrpc !== "2.0" || !message.method || message.method.startsWith("notifications/")) return undefined;
-    if (message.method === "initialize") return response(message.id, { protocolVersion: "2025-03-26", capabilities: { tools: { listChanged: false } }, serverInfo: { name: "nexts-boss-zhipin", version: "0.1.0" } });
+    if (message.method === "initialize") return response(message.id, { protocolVersion: "2025-03-26", capabilities: { tools: { listChanged: false } }, serverInfo: { name: "nexts-boss-zhipin", version: "0.2.0" } });
     if (message.method === "ping") return response(message.id, {});
-    if (message.method === "tools/list") return response(message.id, { tools });
+    if (message.method === "tools/list") return response(message.id, { tools: tools.map(({ handler: _handler, ...tool }) => tool) });
     if (message.method !== "tools/call") return failure(message.id, -32601, "Method not found");
 
-    const handlers = {
-      open_recruiter: service.openRecruiter,
-      check_status: service.checkStatus,
-      search_candidates: service.searchCandidates,
-      open_candidate: service.openCandidate,
-    };
-    const handler = handlers[message.params?.name];
-    if (!handler) return failure(message.id, -32601, "Unknown tool");
+    const definition = tools.find((tool) => tool.name === message.params?.name);
+    const handler = definition ? service[definition.handler] : undefined;
+    if (typeof handler !== "function") return failure(message.id, -32601, "Unknown tool");
     try {
       const output = await handler(message.params?.arguments ?? {});
-      return response(message.id, { content: [{ type: "text", text: JSON.stringify(output) }], structuredContent: output });
+      const result = { content: [{ type: "text", text: typeof output === "string" ? output : JSON.stringify(output) }] };
+      if (output && typeof output === "object" && !Array.isArray(output)) result.structuredContent = output;
+      return response(message.id, result);
     } catch (error) {
       return response(message.id, { isError: true, content: [{ type: "text", text: error instanceof Error ? error.message : String(error) }] });
     }

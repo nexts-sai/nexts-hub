@@ -1,0 +1,33 @@
+job:
+  title: "AI 产品经理"
+  salary: "20-30K"
+  city: "北京"
+  experience: "3-5年"
+
+company:
+  name: "公司名称"
+  description: "公司和产品简介"
+
+requirements:
+  must_have:
+    - "3-5 年产品经理经验"
+    - "AI 或大模型产品经验"
+  nice_to_have:
+    - "相关行业背景"
+    - "技术背景"
+
+filter:
+  max_age: 35
+  max_salary_k: 40
+  exclude_status: ["暂不考虑"]
+
+keywords:
+  - "AI产品经理"
+  - "AIGC产品经理"
+  - "大模型 产品"
+  - "RAG 产品经理"
+
+scoring:
+  domain_keywords: ["教育", "学术", "科研"]
+  tech_keywords: ["大模型", "llm", "rag", "prompt", "agent", "aigc"]
+  bonus_keywords: ["0-1", "从0到1"]
