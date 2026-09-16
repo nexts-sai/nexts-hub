@@ -16,12 +16,13 @@
 
 ## 本地运行
 
-需要先安装并启动仓库中的 Nexts Chrome 插件及其 native bridge，然后让 MCP 进程获得相同的 bridge token：
+需要先安装并启动仓库中的 Nexts Chrome 插件及其 native bridge。MCP 会自动读取插件写入用户目录的 `.browser-agent-bridge.env`，无需在安装界面手动填写 bridge token：
 
 ```powershell
-$env:NEXTS_CREDENTIAL_BRIDGETOKEN = "<bridge-token>"
 node server.mjs
 ```
+
+开发调试时仍可通过 `NEXTS_CREDENTIAL_BRIDGETOKEN` 或 `BROWSER_AGENT_BRIDGE_TOKEN` 覆盖自动读取的值。
 
 MCP 使用换行分隔的 JSON-RPC 2.0，通过标准输入和标准输出通信。运行测试：
 

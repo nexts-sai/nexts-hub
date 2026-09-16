@@ -8,7 +8,7 @@ import { tools } from "./tools.mjs";
 export function createMcpHandler(service) {
   return async function handle(message) {
     if (!message || message.jsonrpc !== "2.0" || !message.method || message.method.startsWith("notifications/")) return undefined;
-    if (message.method === "initialize") return response(message.id, { protocolVersion: "2025-03-26", capabilities: { tools: { listChanged: false } }, serverInfo: { name: "nexts-boss-zhipin", version: "0.2.0" } });
+    if (message.method === "initialize") return response(message.id, { protocolVersion: "2025-03-26", capabilities: { tools: { listChanged: false } }, serverInfo: { name: "nexts-boss-zhipin", version: "0.2.1" } });
     if (message.method === "ping") return response(message.id, {});
     if (message.method === "tools/list") return response(message.id, { tools: tools.map(({ handler: _handler, ...tool }) => tool) });
     if (message.method !== "tools/call") return failure(message.id, -32601, "Method not found");

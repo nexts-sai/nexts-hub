@@ -18,7 +18,7 @@ export function createBossZhipinService(options) {
   const service = {
     async bossLogin() {
       if (!activeTabId) {
-        const session = await rpc("session.start", { name: "BOSS 直聘招聘工作流", url: recruiterUrl, active: true, color: "cyan" });
+        const session = await rpc("session.start", { name: "BOSS 直聘", url: recruiterUrl, active: true, color: "cyan" });
         activeTabId = extractTabId(session);
       }
       return { tabId: activeTabId, ...(await inspectStatus(rpc, activeTabId)) };

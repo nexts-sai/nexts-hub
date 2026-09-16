@@ -1,15 +1,20 @@
+import { readFileSync } from "node:fs";
+import { homedir } from "node:os";
+import { join } from "node:path";
+
 const defaultEndpoint = "http://127.0.0.1:18765/rpc";
+const bridgeTokenKey = "BROWSER_AGENT_BRIDGE_TOKEN";
 
 export function createChromeBridgeClient(options = {}) {
   const endpoint = options.endpoint ?? defaultEndpoint;
   const fetcher = options.fetcher ?? globalThis.fetch;
-  const token = options.token ?? process.env.NEXTS_CREDENTIAL_BRIDGETOKEN ?? process.env.BROWSER_AGENT_BRIDGE_TOKEN;
 
   assertLocalBridgeUrl(endpoint);
   if (typeof fetcher !== "function") throw new Error("A fetch implementation is required");
 
   let requestId = 0;
   return async function rpc(method, params = {}) {
+    const token = resolveChromeBridgeToken(options);
     const response = await fetcher(endpoint, {
       method: "POST",
       redirect: "error",
@@ -25,6 +30,24 @@ export function createChromeBridgeClient(options = {}) {
     if (payload.error) throw new Error(payload.error.message ?? "Chrome bridge request failed");
     return payload.result ?? payload;
   };
+}
+
+export function resolveChromeBridgeToken(options = {}) {
+  const configured = options.token ?? process.env.NEXTS_CREDENTIAL_BRIDGETOKEN ?? process.env[bridgeTokenKey];
+  if (typeof configured === "string" && configured.trim()) return configured.trim();
+
+  const envPath = options.bridgeEnvPath ?? join(homedir(), ".browser-agent-bridge.env");
+  try {
+    for (const line of readFileSync(envPath, "utf8").split(/\r?\n/)) {
+      const match = line.match(/^\s*BROWSER_AGENT_BRIDGE_TOKEN\s*=\s*(.*?)\s*$/);
+      if (!match) continue;
+      const token = match[1].replace(/^(?:"([\s\S]*)"|'([\s\S]*)')$/, "$1$2").trim();
+      if (token) return token;
+    }
+  } catch (error) {
+    if (error?.code !== "ENOENT") throw error;
+  }
+  return undefined;
 }
 
 function assertLocalBridgeUrl(value) {

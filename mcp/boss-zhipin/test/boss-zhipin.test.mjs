@@ -5,6 +5,7 @@ import { join } from "node:path";
 import test from "node:test";
 
 import { createBossZhipinService } from "../boss-zhipin.mjs";
+import { createChromeBridgeClient, resolveChromeBridgeToken } from "../bridge-client.mjs";
 import { CandidateStore } from "../candidate-store.mjs";
 import { evaluateCandidate, exportReport, filterAndScore } from "../pipeline.mjs";
 import { loadProfile } from "../profile.mjs";
@@ -89,6 +90,34 @@ test("greeting tools require explicit confirmation before browser mutation", asy
   const service = createBossZhipinService({ rpc: async () => { calls += 1; return {}; }, store: {}, profile: {}, tabId: 2 });
   await assert.rejects(() => service.bossSendGreeting({ profile_url: "https://www.zhipin.com/geek/abc" }), /confirm=true/);
   assert.equal(calls, 0);
+});
+
+test("Chrome bridge token is loaded from the Nexts plugin handshake file", async () => {
+  const directory = mkdtempSync(join(tmpdir(), "boss-bridge-"));
+  const envPath = join(directory, ".browser-agent-bridge.env");
+  const previousNexts = process.env.NEXTS_CREDENTIAL_BRIDGETOKEN;
+  const previousBridge = process.env.BROWSER_AGENT_BRIDGE_TOKEN;
+  try {
+    delete process.env.NEXTS_CREDENTIAL_BRIDGETOKEN;
+    delete process.env.BROWSER_AGENT_BRIDGE_TOKEN;
+    writeFileSync(envPath, "BROWSER_AGENT_BRIDGE_TOKEN=plugin-token\n", "utf8");
+    assert.equal(resolveChromeBridgeToken({ bridgeEnvPath: envPath }), "plugin-token");
+
+    let authorization;
+    const rpc = createChromeBridgeClient({
+      bridgeEnvPath: envPath,
+      fetcher: async (_url, init) => {
+        authorization = init.headers.authorization;
+        return new Response(JSON.stringify({ result: { ok: true } }), { status: 200 });
+      },
+    });
+    assert.deepEqual(await rpc("health"), { ok: true });
+    assert.equal(authorization, "Bearer plugin-token");
+  } finally {
+    if (previousNexts === undefined) delete process.env.NEXTS_CREDENTIAL_BRIDGETOKEN; else process.env.NEXTS_CREDENTIAL_BRIDGETOKEN = previousNexts;
+    if (previousBridge === undefined) delete process.env.BROWSER_AGENT_BRIDGE_TOKEN; else process.env.BROWSER_AGENT_BRIDGE_TOKEN = previousBridge;
+    rmSync(directory, { recursive: true, force: true });
+  }
 });
 
 test("MCP exposes all 17 tools registered by the current upstream server", async () => {
