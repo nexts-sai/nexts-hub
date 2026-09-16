@@ -4,6 +4,7 @@
   "description": "通过 Nexts Chrome 插件操作用户已登录的 BOSS 直聘招聘页面，为可组合工作流提供搜索、批量去重、简历查看、候选人数据库、筛选评分、报告和候选人沟通工具。数据仅在用户本机处理，不绕过登录或安全验证，沟通工具需要明确确认。",
   "summary": "完整的本地 BOSS 直聘招聘搜索、筛选、报告和沟通工作流。",
   "homepage_url": "https://www.zhipin.com",
+  "repository_url": "https://github.com/Snseam/boss-zhipin-mcp",
   "icon_url": null,
   "category": "Productivity",
   "tags": [
