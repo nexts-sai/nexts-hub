@@ -1,10 +1,11 @@
 #!/usr/bin/env node
 
 import { copyFile, mkdir, readFile, readdir, rm, writeFile } from "node:fs/promises";
-import { dirname, join, resolve } from "node:path";
+import { basename, dirname, join, resolve } from "node:path";
 import process from "node:process";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { packageDirectory } from "./package-extension.mjs";
+import { apiBaseUrl, authenticatePublisher, parseEnvFile, responseJson } from "./package-plugins.mjs";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const sourceRoot = join(root, "mcp");
@@ -27,8 +28,23 @@ async function discover() {
   return items.sort((left, right) => left.id.localeCompare(right.id));
 }
 
+export async function publishMcpPackage(item, { apiBase, accessToken, fetchImpl = fetch }) {
+  const form = new FormData();
+  form.set("version", item.version);
+  form.set("package", new Blob([await readFile(item.packagePath)], { type: "application/zip" }), basename(item.packagePath));
+  const applicationId = `cc.nexts.connector.${item.id}`;
+  return responseJson(await fetchImpl(`${apiBase}/admin/connected-apps/catalog/${encodeURIComponent(applicationId)}/package`, {
+    method: "POST",
+    headers: { authorization: `Bearer ${accessToken}` },
+    body: form,
+  }), `Publish ${item.id}`);
+}
+
 export async function run(argv = process.argv.slice(2)) {
+  const publishPackages = argv.includes("--publish");
   const requested = argv.flatMap((value, index) => value === "--mcp" ? [argv[index + 1]] : []).filter(Boolean);
+  const envIndex = argv.indexOf("--env-file");
+  const apiIndex = argv.indexOf("--api-base");
   const outputIndex = argv.indexOf("--out");
   const output = outputIndex >= 0 ? resolve(argv[outputIndex + 1]) : defaultOutput;
   const discovered = await discover();
@@ -60,7 +76,20 @@ export async function run(argv = process.argv.slice(2)) {
     }, null, 2)}\n`, "utf8");
     const packagePath = join(output, item.id, item.version, `${item.id}-${item.version}.zip`);
     const sizeBytes = await packageDirectory(runtimeDirectory, packagePath);
+    item.packagePath = packagePath;
+    item.sizeBytes = sizeBytes;
     console.log(`Packaged ${item.id}@${item.version} (${sizeBytes} bytes): ${packagePath}`);
+  }
+  if (publishPackages) {
+    const fileValues = envIndex >= 0 ? parseEnvFile(await readFile(resolve(argv[envIndex + 1]), "utf8")) : {};
+    const values = { ...fileValues, ...process.env };
+    const apiBase = apiBaseUrl(values, apiIndex >= 0 ? argv[apiIndex + 1] : null);
+    const accessToken = await authenticatePublisher({ apiBase, values });
+    for (const item of selected) {
+      const result = await publishMcpPackage(item, { apiBase, accessToken });
+      const release = result.application?.latestRelease;
+      console.log(`Published ${item.id}@${item.version} (${release?.sha256 ?? "SHA-256 unavailable"})`);
+    }
   }
   return selected;
 }
