@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 
 import assert from "node:assert/strict";
-import { mkdtemp, rm, writeFile } from "node:fs/promises";
+import { mkdir, mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
 import test from "node:test";
-import { publishMcpPackage } from "./package-mcp-servers.mjs";
+import { publishMcpPackage, writePublishedPackageMetadata } from "./package-mcp-servers.mjs";
 
 test("publishes an MCP archive to the connected-app package endpoint", async () => {
   const root = await mkdtemp(join(tmpdir(), "nexts-mcp-publish-test-"));
@@ -34,6 +34,27 @@ test("publishes an MCP archive to the connected-app package endpoint", async () 
     assert.equal(request.init.body.get("version"), "0.2.0");
     assert.equal(request.init.body.get("package").name, "boss-zhipin-0.2.0.zip");
     assert.equal(result.application.latestRelease.sha256, "a".repeat(64));
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
+
+test("writes published URL, SHA-256, and size back to mcp.json", async () => {
+  const root = await mkdtemp(join(tmpdir(), "nexts-mcp-metadata-test-"));
+  try {
+    const directory = join(root, "boss-zhipin");
+    await mkdir(directory);
+    await writeFile(join(directory, "mcp.json"), `${JSON.stringify({ id: "boss-zhipin", version: "0.2.0" })}\n`);
+    await writePublishedPackageMetadata({ id: "boss-zhipin", directory }, {
+      packageUrl: "https://s.nexts.test/extend/mcp/boss-zhipin/0.2.0/boss-zhipin-0.2.0.zip",
+      sha256: "A".repeat(64),
+      sizeBytes: 18_982,
+    });
+
+    const definition = JSON.parse(await readFile(join(directory, "mcp.json"), "utf8"));
+    assert.equal(definition.package_url, "https://s.nexts.test/extend/mcp/boss-zhipin/0.2.0/boss-zhipin-0.2.0.zip");
+    assert.equal(definition.package_sha256, "a".repeat(64));
+    assert.equal(definition.package_size_bytes, 18_982);
   } finally {
     await rm(root, { recursive: true, force: true });
   }

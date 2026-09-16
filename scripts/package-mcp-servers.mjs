@@ -40,6 +40,27 @@ export async function publishMcpPackage(item, { apiBase, accessToken, fetchImpl 
   }), `Publish ${item.id}`);
 }
 
+export async function writePublishedPackageMetadata(item, release) {
+  if (
+    typeof release?.packageUrl !== "string" || !release.packageUrl.startsWith("https://") ||
+    typeof release.sha256 !== "string" || !/^[0-9a-f]{64}$/i.test(release.sha256) ||
+    !Number.isSafeInteger(release.sizeBytes) || release.sizeBytes <= 0
+  ) {
+    throw new Error(`Publish ${item.id} did not return complete package metadata.`);
+  }
+  const manifestPath = join(item.directory, "mcp.json");
+  const definition = JSON.parse(await readFile(manifestPath, "utf8"));
+  const updated = {
+    ...definition,
+    package_url: release.packageUrl,
+    package_sha256: release.sha256.toLowerCase(),
+    package_size_bytes: release.sizeBytes,
+  };
+  await writeFile(manifestPath, `${JSON.stringify(updated, null, 2)}\n`, "utf8");
+  item.definition = updated;
+  return updated;
+}
+
 export async function run(argv = process.argv.slice(2)) {
   const publishPackages = argv.includes("--publish");
   const requested = argv.flatMap((value, index) => value === "--mcp" ? [argv[index + 1]] : []).filter(Boolean);
@@ -88,6 +109,7 @@ export async function run(argv = process.argv.slice(2)) {
     for (const item of selected) {
       const result = await publishMcpPackage(item, { apiBase, accessToken });
       const release = result.application?.latestRelease;
+      await writePublishedPackageMetadata(item, release);
       console.log(`Published ${item.id}@${item.version} (${release?.sha256 ?? "SHA-256 unavailable"})`);
     }
   }

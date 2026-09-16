@@ -20,6 +20,9 @@
     "custom_credential"
   ],
   "version": "0.2.0",
+  "package_url": "https://s.nexts.cc/extend/mcp/boss-zhipin/0.2.0/boss-zhipin-0.2.0.zip",
+  "package_sha256": "9b9577ffbaf279e0e248f93e30934b0c2289595ac45ff8265587edb2a9124366",
+  "package_size_bytes": 18982,
   "min_nexts_version": "0.1.21",
   "kernel_api": "mcp-2025-03-26",
   "transport": "stdio",
