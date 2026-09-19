@@ -28,7 +28,7 @@
       "path": "./apps/apps",
       "registry": "./apps/.agents/apps/marketplace.json",
       "installTo": "apps",
-      "hash": "sha256:74c0bd81ad028ca470065f3ca7dd24518d9782c2e284bfec675d326ea0231fe5"
+      "hash": "sha256:1e4121b38df0e179d7a5f9e722eee7bd8127913dc50248219c3d4e0170688921"
     },
     "mcp": {
       "version": 5,

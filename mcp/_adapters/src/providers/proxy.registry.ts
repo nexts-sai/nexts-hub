@@ -276,11 +276,6 @@ export const registeredProxyExecutors: Record<string, ProviderProxyExecutor> = {
     baseUrl: credentialProviderProxyBaseUrl("apiUrl"),
     auth: { type: "api_key_header", name: "api-token" },
   }),
-  agentql: defineProviderProxy({
-    service: "agentql",
-    baseUrl: "https://api.agentql.com",
-    auth: { type: "api_key_header", name: "x-api-key" },
-  }),
   aivoov: defineProviderProxy({
     service: "aivoov",
     baseUrl: "https://aivoov.com/api/v8",

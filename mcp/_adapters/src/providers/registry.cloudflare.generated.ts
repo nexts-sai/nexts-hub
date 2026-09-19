@@ -25,7 +25,6 @@ export const executorModules: Record<string, () => Promise<ExecutorModule>> = {
   affinity: (): Promise<ExecutorModule> => import("./affinity/executors.ts"),
   aftership: (): Promise<ExecutorModule> => import("./aftership/executors.ts"),
   agent_mail: (): Promise<ExecutorModule> => import("./agent_mail/executors.ts"),
-  agentql: (): Promise<ExecutorModule> => import("./agentql/executors.ts"),
   agenty: (): Promise<ExecutorModule> => import("./agenty/executors.ts"),
   agiled: (): Promise<ExecutorModule> => import("./agiled/executors.ts"),
   agility: (): Promise<ExecutorModule> => import("./agility/executors.ts"),
@@ -1387,12 +1386,6 @@ export const executableActionIds: Record<string, string[]> = {
     "agent_mail.verify_domain",
     "agent_mail.verify_pod_domain",
     "agent_mail.who_am_i",
-  ],
-  agentql: [
-    "agentql.create_browser_session",
-    "agentql.get_usage",
-    "agentql.list_session_usage",
-    "agentql.query_data",
   ],
   agenty: [
     "agenty.add_list_rows",

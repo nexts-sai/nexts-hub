@@ -1646,45 +1646,6 @@
       ]
     },
     {
-      "service": "agentql",
-      "displayName": "AgentQL",
-      "categories": [
-        "AI",
-        "Developer Tools",
-        "Data"
-      ],
-      "authTypes": [
-        "api_key"
-      ],
-      "homepageUrl": "https://www.agentql.com",
-      "auth": [
-        {
-          "type": "api_key",
-          "label": "API Key",
-          "placeholder": "AGENTQL_API_KEY",
-          "description": "AgentQL API key used with the X-API-Key header. Get it from the AgentQL developer dashboard."
-        }
-      ],
-      "actions": [
-        {
-          "id": "agentql.create_browser_session",
-          "description": "Create an AgentQL Tetra remote browser session and return the session, CDP, and base URLs."
-        },
-        {
-          "id": "agentql.get_usage",
-          "description": "Get AgentQL account and API key usage counters for the current billing cycle and lifetime totals."
-        },
-        {
-          "id": "agentql.list_session_usage",
-          "description": "List AgentQL Tetra session telemetry entries with optional filters and pagination controls."
-        },
-        {
-          "id": "agentql.query_data",
-          "description": "Query a webpage with AgentQL and return the extracted structured data plus AgentQL metadata."
-        }
-      ]
-    },
-    {
       "service": "agenty",
       "displayName": "Agenty",
       "categories": [
