@@ -40,6 +40,13 @@
       }
     },
     {
+      "name": "jianying-edit",
+      "source": {
+        "source": "local",
+        "path": "./skills/jianying-edit"
+      }
+    },
+    {
       "name": "meeting-minutes",
       "source": {
         "source": "local",
