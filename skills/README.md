@@ -6,6 +6,7 @@ This repository defines the NextsAI skill catalog shape: skills live under `skil
 
 ## Skills
 
+- `calendar` - Manage the local Nexts calendar, events, recurrence, and availability. This Skill is also bundled with Nexts as a built-in capability.
 - `contract-review` - Review contracts for risks and proposed revisions.
 - `find-skills` - Discover and install agent skills.
 - `jianying-edit` - Edit and export Jianying drafts on a compatible Apple Silicon Mac (private core required).

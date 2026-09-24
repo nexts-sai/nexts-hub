@@ -5,6 +5,13 @@
   },
   "skills": [
     {
+      "name": "calendar",
+      "source": {
+        "source": "local",
+        "path": "./skills/calendar"
+      }
+    },
+    {
       "name": "cangjie-skill",
       "source": {
         "source": "local",

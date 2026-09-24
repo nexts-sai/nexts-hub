@@ -3,11 +3,11 @@
   "description": "Unified content hub for Nexts: skills, plugins, assistants, applications, and MCP servers.",
   "categories": {
     "skills": {
-      "version": 3,
+      "version": 4,
       "path": "./skills/skills",
       "registry": "./skills/.agents/skills/marketplace.json",
       "installTo": "skills",
-      "hash": "sha256:aaf33efb22b73436cb006afdd9f7db465a1a0d7efacb98931804743a0aacd28b"
+      "hash": "sha256:d9ea9f6f58d5ec1158b43bd5dc6347ca51eb9d7010afbfa42779044084320a33"
     },
     "plugins": {
       "version": 2,
