@@ -1,6 +1,6 @@
 ---
 name: calendar
-description: Manage the local Nexts calendar, inspect schedules, create or change events, and find free time. Use for calendar, agenda, appointment, meeting-time, 日历, 日程, 行程, 约会, and 空闲时间 requests.
+description: Manage the local Nexts calendar, inspect schedules, create or change events, and find free time. Use for calendar, schedule, agenda, appointment, meeting time, itinerary, and availability requests.
 ---
 
 # Calendar
