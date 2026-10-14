@@ -1,8 +1,8 @@
 {
   "id": "boss-zhipin",
-  "display_name": "BOSS 直聘",
-  "description": "通过 Nexts Chrome 插件操作用户已登录的 BOSS 直聘招聘者后台，提供候选人搜索、批量去重、简历查看、本地候选人数据库、筛选评分、报告和候选人沟通工具。数据仅在用户本机处理，不绕过登录或安全验证，沟通工具需要明确确认。",
-  "summary": "BOSS 直聘候选人搜索与管理 MCP。",
+  "display_name": "BOSS Zhipin",
+  "description": "Access the user's signed-in BOSS Zhipin recruiter dashboard through the Nexts Chrome extension. Provides candidate search, batch deduplication, resume viewing, a local candidate database, filtering and scoring, reports, and candidate messaging tools. Data is processed only on the user's device. Login and security checks are respected, and messaging requires explicit confirmation.",
+  "summary": "MCP tools for candidate search and management on BOSS Zhipin.",
   "homepage_url": "https://www.zhipin.com",
   "repository_url": "https://github.com/Snseam/boss-zhipin-mcp",
   "icon_url": null,

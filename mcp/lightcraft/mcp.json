@@ -1,0 +1,19 @@
+{
+  "id": "lightcraft",
+  "display_name": "LightCraft",
+  "description": "Organize photo libraries, adjust images, and render and export photos through the local LightCraft desktop control channel. Requires LightCraft to be installed with control port 7980 enabled.",
+  "transport": "stdio",
+  "command": "C:\\Program Files\\LightCraft\\lightcraft-cli.exe",
+  "args": [
+    "mcp",
+    "--connect",
+    "127.0.0.1:7980"
+  ],
+  "env": {},
+  "url": null,
+  "headers": {},
+  "enabled_by_default": true,
+  "platforms": [
+    "windows"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "id": "wordcraft",
+  "display_name": "WordCraft",
+  "description": "Create and edit documents, format text, and manage tracked changes and comments through the local WordCraft desktop control channel. Requires WordCraft to be installed with control port 7981 enabled.",
+  "transport": "stdio",
+  "command": "C:\\Program Files\\WordCraft\\wordcraft-cli.exe",
+  "args": [
+    "mcp",
+    "--connect",
+    "127.0.0.1:7981"
+  ],
+  "env": {},
+  "url": null,
+  "headers": {},
+  "enabled_by_default": true,
+  "platforms": [
+    "windows"
+  ]
+}

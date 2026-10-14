@@ -1,0 +1,19 @@
+{
+  "id": "designcraft",
+  "display_name": "DesignCraft",
+  "description": "Create page layouts, edit text frames and styles, and export documents through the local DesignCraft desktop control channel. Requires DesignCraft to be installed with control port 7983 enabled.",
+  "transport": "stdio",
+  "command": "C:\\Program Files\\DesignCraft\\designcraft-cli.exe",
+  "args": [
+    "mcp",
+    "--connect",
+    "7983"
+  ],
+  "env": {},
+  "url": null,
+  "headers": {},
+  "enabled_by_default": true,
+  "platforms": [
+    "windows"
+  ]
+}

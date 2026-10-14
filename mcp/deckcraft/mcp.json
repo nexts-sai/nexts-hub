@@ -1,0 +1,19 @@
+{
+  "id": "deckcraft",
+  "display_name": "DeckCraft",
+  "description": "Create and edit presentations, manage slides and shapes, and export decks through the local DeckCraft desktop control channel. Requires DeckCraft to be installed with control port 7990 enabled.",
+  "transport": "stdio",
+  "command": "C:\\Program Files\\DeckCraft\\deckcraft-cli.exe",
+  "args": [
+    "mcp",
+    "--connect",
+    "7990"
+  ],
+  "env": {},
+  "url": null,
+  "headers": {},
+  "enabled_by_default": true,
+  "platforms": [
+    "windows"
+  ]
+}

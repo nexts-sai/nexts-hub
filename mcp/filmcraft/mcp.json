@@ -1,0 +1,17 @@
+{
+  "id": "filmcraft",
+  "display_name": "FilmCraft",
+  "description": "Import media, edit timelines, and render videos through the local FilmCraft desktop control channel. Requires FilmCraft to be installed with control port 9876 enabled.",
+  "transport": "stdio",
+  "command": "C:\\Program Files\\FilmCraft\\filmcraft-cli.exe",
+  "args": [
+    "mcp",
+    "--bridge",
+    "127.0.0.1:9876"
+  ],
+  "env": {},
+  "url": null,
+  "headers": {},
+  "enabled_by_default": true,
+  "platforms": ["windows"]
+}

@@ -1,0 +1,19 @@
+{
+  "id": "effectcraft",
+  "display_name": "EffectCraft",
+  "description": "Create compositions, animate layers, apply effects, and render frames through the local EffectCraft desktop control channel. Requires EffectCraft to be installed with control port 9877 enabled.",
+  "transport": "stdio",
+  "command": "C:\\Program Files\\EffectCraft\\effectcraft-cli.exe",
+  "args": [
+    "mcp",
+    "--bridge",
+    "9877"
+  ],
+  "env": {},
+  "url": null,
+  "headers": {},
+  "enabled_by_default": true,
+  "platforms": [
+    "windows"
+  ]
+}

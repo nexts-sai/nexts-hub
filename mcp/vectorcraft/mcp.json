@@ -1,0 +1,19 @@
+{
+  "id": "vectorcraft",
+  "display_name": "VectorCraft",
+  "description": "Create and edit vector artwork, manage artboards, and export designs through the local VectorCraft desktop control channel. Requires VectorCraft to be installed with control port 7979 enabled.",
+  "transport": "stdio",
+  "command": "C:\\Program Files\\VectorCraft\\vectorcraft-cli.exe",
+  "args": [
+    "mcp",
+    "--connect",
+    "127.0.0.1:7979"
+  ],
+  "env": {},
+  "url": null,
+  "headers": {},
+  "enabled_by_default": true,
+  "platforms": [
+    "windows"
+  ]
+}

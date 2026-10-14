@@ -1,13 +1,13 @@
 {
   "id": "zhipu-web-search",
-  "display_name": "智谱联网搜索",
-  "description": "通过智谱官方远程 MCP 搜索互联网，获取实时、可追溯的网页标题、摘要、链接和发布时间。",
-  "summary": "使用智谱 Web Search 获取实时网页结果和来源链接。",
+  "display_name": "Zhipu Web Search",
+  "description": "Search the web through Zhipu's official remote MCP service to retrieve current page titles, summaries, links, and publication dates with traceable sources.",
+  "summary": "Retrieve current web results and source links with Zhipu Web Search.",
   "homepage_url": "https://docs.bigmodel.cn/cn/coding-plan/mcp/search-mcp-server",
   "icon_url": "https://static.bigmodel.cn/wd-paas-front/static/images/favicon.png",
   "category": "Search",
   "tags": ["search", "web", "zhipu", "glm"],
-  "publisher": "智谱 AI",
+  "publisher": "Zhipu AI",
   "verified": true,
   "distribution_type": "remote_mcp",
   "auth_types": ["api_key"],
@@ -23,13 +23,13 @@
   "configuration_fields": [
     {
       "key": "authorization",
-      "label": "智谱 API Key",
+      "label": "Zhipu API Key",
       "target": "header",
       "target_key": "Authorization",
       "required": true,
       "secret": true,
-      "placeholder": "Bearer 你的智谱 API Key",
-      "description": "请输入完整的 Bearer 凭证，例如 Bearer xxxxx。"
+      "placeholder": "Bearer YOUR_ZHIPU_API_KEY",
+      "description": "Enter the complete Bearer credential, for example Bearer xxxxx."
     }
   ],
   "enabled_by_default": false,

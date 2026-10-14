@@ -1,0 +1,19 @@
+{
+  "id": "gridcraft",
+  "display_name": "GridCraft",
+  "description": "Read and edit spreadsheets, manage formulas and charts, and export workbooks through the local GridCraft desktop control channel. Requires GridCraft to be installed with control port 7982 enabled.",
+  "transport": "stdio",
+  "command": "C:\\Program Files\\GridCraft\\gridcraft-cli.exe",
+  "args": [
+    "mcp",
+    "--connect",
+    "7982"
+  ],
+  "env": {},
+  "url": null,
+  "headers": {},
+  "enabled_by_default": true,
+  "platforms": [
+    "windows"
+  ]
+}
