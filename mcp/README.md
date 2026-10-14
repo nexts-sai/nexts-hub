@@ -1,45 +1,33 @@
-# NEXTS MCP catalog and adapters
+# NEXTS MCP catalog
 
-The MCP category contains launch definitions and the source for adapters maintained by NEXTS. It does not mirror packages maintained by third parties.
+The MCP category contains launch definitions. Application connector source and tooling are maintained in a separate project.
 
-## Four distribution types
+## Distribution types
 
 1. `official_npm`: an npm MCP package published by the official product/vendor. NEXTS stores its package specifier and runs it directly with `npx`.
 2. `community_npm`: an npm MCP package published by an independent community maintainer. NEXTS stores its package specifier and identifies it as third-party.
-3. `nexts_hub`: an adapter maintained by NEXTS. Its source lives under `mcp/_adapters`, while application metadata lives under `apps/apps`; official runtimes are prebuilt as versioned ZIP packages and published under `extend/mcp/` or `extend/apps/`. Desktop clients download those packages and never clone this repository.
+3. `nexts_hub`: an adapter maintained by NEXTS. Its runtime is distributed as a versioned ZIP package. Desktop clients download those packages and never clone this repository.
 4. `remote_mcp`: an HTTPS Streamable HTTP MCP endpoint. The client connects to the endpoint and does not install a local npm package.
+5. `local_stdio`: an existing MCP command such as a native CLI, `uvx`, or `python`. Store its `command`, `args`, and `env` directly. The user's desktop launches it using standard MCP stdio; no NEXTS wrapper or ZIP package is required. The executable and any dependencies must already be available on that desktop.
+
+Catalog entries require `id`, `display_name`, `description`, `summary`, `publisher`,
+`distribution_type`, `auth_types`, `version`, and `transport`. For `local_stdio`,
+use `transport: "stdio"`, a nonempty `command`, an argument array, and `url: null`.
+Use `configuration_fields` to collect environment values such as API keys or token
+file paths without putting credentials in the catalog. The Craft entries are examples.
+Like `nexts-canvas`, they are declarative MCP definitions; Canvas uses an npm
+launcher while the Craft entries use separately installed native executables.
 
 ## Layout
 
 ```text
 mcp/
-+-- _adapters/                 NEXTS-maintained adapter source (not a marketplace item)
-|   +-- core/                  shared adapter contracts
-|   `-- src/providers/         provider executors
 +-- templates/basic-mcp/       manifest template
 +-- <published-id>/mcp.json    optional curated Hub launch definition
 `-- .agents/mcp/marketplace.json
 ```
 
 Generated `.tgz` files and temporary build output are ignored. Publish them as GitHub Release assets rather than committing binaries.
-
-## Build one NEXTS adapter
-
-```bash
-npm install
-npm run build:mcp -- --service gmail --version 1.0.0
-```
-
-The command produces:
-
-```text
-dist/mcp/gmail/gmail-1.0.0.tgz
-dist/mcp/gmail/catalog-release.json
-```
-
-Upload the `.tgz` to the release tag printed in `catalog-release.json`, then publish that HTTPS asset URL in `nexts-account-service`. Do not use `127.0.0.1`, `localhost`, a local filesystem path, or the account-service catalog-assets route for a production MCP release.
-
-The `Publish MCP adapters` GitHub Action accepts `all` or a comma-separated service list. It automatically splits the selection into parallel batches while keeping one immutable Release per adapter. For example, one workflow run can publish all 1,075 adapters, or only `gmail,slack,github`; no per-adapter workflow dispatch is required.
 
 ## Security and ownership
 

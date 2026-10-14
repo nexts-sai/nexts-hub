@@ -45,7 +45,7 @@ nexts-hub/
 npm run package:plugins
 ```
 
-产物写入已忽略的 `dist/extend/plugins/<plugin>/<version>/`，云端也使用对应的 `extend/plugins/<plugin>/<version>/` 路径。`extend/skills/`、`extend/apps/`、`extend/mcp/` 作为同级命名空间预留给各自扩展资源。通过 Nexts 账号服务的认证上传接口发布：
+产物写入已忽略的 `dist/extend/plugins/<plugin>/<version>/`，云端也使用对应的 `extend/plugins/<plugin>/<version>/` 路径。`extend/skills/`、`extend/mcp/` 作为同级命名空间预留给各自扩展资源。通过 Nexts 账号服务的认证上传接口发布：
 
 ```bash
 node scripts/package-plugins.mjs --all --publish --env-file /path/to/protected.env --api-base https://nexts.ai/api/v1

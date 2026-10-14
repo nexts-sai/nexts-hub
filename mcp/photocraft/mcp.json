@@ -25,5 +25,17 @@
     }
   ],
   "enabled_by_default": true,
-  "platforms": ["windows"]
+  "platforms": [
+    "windows"
+  ],
+  "summary": "Connect Nexts to the local PhotoCraft desktop app.",
+  "homepage_url": "https://github.com/storytold/photocraft",
+  "publisher": "Storytold",
+  "verified": false,
+  "distribution_type": "local_stdio",
+  "auth_types": [
+    "no_auth"
+  ],
+  "version": "1.0.0",
+  "kernel_api": "mcp-2025-03-26"
 }

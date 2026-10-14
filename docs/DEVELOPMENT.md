@@ -48,13 +48,6 @@ One template directory per category, named uniformly:
 5. Run `npm run validate`.
 6. Commit the scaffold, edited files, generated registry updates, and any manual version bump together.
 
-## Application runtime build
+## Application connectors
 
-Application runtime source is committed to this repository. Nexts clones or updates the official repository when a newer application version is selected, then builds that application's runtime locally. Application package archives and GitHub Release assets are not used.
-
-To verify a runtime build locally:
-
-```powershell
-npm ci
-npm run build:app-runtime -- --service gmail --version 1.0.1 --output-dir .runtime/apps/gmail/1.0.1
-```
+Application connector metadata, runtime source, and publishing tools are maintained in a separate project. This Hub does not build or validate those adapters.

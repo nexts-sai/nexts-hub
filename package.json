@@ -11,9 +11,7 @@
     "new:assistant": "node scripts/new.mjs assistant",
     "new:mcp": "node scripts/new.mjs mcp",
     "sync": "node scripts/sync.mjs",
-    "validate": "node scripts/validate.mjs && npm run audit:mcp-deps && npm run check:mcp",
-    "audit:mcp-deps": "node scripts/audit-mcp-dependencies.mjs",
-    "check:mcp": "node scripts/check-mcp-adapters.mjs",
+    "validate": "node scripts/validate.mjs",
     "test:hashes": "node scripts/test-sync-hashes.mjs",
     "test:plugin-packages": "node --test scripts/test-package-plugins.mjs",
     "test:mcp-packages": "node --test scripts/test-package-mcp-servers.mjs",
@@ -21,12 +19,9 @@
     "publish:plugins": "node scripts/package-plugins.mjs --all --publish",
     "package:skills": "node scripts/package-skills.mjs --all",
     "publish:skills": "node scripts/package-skills.mjs --all --publish",
-    "package:apps": "node scripts/package-apps.mjs --all",
     "package:mcp": "node scripts/package-mcp-servers.mjs --all",
     "publish:mcp": "node scripts/package-mcp-servers.mjs --all --publish",
-    "publish:apps": "node scripts/package-apps.mjs --all --publish",
-    "package:extend": "npm run package:plugins && npm run package:skills && npm run package:apps && npm run package:mcp",
-    "build:app-runtime": "node scripts/build-mcp-adapter.mjs"
+    "package:extend": "npm run package:plugins && npm run package:skills && npm run package:mcp"
   },
   "devDependencies": {
     "archiver": "^8.0.0",

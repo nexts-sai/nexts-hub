@@ -36,41 +36,8 @@ function validateHub() {
   validateSkills();
   validatePlugins();
   validateJsonCategory("assistants", "assistant.json", ["id", "display_name", "description", "system_prompt"]);
-  validateJsonCategory("mcp", "mcp.json", ["id", "display_name", "description", "transport"]);
-  validateMcpAdapterSources();
+  validateJsonCategory("mcp", "mcp.json", ["id", "display_name", "description", "summary", "publisher", "distribution_type", "auth_types", "version", "transport"]);
   validateRegistriesCurrent();
-}
-
-function validateMcpAdapterSources() {
-  const adaptersRoot = join(root, "mcp", "_adapters");
-  const catalogRoot = join(root, "apps", "apps");
-  const providersRoot = join(adaptersRoot, "src", "providers");
-  if (!existsSync(catalogRoot) || !existsSync(providersRoot)) {
-    errors.push("apps/apps catalog or mcp/_adapters provider sources are missing");
-    return;
-  }
-
-  const catalogFiles = readdirSync(catalogRoot).filter((entry) => entry.endsWith(".json"));
-  if (catalogFiles.length !== 1075) {
-    errors.push(`apps/apps must contain 1075 catalog entries; found ${catalogFiles.length}`);
-  }
-  for (const file of catalogFiles) {
-    const service = file.slice(0, -5);
-    const definition = readJson(join(catalogRoot, file));
-    if (definition?.service !== service) errors.push(`apps/apps/${file} service does not match its filename`);
-    if (!existsSync(join(providersRoot, service, "executors.ts"))) {
-      errors.push(`mcp/_adapters/src/providers/${service}/executors.ts is missing`);
-    }
-  }
-
-  const publishedRoot = join(root, "mcp");
-  for (const id of listDirectories(publishedRoot).filter((entry) => !entry.startsWith("_") && entry !== "templates")) {
-    const manifestPath = join(publishedRoot, id, "mcp.json");
-    if (!existsSync(manifestPath)) continue;
-    if (/https?:\/\/(?:127\.0\.0\.1|localhost)(?=[:/]|$)/i.test(readFileSync(manifestPath, "utf8"))) {
-      errors.push(`mcp/${id}/mcp.json must not publish a localhost runtime`);
-    }
-  }
 }
 
 function validateTopLevelIndex() {
@@ -81,7 +48,7 @@ function validateTopLevelIndex() {
   }
 
   const index = readJson(topLevelPath);
-  for (const category of ["skills", "plugins", "assistants", "apps", "mcp"]) {
+  for (const category of ["skills", "plugins", "assistants", "mcp"]) {
     const entry = index?.categories?.[category];
     if (!entry) {
       errors.push(`index.json categories.${category} is missing`);

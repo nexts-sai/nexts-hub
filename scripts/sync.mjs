@@ -4,7 +4,6 @@
 // marketplace format, mirroring plugins/.agents/plugins/marketplace.json):
 //   skills/.agents/skills/marketplace.json
 //   assistants/.agents/assistants/marketplace.json
-//   apps/.agents/apps/marketplace.json
 //   mcp/.agents/mcp/marketplace.json
 // The plugins marketplace stays authoritative and hand-maintained; this
 // script only checks it for consistency against the plugins on disk.
@@ -21,7 +20,6 @@ export function buildAllRegistries(baseDir = root) {
     buildSkillsRegistry(baseDir),
     buildDirCategoryRegistry(baseDir, "assistants", "NextsAI Assistants"),
     buildDirCategoryRegistry(baseDir, "mcp", "NextsAI MCP"),
-    buildApplicationsCatalog(baseDir),
   ];
 }
 
@@ -89,8 +87,7 @@ export function computeCategoryHashes(baseDir = root) {
       join("plugins", ".agents", "plugins", "marketplace.json"),
     ]),
     assistants: hashPaths(baseDir, contentDirs(baseDir, "assistants")),
-    apps: hashPaths(baseDir, [join("apps", "apps")]),
-    // Adapter source is validated separately and is not a marketplace item.
+    // Only published MCP definitions belong in the marketplace hash.
     // Excluding it keeps registry validation fast and platform-neutral.
     mcp: hashPaths(baseDir, contentDirs(baseDir, "mcp")),
   };
@@ -205,44 +202,6 @@ function buildDirCategoryRegistry(baseDir, category, displayName) {
       interface: { displayName },
       [category]: entries,
     }),
-  };
-}
-
-export function buildApplicationsCatalog(baseDir = root) {
-  const catalogRoot = join(baseDir, "apps", "apps");
-  const applications = existsSync(catalogRoot)
-    ? readdirSync(catalogRoot)
-        .filter((fileName) => fileName.endsWith(".json"))
-        .sort()
-        .map((fileName) => compactApplicationDefinition(readJsonFile(join(catalogRoot, fileName))))
-    : [];
-
-  return {
-    category: "apps",
-    filePath: join(baseDir, "apps", ".agents", "apps", "marketplace.json"),
-    content: stableJson({
-      name: "nextsai-applications",
-      interface: { displayName: "NextsAI Applications" },
-      applications,
-    }),
-  };
-}
-
-function compactApplicationDefinition(definition) {
-  return {
-    service: definition.service,
-    ...(definition.version ? { version: definition.version } : {}),
-    displayName: definition.displayName,
-    categories: definition.categories,
-    authTypes: definition.authTypes,
-    homepageUrl: definition.homepageUrl,
-    ...(definition.description ? { description: definition.description } : {}),
-    auth: definition.auth,
-    actions: (definition.actions ?? []).map((action) => ({
-      id: action.id,
-      ...(action.description ? { description: action.description } : {}),
-      ...(action.access ? { access: action.access } : {}),
-    })),
   };
 }
 

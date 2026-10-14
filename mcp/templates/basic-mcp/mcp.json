@@ -2,12 +2,18 @@
   "id": "my_server",
   "display_name": "My MCP Server",
   "description": "What this server provides.",
+  "summary": "A short description for the MCP catalog.",
+  "publisher": "Nexts AI",
+  "distribution_type": "local_stdio",
+  "auth_types": ["no_auth"],
+  "version": "1.0.0",
   "transport": "stdio",
   "command": "my-server",
   "args": [],
   "env": {},
   "url": null,
   "headers": {},
+  "configuration_fields": [],
   "enabled_by_default": false,
   "platforms": ["windows", "macos", "linux"]
 }
