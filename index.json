@@ -7,7 +7,7 @@
       "path": "./skills/skills",
       "registry": "./skills/.agents/skills/marketplace.json",
       "installTo": "skills",
-      "hash": "sha256:393010768468646078644ab51014143b830ff7b2f93a64c36b5fb2fedcce0e97"
+      "hash": "sha256:11722d2329068f3e7673a99aef97952e3c0428574ead1504376fc28635d6d321"
     },
     "plugins": {
       "version": 2,

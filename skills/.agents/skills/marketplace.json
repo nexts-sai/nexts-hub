@@ -5,6 +5,13 @@
   },
   "skills": [
     {
+      "name": "book-to-skill",
+      "source": {
+        "source": "local",
+        "path": "./skills/book-to-skill"
+      }
+    },
+    {
       "name": "calendar",
       "source": {
         "source": "local",
