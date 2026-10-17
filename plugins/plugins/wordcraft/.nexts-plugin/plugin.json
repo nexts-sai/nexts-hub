@@ -1,0 +1,54 @@
+{
+  "name": "wordcraft",
+  "version": "1.0.0",
+  "description": "Create and edit documents, format text, and manage tracked changes and comments through the local WordCraft desktop control channel. Requires WordCraft to be installed with control port 7981 enabled.",
+  "author": {
+    "name": "Nexts AI",
+    "url": "https://nexts.ai/"
+  },
+  "homepage": "https://github.com/storytold/wordcraft",
+  "repository": "https://github.com/storytold/wordcraft",
+  "license": "MIT",
+  "keywords": [
+    "wordcraft",
+    "desktop",
+    "mcp",
+    "bridge"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "contributes": {
+    "mcpServers": [
+      {
+        "id": "wordcraft",
+        "title": "WordCraft",
+        "description": "Connect Nexts to the local WordCraft desktop app.",
+        "enabled": true,
+        "transport": "stdio",
+        "command": "C:\\Program Files\\WordCraft\\wordcraft-cli.exe",
+        "args": [
+          "mcp",
+          "--connect",
+          "127.0.0.1:7981"
+        ],
+        "env": {}
+      }
+    ]
+  },
+  "interface": {
+    "displayName": "WordCraft",
+    "shortDescription": "Connect Nexts to the local WordCraft desktop app.",
+    "longDescription": "Create and edit documents, format text, and manage tracked changes and comments through the local WordCraft desktop control channel. Requires WordCraft to be installed with control port 7981 enabled. The plugin checks that the desktop app and local bridge are reachable before editing, discovers available commands before execution, and keeps the project visible in the desktop application.",
+    "developerName": "Nexts AI",
+    "category": "Productivity",
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "Open WordCraft and help me work on the current project.",
+      "Use WordCraft to create or edit a project and show the result."
+    ]
+  }
+}

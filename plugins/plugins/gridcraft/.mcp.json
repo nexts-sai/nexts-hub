@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "gridcraft": {
+      "command": "C:\\Program Files\\GridCraft\\gridcraft-cli.exe",
+      "args": [
+        "mcp",
+        "--connect",
+        "7982"
+      ],
+      "env": {}
+    }
+  }
+}

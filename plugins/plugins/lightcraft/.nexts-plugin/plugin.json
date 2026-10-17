@@ -1,0 +1,54 @@
+{
+  "name": "lightcraft",
+  "version": "1.0.0",
+  "description": "Organize photo libraries, adjust images, and render and export photos through the local LightCraft desktop control channel. Requires LightCraft to be installed with control port 7980 enabled.",
+  "author": {
+    "name": "Nexts AI",
+    "url": "https://nexts.ai/"
+  },
+  "homepage": "https://github.com/storytold/lightcraft",
+  "repository": "https://github.com/storytold/lightcraft",
+  "license": "MIT",
+  "keywords": [
+    "lightcraft",
+    "desktop",
+    "mcp",
+    "bridge"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "contributes": {
+    "mcpServers": [
+      {
+        "id": "lightcraft",
+        "title": "LightCraft",
+        "description": "Connect Nexts to the local LightCraft desktop app.",
+        "enabled": true,
+        "transport": "stdio",
+        "command": "C:\\Program Files\\LightCraft\\lightcraft-cli.exe",
+        "args": [
+          "mcp",
+          "--connect",
+          "127.0.0.1:7980"
+        ],
+        "env": {}
+      }
+    ]
+  },
+  "interface": {
+    "displayName": "LightCraft",
+    "shortDescription": "Connect Nexts to the local LightCraft desktop app.",
+    "longDescription": "Organize photo libraries, adjust images, and render and export photos through the local LightCraft desktop control channel. Requires LightCraft to be installed with control port 7980 enabled. The plugin checks that the desktop app and local bridge are reachable before editing, discovers available commands before execution, and keeps the project visible in the desktop application.",
+    "developerName": "Nexts AI",
+    "category": "Creativity",
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "Open LightCraft and help me work on the current project.",
+      "Use LightCraft to create or edit a project and show the result."
+    ]
+  }
+}

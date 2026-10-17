@@ -1,0 +1,54 @@
+{
+  "name": "effectcraft",
+  "version": "1.0.0",
+  "description": "Create compositions, animate layers, apply effects, and render frames through the local EffectCraft desktop control channel. Requires EffectCraft to be installed with control port 9877 enabled.",
+  "author": {
+    "name": "Nexts AI",
+    "url": "https://nexts.ai/"
+  },
+  "homepage": "https://github.com/storytold/effectcraft",
+  "repository": "https://github.com/storytold/effectcraft",
+  "license": "MIT",
+  "keywords": [
+    "effectcraft",
+    "desktop",
+    "mcp",
+    "bridge"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "contributes": {
+    "mcpServers": [
+      {
+        "id": "effectcraft",
+        "title": "EffectCraft",
+        "description": "Connect Nexts to the local EffectCraft desktop app.",
+        "enabled": true,
+        "transport": "stdio",
+        "command": "C:\\Program Files\\EffectCraft\\effectcraft-cli.exe",
+        "args": [
+          "mcp",
+          "--bridge",
+          "9877"
+        ],
+        "env": {}
+      }
+    ]
+  },
+  "interface": {
+    "displayName": "EffectCraft",
+    "shortDescription": "Connect Nexts to the local EffectCraft desktop app.",
+    "longDescription": "Create compositions, animate layers, apply effects, and render frames through the local EffectCraft desktop control channel. Requires EffectCraft to be installed with control port 9877 enabled. The plugin checks that the desktop app and local bridge are reachable before editing, discovers available commands before execution, and keeps the project visible in the desktop application.",
+    "developerName": "Nexts AI",
+    "category": "Creativity",
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "Open EffectCraft and help me work on the current project.",
+      "Use EffectCraft to create or edit a project and show the result."
+    ]
+  }
+}

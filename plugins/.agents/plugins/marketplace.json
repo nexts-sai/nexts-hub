@@ -147,6 +147,102 @@
         "authentication": "NONE"
       },
       "category": "Creativity"
+    },
+    {
+      "name": "deckcraft",
+      "source": {
+        "source": "local",
+        "path": "./plugins/deckcraft"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "NONE"
+      },
+      "category": "Creativity"
+    },
+    {
+      "name": "designcraft",
+      "source": {
+        "source": "local",
+        "path": "./plugins/designcraft"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "NONE"
+      },
+      "category": "Creativity"
+    },
+    {
+      "name": "effectcraft",
+      "source": {
+        "source": "local",
+        "path": "./plugins/effectcraft"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "NONE"
+      },
+      "category": "Creativity"
+    },
+    {
+      "name": "gridcraft",
+      "source": {
+        "source": "local",
+        "path": "./plugins/gridcraft"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "NONE"
+      },
+      "category": "Productivity"
+    },
+    {
+      "name": "lightcraft",
+      "source": {
+        "source": "local",
+        "path": "./plugins/lightcraft"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "NONE"
+      },
+      "category": "Creativity"
+    },
+    {
+      "name": "photocraft",
+      "source": {
+        "source": "local",
+        "path": "./plugins/photocraft"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "NONE"
+      },
+      "category": "Creativity"
+    },
+    {
+      "name": "vectorcraft",
+      "source": {
+        "source": "local",
+        "path": "./plugins/vectorcraft"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "NONE"
+      },
+      "category": "Creativity"
+    },
+    {
+      "name": "wordcraft",
+      "source": {
+        "source": "local",
+        "path": "./plugins/wordcraft"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "NONE"
+      },
+      "category": "Productivity"
     }
   ]
 }

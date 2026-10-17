@@ -12,73 +12,10 @@
       }
     },
     {
-      "name": "deckcraft",
-      "source": {
-        "source": "local",
-        "path": "./deckcraft"
-      }
-    },
-    {
-      "name": "designcraft",
-      "source": {
-        "source": "local",
-        "path": "./designcraft"
-      }
-    },
-    {
-      "name": "effectcraft",
-      "source": {
-        "source": "local",
-        "path": "./effectcraft"
-      }
-    },
-    {
-      "name": "filmcraft",
-      "source": {
-        "source": "local",
-        "path": "./filmcraft"
-      }
-    },
-    {
-      "name": "gridcraft",
-      "source": {
-        "source": "local",
-        "path": "./gridcraft"
-      }
-    },
-    {
-      "name": "lightcraft",
-      "source": {
-        "source": "local",
-        "path": "./lightcraft"
-      }
-    },
-    {
       "name": "nexts-canvas",
       "source": {
         "source": "local",
         "path": "./nexts-canvas"
-      }
-    },
-    {
-      "name": "photocraft",
-      "source": {
-        "source": "local",
-        "path": "./photocraft"
-      }
-    },
-    {
-      "name": "vectorcraft",
-      "source": {
-        "source": "local",
-        "path": "./vectorcraft"
-      }
-    },
-    {
-      "name": "wordcraft",
-      "source": {
-        "source": "local",
-        "path": "./wordcraft"
       }
     },
     {

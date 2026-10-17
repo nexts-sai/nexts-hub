@@ -19,6 +19,19 @@
     "export"
   ],
   "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "contributes": {
+    "mcpServers": [{
+      "id": "filmcraft",
+      "title": "FilmCraft",
+      "description": "Connect to the local FilmCraft desktop app for visible project inspection, editing, and export.",
+      "enabled": true,
+      "transport": "stdio",
+      "command": "C:/Program Files/FilmCraft/filmcraft-cli.exe",
+      "args": ["mcp", "--bridge", "127.0.0.1:9876"],
+      "env": {}
+    }]
+  },
   "interface": {
     "displayName": "FilmCraft",
     "shortDescription": "Storyboard, generate, narrate, subtitle, edit, and export videos",

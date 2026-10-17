@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "designcraft": {
+      "command": "C:\\Program Files\\DesignCraft\\designcraft-cli.exe",
+      "args": [
+        "mcp",
+        "--connect",
+        "7983"
+      ],
+      "env": {}
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "deckcraft": {
+      "command": "C:\\Program Files\\DeckCraft\\deckcraft-cli.exe",
+      "args": [
+        "mcp",
+        "--connect",
+        "7990"
+      ],
+      "env": {}
+    }
+  }
+}

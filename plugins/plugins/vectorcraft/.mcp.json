@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "vectorcraft": {
+      "command": "C:\\Program Files\\VectorCraft\\vectorcraft-cli.exe",
+      "args": [
+        "mcp",
+        "--connect",
+        "127.0.0.1:7979"
+      ],
+      "env": {}
+    }
+  }
+}

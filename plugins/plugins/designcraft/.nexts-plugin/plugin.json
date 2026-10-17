@@ -1,0 +1,54 @@
+{
+  "name": "designcraft",
+  "version": "1.0.0",
+  "description": "Create page layouts, edit text frames and styles, and export documents through the local DesignCraft desktop control channel. Requires DesignCraft to be installed with control port 7983 enabled.",
+  "author": {
+    "name": "Nexts AI",
+    "url": "https://nexts.ai/"
+  },
+  "homepage": "https://github.com/storytold/designcraft",
+  "repository": "https://github.com/storytold/designcraft",
+  "license": "MIT",
+  "keywords": [
+    "designcraft",
+    "desktop",
+    "mcp",
+    "bridge"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "contributes": {
+    "mcpServers": [
+      {
+        "id": "designcraft",
+        "title": "DesignCraft",
+        "description": "Connect Nexts to the local DesignCraft desktop app.",
+        "enabled": true,
+        "transport": "stdio",
+        "command": "C:\\Program Files\\DesignCraft\\designcraft-cli.exe",
+        "args": [
+          "mcp",
+          "--connect",
+          "7983"
+        ],
+        "env": {}
+      }
+    ]
+  },
+  "interface": {
+    "displayName": "DesignCraft",
+    "shortDescription": "Connect Nexts to the local DesignCraft desktop app.",
+    "longDescription": "Create page layouts, edit text frames and styles, and export documents through the local DesignCraft desktop control channel. Requires DesignCraft to be installed with control port 7983 enabled. The plugin checks that the desktop app and local bridge are reachable before editing, discovers available commands before execution, and keeps the project visible in the desktop application.",
+    "developerName": "Nexts AI",
+    "category": "Creativity",
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "Open DesignCraft and help me work on the current project.",
+      "Use DesignCraft to create or edit a project and show the result."
+    ]
+  }
+}

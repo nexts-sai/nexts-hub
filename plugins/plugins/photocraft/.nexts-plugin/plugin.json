@@ -1,0 +1,54 @@
+{
+  "name": "photocraft",
+  "version": "1.0.0",
+  "description": "Edit images, manage layers, and export documents through the local PhotoCraft desktop control channel. Requires PhotoCraft with control port 7878 enabled and a shared control token file.",
+  "author": {
+    "name": "Nexts AI",
+    "url": "https://nexts.ai/"
+  },
+  "homepage": "https://github.com/storytold/photocraft",
+  "repository": "https://github.com/storytold/photocraft",
+  "license": "MIT",
+  "keywords": [
+    "photocraft",
+    "desktop",
+    "mcp",
+    "bridge"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "contributes": {
+    "mcpServers": [
+      {
+        "id": "photocraft",
+        "title": "PhotoCraft",
+        "description": "Connect Nexts to the local PhotoCraft desktop app.",
+        "enabled": true,
+        "transport": "stdio",
+        "command": "C:\\Program Files\\PhotoCraft\\photocraft-cli.exe",
+        "args": [
+          "mcp",
+          "--bridge",
+          "127.0.0.1:7878"
+        ],
+        "env": {}
+      }
+    ]
+  },
+  "interface": {
+    "displayName": "PhotoCraft",
+    "shortDescription": "Connect Nexts to the local PhotoCraft desktop app.",
+    "longDescription": "Edit images, manage layers, and export documents through the local PhotoCraft desktop control channel. Requires PhotoCraft with control port 7878 enabled and a shared control token file. The plugin checks that the desktop app and local bridge are reachable before editing, discovers available commands before execution, and keeps the project visible in the desktop application.",
+    "developerName": "Nexts AI",
+    "category": "Creativity",
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "Open PhotoCraft and help me work on the current project.",
+      "Use PhotoCraft to create or edit a project and show the result."
+    ]
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "lightcraft": {
+      "command": "C:\\Program Files\\LightCraft\\lightcraft-cli.exe",
+      "args": [
+        "mcp",
+        "--connect",
+        "127.0.0.1:7980"
+      ],
+      "env": {}
+    }
+  }
+}

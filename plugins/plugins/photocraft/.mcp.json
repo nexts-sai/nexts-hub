@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "photocraft": {
+      "command": "C:\\Program Files\\PhotoCraft\\photocraft-cli.exe",
+      "args": [
+        "mcp",
+        "--bridge",
+        "127.0.0.1:7878"
+      ],
+      "env": {}
+    }
+  }
+}

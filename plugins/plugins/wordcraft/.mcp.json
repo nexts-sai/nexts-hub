@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "wordcraft": {
+      "command": "C:\\Program Files\\WordCraft\\wordcraft-cli.exe",
+      "args": [
+        "mcp",
+        "--connect",
+        "127.0.0.1:7981"
+      ],
+      "env": {}
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "name": "deckcraft",
+  "version": "1.0.0",
+  "description": "Create and edit presentations, manage slides and shapes, and export decks through the local DeckCraft desktop control channel. Requires DeckCraft to be installed with control port 7990 enabled.",
+  "author": {
+    "name": "Nexts AI",
+    "url": "https://nexts.ai/"
+  },
+  "homepage": "https://github.com/storytold/deckcraft",
+  "repository": "https://github.com/storytold/deckcraft",
+  "license": "MIT",
+  "keywords": [
+    "deckcraft",
+    "desktop",
+    "mcp",
+    "bridge"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "contributes": {
+    "mcpServers": [
+      {
+        "id": "deckcraft",
+        "title": "DeckCraft",
+        "description": "Connect Nexts to the local DeckCraft desktop app.",
+        "enabled": true,
+        "transport": "stdio",
+        "command": "C:\\Program Files\\DeckCraft\\deckcraft-cli.exe",
+        "args": [
+          "mcp",
+          "--connect",
+          "7990"
+        ],
+        "env": {}
+      }
+    ]
+  },
+  "interface": {
+    "displayName": "DeckCraft",
+    "shortDescription": "Connect Nexts to the local DeckCraft desktop app.",
+    "longDescription": "Create and edit presentations, manage slides and shapes, and export decks through the local DeckCraft desktop control channel. Requires DeckCraft to be installed with control port 7990 enabled. The plugin checks that the desktop app and local bridge are reachable before editing, discovers available commands before execution, and keeps the project visible in the desktop application.",
+    "developerName": "Nexts AI",
+    "category": "Creativity",
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "Open DeckCraft and help me work on the current project.",
+      "Use DeckCraft to create or edit a project and show the result."
+    ]
+  }
+}

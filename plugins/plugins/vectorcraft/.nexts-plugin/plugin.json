@@ -1,0 +1,54 @@
+{
+  "name": "vectorcraft",
+  "version": "1.0.0",
+  "description": "Create and edit vector artwork, manage artboards, and export designs through the local VectorCraft desktop control channel. Requires VectorCraft to be installed with control port 7979 enabled.",
+  "author": {
+    "name": "Nexts AI",
+    "url": "https://nexts.ai/"
+  },
+  "homepage": "https://github.com/storytold/vectorcraft",
+  "repository": "https://github.com/storytold/vectorcraft",
+  "license": "MIT",
+  "keywords": [
+    "vectorcraft",
+    "desktop",
+    "mcp",
+    "bridge"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "contributes": {
+    "mcpServers": [
+      {
+        "id": "vectorcraft",
+        "title": "VectorCraft",
+        "description": "Connect Nexts to the local VectorCraft desktop app.",
+        "enabled": true,
+        "transport": "stdio",
+        "command": "C:\\Program Files\\VectorCraft\\vectorcraft-cli.exe",
+        "args": [
+          "mcp",
+          "--connect",
+          "127.0.0.1:7979"
+        ],
+        "env": {}
+      }
+    ]
+  },
+  "interface": {
+    "displayName": "VectorCraft",
+    "shortDescription": "Connect Nexts to the local VectorCraft desktop app.",
+    "longDescription": "Create and edit vector artwork, manage artboards, and export designs through the local VectorCraft desktop control channel. Requires VectorCraft to be installed with control port 7979 enabled. The plugin checks that the desktop app and local bridge are reachable before editing, discovers available commands before execution, and keeps the project visible in the desktop application.",
+    "developerName": "Nexts AI",
+    "category": "Creativity",
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "Open VectorCraft and help me work on the current project.",
+      "Use VectorCraft to create or edit a project and show the result."
+    ]
+  }
+}
