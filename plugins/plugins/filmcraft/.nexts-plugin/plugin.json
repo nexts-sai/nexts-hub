@@ -1,15 +1,39 @@
 {
   "name": "filmcraft",
   "version": "0.1.0",
-  "description": "Plan videos, generate assets with Nexts Auto routing and ElevenLabs, and edit/export local FilmCraft projects.",
-  "author": { "name": "Nexts AI", "url": "https://nexts.cc/" },
+  "description": "Create complete short-form videos with storyboard planning, Nexts Auto image and video generation, ElevenLabs narration, subtitles, and local FilmCraft editing and export.",
+  "author": { "name": "Nexts AI", "url": "https://nexts.ai/" },
+  "homepage": "https://getartcraft.com/",
+  "repository": "https://getartcraft.com/",
   "license": "MIT",
+  "keywords": [
+    "filmcraft",
+    "video",
+    "storyboard",
+    "image-generation",
+    "video-generation",
+    "elevenlabs",
+    "narration",
+    "subtitles",
+    "editing",
+    "export"
+  ],
   "skills": "./skills/",
   "interface": {
     "displayName": "FilmCraft",
-    "shortDescription": "分镜、后台生成、ElevenLabs 配音、字幕与本地剪辑导出",
+    "shortDescription": "Storyboard, generate, narrate, subtitle, edit, and export videos",
+    "longDescription": "FilmCraft coordinates a complete local video workflow: storyboard a concept, generate images and videos through the signed-in Nexts Auto routes, create ElevenLabs narration through the configured backend Voice route, prepare reviewed subtitles, and assemble an editable FilmCraft project with a final export. Production files stay in the current Nexts temporary workspace and are never placed on the Desktop by default.",
+    "developerName": "Nexts AI",
     "category": "Creativity",
     "capabilities": ["Skill", "Read", "Write"],
-    "defaultPrompt": ["用 FilmCraft 制作一条带配音和字幕的产品短片。", "继续上次 FilmCraft 项目，从已有素材开始剪辑导出。"]
+    "websiteURL": "https://getartcraft.com/",
+    "logo": "./assets/icon.webp",
+    "composerIcon": "./assets/icon.webp",
+    "brandColor": "#111827",
+    "screenshots": [],
+    "defaultPrompt": [
+      "Create a short product video with FilmCraft, including generated visuals, ElevenLabs narration, subtitles, and a local export.",
+      "Continue the previous FilmCraft production from its existing assets and export an editable project and final video."
+    ]
   }
 }
