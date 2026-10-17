@@ -1,0 +1,15 @@
+{
+  "name": "filmcraft",
+  "version": "0.1.0",
+  "description": "Plan videos, generate assets with Nexts Auto routing and ElevenLabs, and edit/export local FilmCraft projects.",
+  "author": { "name": "Nexts AI", "url": "https://nexts.cc/" },
+  "license": "MIT",
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "FilmCraft",
+    "shortDescription": "分镜、后台生成、ElevenLabs 配音、字幕与本地剪辑导出",
+    "category": "Creativity",
+    "capabilities": ["Skill", "Read", "Write"],
+    "defaultPrompt": ["用 FilmCraft 制作一条带配音和字幕的产品短片。", "继续上次 FilmCraft 项目，从已有素材开始剪辑导出。"]
+  }
+}

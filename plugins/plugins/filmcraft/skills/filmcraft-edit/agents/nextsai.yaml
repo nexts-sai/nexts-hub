@@ -1,0 +1,4 @@
+interface:
+  display_name: "FilmCraft Edit"
+  short_description: "FilmCraft Edit workflow with Nexts media tools"
+  default_prompt: "Use $filmcraft-edit for this video production."

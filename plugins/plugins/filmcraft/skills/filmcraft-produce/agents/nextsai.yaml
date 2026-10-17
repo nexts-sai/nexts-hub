@@ -1,0 +1,4 @@
+interface:
+  display_name: "FilmCraft Produce"
+  short_description: "FilmCraft Produce workflow with Nexts media tools"
+  default_prompt: "Use $filmcraft-produce for this video production."

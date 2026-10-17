@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "name": "Product short",
+  "width": 1080,
+  "height": 1920,
+  "fps": 24,
+  "captionsReviewed": false,
+  "shots": [
+    {"id":"opening","frames":120,"image":"","video":"","voice":"","imagePrompt":"Product establishing shot; replace with product details.","videoPrompt":"Slow camera push; preserve product identity.","narration":""},
+    {"id":"detail","frames":120,"image":"","video":"","voice":"","imagePrompt":"Close view of the same product in use.","videoPrompt":"A clear demonstration of one real product feature.","narration":""},
+    {"id":"closing","frames":120,"image":"","video":"","voice":"","imagePrompt":"The same product, clean final composition.","videoPrompt":"Gentle camera settle on the product.","narration":""}
+  ],
+  "captions": []
+}

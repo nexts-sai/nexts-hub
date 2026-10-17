@@ -1,0 +1,4 @@
+interface:
+  display_name: "FilmCraft Voice"
+  short_description: "FilmCraft Voice workflow with Nexts media tools"
+  default_prompt: "Use $filmcraft-voice for this video production."

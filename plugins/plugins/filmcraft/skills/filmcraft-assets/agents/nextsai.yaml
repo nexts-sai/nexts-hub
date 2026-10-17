@@ -1,0 +1,4 @@
+interface:
+  display_name: "FilmCraft Assets"
+  short_description: "FilmCraft Assets workflow with Nexts media tools"
+  default_prompt: "Use $filmcraft-assets for this video production."

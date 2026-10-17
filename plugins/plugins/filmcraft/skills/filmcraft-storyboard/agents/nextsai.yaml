@@ -1,0 +1,4 @@
+interface:
+  display_name: "FilmCraft Storyboard"
+  short_description: "FilmCraft Storyboard workflow with Nexts media tools"
+  default_prompt: "Use $filmcraft-storyboard for this video production."
