@@ -135,6 +135,18 @@
         "authentication": "NONE"
       },
       "category": "Developer Tools"
+    },
+    {
+      "name": "filmcraft",
+      "source": {
+        "source": "local",
+        "path": "./plugins/filmcraft"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "NONE"
+      },
+      "category": "Creativity"
     }
   ]
 }
