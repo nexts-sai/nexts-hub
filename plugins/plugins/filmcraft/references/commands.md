@@ -4,10 +4,10 @@ Apply this protocol before direct MCP `command_run` or `command_batch` calls. Ex
 
 ## Check the editor before the first command
 
-First decide whether the task targets the user's open FilmCraft project or a new isolated headless project:
+First decide whether the task targets the user's open FilmCraft project or a new isolated headless project. User-facing productions default to the open editor so the project and timeline are visible; headless execution requires an explicit silent/background/batch or isolated-render request:
 
 - For a live project, verify that FilmCraft is open and its MCP/bridge is reachable with a read-only inspection (`doc_inspect`, `project_inspect`, or `sequence_inspect`). If the bridge is unavailable, stop and tell the user to open FilmCraft; do not send live editing commands to an unknown target.
-- For a new isolated export, FilmCraft does not need to be open. Use the bundled `studio.mjs`/FilmCraft CLI with its own new `.fcproj` output in the system temporary FilmCraft directory. Do not mix that headless project with the user's open project.
+- For an explicitly requested new isolated export, FilmCraft does not need to be open. Use the bundled `studio.mjs`/FilmCraft CLI with its own new `.fcproj` output in the current Nexts temporary workspace. Do not mix that headless project with the user's open project, and do not describe a headless export as a project shown in the desktop editor.
 - Do not assume that an installed FilmCraft CLI means the desktop editor is open. Do not kill, restart, or silently launch the user's editor to recover a missing bridge.
 
 1. At the start of an editing session, call `command_list` with `enabled_only: true` to see what can run in the current editor state. For a specific operation, narrow discovery with `filter`, such as `captions`, `timeline`, or `export`.
