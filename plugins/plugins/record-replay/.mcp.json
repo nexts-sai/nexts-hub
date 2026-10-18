@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "record-replay": {
+      "command": "node",
+      "args": ["${NEXTS_PLUGIN_ROOT}/scripts/server.mjs"]
+    }
+  }
+}

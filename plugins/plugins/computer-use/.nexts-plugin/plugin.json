@@ -4,11 +4,11 @@
   "description": "Control desktop apps on Windows from Nexts through Computer Use.",
   "author": {
     "name": "Nexts AI",
-    "email": "support@nexts.cc",
-    "url": "https://nexts.cc/"
+    "email": "support@nexts.ai",
+    "url": "https://nexts.ai/"
   },
-  "homepage": "https://nexts.cc/",
-  "repository": "https://nexts.cc/",
+  "homepage": "https://nexts.ai/",
+  "repository": "https://nexts.ai/",
   "license": "Nexts Proprietary",
   "keywords": [
     "computer-use",
@@ -30,9 +30,9 @@
       "Read",
       "Write"
     ],
-    "websiteURL": "https://nexts.cc/",
-    "privacyPolicyURL": "https://nexts.cc/policies/row-privacy-policy/",
-    "termsOfServiceURL": "https://nexts.cc/policies/row-terms-of-use/",
+    "websiteURL": "https://nexts.ai/",
+    "privacyPolicyURL": "https://nexts.ai/policies/row-privacy-policy/",
+    "termsOfServiceURL": "https://nexts.ai/policies/row-terms-of-use/",
     "logo": "./assets/app-icon.png",
     "defaultPrompt": [
       "Play a playlist to help me lock in",

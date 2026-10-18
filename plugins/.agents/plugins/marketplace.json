@@ -243,6 +243,18 @@
         "authentication": "NONE"
       },
       "category": "Productivity"
+    },
+    {
+      "name": "record-replay",
+      "source": {
+        "source": "local",
+        "path": "./plugins/record-replay"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "NONE"
+      },
+      "category": "Productivity"
     }
   ]
 }

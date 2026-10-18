@@ -5,9 +5,9 @@
   "author": {
     "name": "Nexts AI",
     "email": "support@openai.com",
-    "url": "https://nexts.cc/"
+    "url": "https://nexts.ai/"
   },
-  "homepage": "https://nexts.cc/",
+  "homepage": "https://nexts.ai/",
   "repository": "https://github.com/openai/openai",
   "license": "Proprietary",
   "keywords": [
@@ -28,9 +28,9 @@
       "Interactive",
       "Write"
     ],
-    "websiteURL": "https://nexts.cc/",
-    "privacyPolicyURL": "https://nexts.cc/policies/row-privacy-policy/",
-    "termsOfServiceURL": "https://nexts.cc/policies/row-terms-of-use/",
+    "websiteURL": "https://nexts.ai/",
+    "privacyPolicyURL": "https://nexts.ai/policies/row-privacy-policy/",
+    "termsOfServiceURL": "https://nexts.ai/policies/row-terms-of-use/",
     "defaultPrompt": [
       "Create a personal template from this document",
       "Create a personal template from this presentation",

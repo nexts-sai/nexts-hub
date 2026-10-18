@@ -49,6 +49,8 @@
     "defaultPrompt": [
       "Open WordCraft and help me work on the current project.",
       "Use WordCraft to create or edit a project and show the result."
-    ]
+    ],
+    "logo": "./assets/icon.webp",
+    "composerIcon": "./assets/icon.webp"
   }
 }

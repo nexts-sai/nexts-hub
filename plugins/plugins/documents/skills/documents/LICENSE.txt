@@ -2,8 +2,8 @@ Copyright 2026 Nexts AI. All rights reserved.
 
 LICENSE: Use of these materials (including all code, prompts, assets, files, and other components of this Skill) is governed by your agreement with Nexts AI regarding use of Nexts AI's services. If no separate agreement exists, use is governed by Nexts AI's Terms of Use or
 Services Agreement, as applicable:
-https://nexts.cc/policies/row-terms-of-use/
-https://nexts.cc/policies/services-agreement/
+https://nexts.ai/policies/row-terms-of-use/
+https://nexts.ai/policies/services-agreement/
 Your applicable agreement is referred to as the "Agreement." "Services" are as defined in the Agreement.
 
 ADDITIONAL RESTRICTIONS: Notwithstanding anything in the Agreement to the contrary, users may not:

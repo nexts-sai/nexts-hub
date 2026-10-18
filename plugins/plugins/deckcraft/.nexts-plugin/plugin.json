@@ -49,6 +49,8 @@
     "defaultPrompt": [
       "Open DeckCraft and help me work on the current project.",
       "Use DeckCraft to create or edit a project and show the result."
-    ]
+    ],
+    "logo": "./assets/icon.webp",
+    "composerIcon": "./assets/icon.webp"
   }
 }

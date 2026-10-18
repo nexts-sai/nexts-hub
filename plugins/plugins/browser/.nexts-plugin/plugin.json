@@ -28,9 +28,9 @@
       "Read",
       "Write"
     ],
-    "websiteURL": "https://nexts.cc/",
-    "privacyPolicyURL": "https://nexts.cc/policies/row-privacy-policy/",
-    "termsOfServiceURL": "https://nexts.cc/policies/row-terms-of-use/",
+    "websiteURL": "https://nexts.ai/",
+    "privacyPolicyURL": "https://nexts.ai/policies/row-privacy-policy/",
+    "termsOfServiceURL": "https://nexts.ai/policies/row-terms-of-use/",
     "defaultPrompt": [
       "Test my checkout flow on localhost"
     ],

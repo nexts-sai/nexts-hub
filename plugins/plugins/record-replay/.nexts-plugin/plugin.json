@@ -1,0 +1,33 @@
+{
+  "name": "record-replay",
+  "version": "0.1.0",
+  "description": "Record browser tasks once and replay them locally with OpenAdapt Flow, with reusable Skills and MCP tools.",
+  "author": { "name": "Nexts AI", "url": "https://nexts.ai/" },
+  "license": "MIT",
+  "repository": "https://github.com/nexts-sai/nexts-hub",
+  "homepage": "https://github.com/OpenAdaptAI/openadapt-flow",
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "keywords": ["record", "replay", "openadapt", "automation", "browser", "mcp"],
+  "contributes": {
+    "mcpServers": [{
+      "id": "record-replay",
+      "title": "Record & Replay",
+      "description": "Local OpenAdapt Flow recording, compilation, replay and official Skill/MCP export.",
+      "enabled": true,
+      "transport": "stdio",
+      "command": "node",
+      "args": ["${NEXTS_PLUGIN_ROOT}/scripts/server.mjs"],
+      "env": {}
+    }]
+  },
+  "interface": {
+    "displayName": "Record & Replay",
+    "shortDescription": "录制一次浏览器操作，按参数本地回放。",
+    "longDescription": "基于 OpenAdapt Flow 的本地录制与回放插件。通过聊天开始和结束录制、编译流程、参数化回放、查询执行结果，并使用官方导出器生成 Skill 和 MCP。需要 Python 3.10–3.12、OpenAdapt Flow 2.0.0 和 Chromium。第一版支持浏览器；普通回放完成不代表业务结果已验证。",
+    "developerName": "Nexts AI",
+    "category": "Productivity",
+    "capabilities": ["Interactive", "Read", "Write"],
+    "defaultPrompt": ["帮我录制一个浏览器操作，下次按参数重复执行。", "列出我录制的流程。", "把这个录制流程导出为 Skill 和 MCP。"]
+  }
+}
