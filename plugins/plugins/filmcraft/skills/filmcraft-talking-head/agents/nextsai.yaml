@@ -1,0 +1,4 @@
+interface:
+  display_name: "FilmCraft Talking Head"
+  short_description: "Edit presenter and narration-led videos with clean pacing and captions"
+  default_prompt: "Use $filmcraft-talking-head to edit this talking-head video."

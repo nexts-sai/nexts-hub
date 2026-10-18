@@ -1,0 +1,4 @@
+interface:
+  display_name: "FilmCraft Montage"
+  short_description: "Create beat-aware mixed-footage montages and mood edits"
+  default_prompt: "Use $filmcraft-montage to create a montage from these clips."

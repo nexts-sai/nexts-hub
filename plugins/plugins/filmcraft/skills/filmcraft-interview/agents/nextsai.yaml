@@ -1,0 +1,4 @@
+interface:
+  display_name: "FilmCraft Interview"
+  short_description: "Shape interviews and documentary conversations into clear stories"
+  default_prompt: "Use $filmcraft-interview to edit this interview."

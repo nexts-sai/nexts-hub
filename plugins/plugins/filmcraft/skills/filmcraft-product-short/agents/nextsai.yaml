@@ -1,0 +1,4 @@
+interface:
+  display_name: "FilmCraft Product Short"
+  short_description: "Make compact product videos for social feeds and ecommerce"
+  default_prompt: "Use $filmcraft-product-short to make a short product video."

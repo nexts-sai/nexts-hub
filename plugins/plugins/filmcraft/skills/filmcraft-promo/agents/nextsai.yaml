@@ -1,0 +1,4 @@
+interface:
+  display_name: "FilmCraft Promo"
+  short_description: "Cut benefit-led promotional videos with proof and CTA"
+  default_prompt: "Use $filmcraft-promo to cut this promotional video."

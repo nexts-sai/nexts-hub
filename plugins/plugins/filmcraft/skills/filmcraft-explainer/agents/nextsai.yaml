@@ -1,0 +1,4 @@
+interface:
+  display_name: "FilmCraft Explainer"
+  short_description: "Edit clear tutorials and explainers with synchronized visuals"
+  default_prompt: "Use $filmcraft-explainer to edit this tutorial or explainer."
