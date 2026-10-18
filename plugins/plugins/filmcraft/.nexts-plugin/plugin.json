@@ -1,6 +1,6 @@
 {
   "name": "filmcraft",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Create complete short-form videos with storyboard planning, Nexts Auto image and video generation, ElevenLabs narration, subtitles, and local FilmCraft editing and export.",
   "author": { "name": "Nexts AI", "url": "https://nexts.ai/" },
   "homepage": "https://getartcraft.com/",

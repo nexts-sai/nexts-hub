@@ -4,6 +4,8 @@ Use this reference with one of the style Skills. It describes editorial decision
 
 ## Shared workflow
 
+Before writing plans or outputs, follow [workspace resolution](production.md#resolve-the-actual-nexts-workspace-before-writing). All six editing styles use the active Nexts workspace, not a system temp folder.
+
 1. Inspect media metadata and the current project before editing. For source footage, identify speech, pauses, repeated takes, key actions, usable B-roll, music beats, and continuity risks.
 2. Write a compact edit plan before mutation: keep/drop ranges, shot order, target duration, aspect ratio, captions, graphics, audio layers, and export requirements. Keep decisions and review outputs in the current Nexts temporary workspace.
 3. Build a first cut with hard cuts and only the essential audio. Review timing and story before adding effects.
