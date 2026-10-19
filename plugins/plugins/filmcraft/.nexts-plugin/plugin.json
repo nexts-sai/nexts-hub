@@ -1,6 +1,6 @@
 {
   "name": "filmcraft",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "description": "Create complete short-form videos with storyboard planning, Nexts Auto image and video generation, ElevenLabs narration, subtitles, and local FilmCraft editing and export.",
   "author": { "name": "Nexts AI", "url": "https://nexts.ai/" },
   "homepage": "https://getartcraft.com/",
@@ -46,7 +46,13 @@
     "screenshots": [],
     "defaultPrompt": [
       "Create a short product video with FilmCraft, including generated visuals, ElevenLabs narration, subtitles, and a local export.",
-      "Continue the previous FilmCraft production from its existing assets and export an editable project and final video."
+      "Continue the previous FilmCraft production from its existing assets and export an editable project and final video.",
+      "Make a vertical product short in FilmCraft with a fast hook, a clear product demo, readable captions, and a compact CTA.",
+      "Cut a promo video in FilmCraft with a strong hook, benefit-led structure, product proof, and a clear call to action.",
+      "Edit an explainer video in FilmCraft with clear chapters, on-screen diagrams, visual proof, and synchronized captions.",
+      "Edit an interview in FilmCraft with story-first selects, clean dialogue, contextual B-roll, and accurate captions.",
+      "Build a music-led montage in FilmCraft with beat-aware cuts, visual continuity, and controlled transitions.",
+      "Edit a talking-head video in FilmCraft with clean pacing, B-roll, captions, and emphasis graphics."
     ]
   }
 }

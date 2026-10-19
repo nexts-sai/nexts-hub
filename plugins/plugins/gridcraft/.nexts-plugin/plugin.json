@@ -1,7 +1,7 @@
 {
   "name": "gridcraft",
   "version": "1.0.0",
-  "description": "Read and edit spreadsheets, manage formulas and charts, and export workbooks through the local GridCraft desktop control channel. Requires GridCraft to be installed with control port 7982 enabled.",
+  "description": "Read and edit spreadsheets, manage formulas and charts, and export workbooks through the local GridCraft desktop control channel. Requires GridCraft to be installed with control port 7979 enabled.",
   "author": {
     "name": "Nexts AI",
     "url": "https://nexts.ai/"
@@ -11,9 +11,13 @@
   "license": "MIT",
   "keywords": [
     "gridcraft",
+    "spreadsheet",
+    "workbook",
+    "formulas",
+    "charts",
+    "xlsx",
     "desktop",
-    "mcp",
-    "bridge"
+    "mcp"
   ],
   "skills": "./skills/",
   "mcpServers": "./.mcp.json",
@@ -29,7 +33,7 @@
         "args": [
           "mcp",
           "--connect",
-          "7982"
+          "7979"
         ],
         "env": {}
       }
@@ -38,17 +42,20 @@
   "interface": {
     "displayName": "GridCraft",
     "shortDescription": "Connect Nexts to the local GridCraft desktop app.",
-    "longDescription": "Read and edit spreadsheets, manage formulas and charts, and export workbooks through the local GridCraft desktop control channel. Requires GridCraft to be installed with control port 7982 enabled. The plugin checks that the desktop app and local bridge are reachable before editing, discovers available commands before execution, and keeps the project visible in the desktop application.",
+    "longDescription": "Read and edit spreadsheets, manage formulas and charts, and export workbooks through the local GridCraft desktop control channel. Requires GridCraft to be installed and running with its control port enabled (gridcraft --control 7979); the bundled MCP server connects to it with mcp --connect 7979. The control channel is loopback-only and unauthenticated, so no token needs to be configured. The plugin confirms the desktop app is reachable before editing, discovers available commands before execution, and keeps the workbook visible in the desktop application.",
     "developerName": "Nexts AI",
     "category": "Productivity",
     "capabilities": [
+      "Skill",
       "Interactive",
       "Read",
       "Write"
     ],
     "defaultPrompt": [
-      "Open GridCraft and help me work on the current project.",
-      "Use GridCraft to create or edit a project and show the result."
+      "Open GridCraft and help me edit the current workbook.",
+      "Build a budget in GridCraft with formulas and a summary chart.",
+      "Clean and format this data in GridCraft into a styled table, then save it.",
+      "Add a chart and conditional formatting to the open GridCraft sheet."
     ],
     "logo": "./assets/icon.webp",
     "composerIcon": "./assets/icon.webp"

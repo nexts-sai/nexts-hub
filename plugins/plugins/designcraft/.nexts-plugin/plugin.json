@@ -1,7 +1,7 @@
 {
   "name": "designcraft",
   "version": "1.0.0",
-  "description": "Create page layouts, edit text frames and styles, and export documents through the local DesignCraft desktop control channel. Requires DesignCraft to be installed with control port 7983 enabled.",
+  "description": "Create page layouts, edit text frames and styles, and export documents through the local DesignCraft desktop control channel. Requires DesignCraft to be installed with control port 7979 enabled.",
   "author": {
     "name": "Nexts AI",
     "url": "https://nexts.ai/"
@@ -11,9 +11,13 @@
   "license": "MIT",
   "keywords": [
     "designcraft",
+    "layout",
+    "page-layout",
+    "typesetting",
+    "publishing",
+    "data-merge",
     "desktop",
-    "mcp",
-    "bridge"
+    "mcp"
   ],
   "skills": "./skills/",
   "mcpServers": "./.mcp.json",
@@ -29,7 +33,7 @@
         "args": [
           "mcp",
           "--connect",
-          "7983"
+          "127.0.0.1:7979"
         ],
         "env": {}
       }
@@ -38,17 +42,20 @@
   "interface": {
     "displayName": "DesignCraft",
     "shortDescription": "Connect Nexts to the local DesignCraft desktop app.",
-    "longDescription": "Create page layouts, edit text frames and styles, and export documents through the local DesignCraft desktop control channel. Requires DesignCraft to be installed with control port 7983 enabled. The plugin checks that the desktop app and local bridge are reachable before editing, discovers available commands before execution, and keeps the project visible in the desktop application.",
+    "longDescription": "Create page layouts, edit text frames and styles, place images, run data merges, and export documents through the local DesignCraft desktop control channel. Requires DesignCraft to be installed and running with its control port enabled (designcraft --control 7979); the bundled MCP server connects to it with mcp --connect 127.0.0.1:7979. The control channel is loopback-only and unauthenticated, so no token needs to be configured. The plugin confirms the desktop app is reachable before editing, discovers available commands before execution, and keeps the document visible in the desktop application.",
     "developerName": "Nexts AI",
     "category": "Creativity",
     "capabilities": [
+      "Skill",
       "Interactive",
       "Read",
       "Write"
     ],
     "defaultPrompt": [
-      "Open DesignCraft and help me work on the current project.",
-      "Use DesignCraft to create or edit a project and show the result."
+      "Open DesignCraft and help me lay out the current document.",
+      "Create a two-page spread in DesignCraft and export it to the workspace.",
+      "Place images and flow text into frames in DesignCraft, then export a PNG.",
+      "Run a data merge in DesignCraft from a CSV and export the merged pages."
     ],
     "logo": "./assets/icon.webp",
     "composerIcon": "./assets/icon.webp"

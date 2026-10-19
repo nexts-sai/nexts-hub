@@ -5,13 +5,24 @@ description: Coordinate a complete FilmCraft video production or resume an exist
 
 # FilmCraft production
 
+## Mandatory activation order
+
+When this Skill is selected or the user mentions `@FilmCraft`, follow this order exactly:
+
+1. Load `filmcraft-produce` and its referenced FilmCraft editing/workspace guidance before selecting any FilmCraft tool.
+2. Ask the host to perform the FilmCraft readiness step: check `127.0.0.1:9876`; if it is not listening, start the visible `filmcraft.exe --control 9876`, wait for the control port, and start one MCP bridge session.
+3. Only after readiness succeeds, call one read-only MCP inspection such as `ui_inspect`, `project_inspect`, or `doc_inspect`.
+4. Continue with generation, command discovery, editing and export.
+
+Never call a FilmCraft MCP tool as the first step, and never use an inspection tool as a startup probe. The startup/check step is host-managed and may not appear as a model-visible tool call; a disconnected bridge must stop the workflow until readiness succeeds.
+
 Before creating any production files, follow [workspace resolution](../../references/production.md#resolve-the-actual-nexts-workspace-before-writing). Resolve the active Nexts workspace first; never substitute C:/temp or the OS temporary directory. Use explicit absolute MCP save/export paths inside that verified workspace.
 
 Use the user's language. This plugin orchestrates Nexts media generation and the installed FilmCraft editor; it does not include FilmCraft or vendor models.
 
 Read and follow the required execution transport in [FilmCraft editing](../filmcraft-edit/SKILL.md). Use the plugin's registered MCP tools for normal editing; Shell CLI commands are not an equivalent default.
 
-Before the first FilmCraft command, choose the target. For a user-facing production, default to the open FilmCraft desktop editor and its bridge so the project and timeline are visible while editing. Verify the bridge with a read-only inspection before mutations. Use the headless CLI only when the user explicitly requests a silent/background/batch export, or when they explicitly request CLI execution. Starting the application alone is not enough: a live project must be opened or created through the bridge and then inspected. If the live editor is closed or unreachable, ask the user to open FilmCraft before editing; do not silently fall back to headless mode.
+Before the first FilmCraft command, choose the target. For a user-facing production, default to the visible FilmCraft desktop editor and its bridge so the project and timeline are visible while editing. The Nexts host checks the installed FilmCraft desktop companion, starts it once when needed, waits for its control port, and creates one `filmcraft-cli` MCP bridge session. Verify that session with a read-only inspection before mutations, then open or create the project through MCP and inspect it. If the bridge is unavailable, wait for the host startup result and report the concrete dependency; do not run Shell/PowerShell process checks or launch commands, create another MCP session, or start a second FilmCraft window. Use the headless CLI only when the user explicitly requests a silent/background/batch export or CLI execution. Starting the MCP process alone is not enough: a live project must be opened or created through the bridge and then inspected.
 
 1. Keep production content inside the current Nexts temporary workspace, outside this installed plugin. A task-specific subdirectory is optional; do not require or invent a fixed folder name. Put automatic production outputs beside `production.json` in `output/`, never Desktop or Downloads. Read [the production contract](../../references/production.md). Preserve existing projects and assets.
 2. Use [storyboarding](../filmcraft-storyboard/SKILL.md) to turn the brief into a production JSON. Resolve material unknowns (subject, duration, destination); state reasonable defaults for optional style choices. Use the product-short mode initially; see [modes](../../references/modes.md) for expansion.

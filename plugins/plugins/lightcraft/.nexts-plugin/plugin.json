@@ -11,9 +11,13 @@
   "license": "MIT",
   "keywords": [
     "lightcraft",
+    "photo",
+    "raw",
+    "develop",
+    "library",
+    "export",
     "desktop",
-    "mcp",
-    "bridge"
+    "mcp"
   ],
   "skills": "./skills/",
   "mcpServers": "./.mcp.json",
@@ -38,17 +42,20 @@
   "interface": {
     "displayName": "LightCraft",
     "shortDescription": "Connect Nexts to the local LightCraft desktop app.",
-    "longDescription": "Organize photo libraries, adjust images, and render and export photos through the local LightCraft desktop control channel. Requires LightCraft to be installed with control port 7980 enabled. The plugin checks that the desktop app and local bridge are reachable before editing, discovers available commands before execution, and keeps the project visible in the desktop application.",
+    "longDescription": "Organize photo libraries, develop and adjust images, apply presets, and render and export photos through the local LightCraft desktop control channel. Requires LightCraft to be installed and running with its control port enabled (lightcraft --control 7980); the bundled MCP server connects to it with mcp --connect 127.0.0.1:7980. The control channel is loopback-only and unauthenticated, so no token needs to be configured. The plugin confirms the desktop app is reachable before editing, discovers available commands before execution, and keeps the library and active photo visible in the desktop application.",
     "developerName": "Nexts AI",
     "category": "Creativity",
     "capabilities": [
+      "Skill",
       "Interactive",
       "Read",
       "Write"
     ],
     "defaultPrompt": [
-      "Open LightCraft and help me work on the current project.",
-      "Use LightCraft to create or edit a project and show the result."
+      "Open LightCraft and help me develop the selected photo.",
+      "Balance exposure and white balance across the photos in my LightCraft library.",
+      "Apply a preset to these LightCraft photos and export them to the workspace.",
+      "Crop and straighten the active LightCraft photo, then export a web-sized JPEG."
     ],
     "logo": "./assets/icon.webp",
     "composerIcon": "./assets/icon.webp"

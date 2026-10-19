@@ -11,9 +11,13 @@
   "license": "MIT",
   "keywords": [
     "vectorcraft",
+    "vector",
+    "svg",
+    "illustration",
+    "artboard",
+    "export",
     "desktop",
-    "mcp",
-    "bridge"
+    "mcp"
   ],
   "skills": "./skills/",
   "mcpServers": "./.mcp.json",
@@ -38,17 +42,20 @@
   "interface": {
     "displayName": "VectorCraft",
     "shortDescription": "Connect Nexts to the local VectorCraft desktop app.",
-    "longDescription": "Create and edit vector artwork, manage artboards, and export designs through the local VectorCraft desktop control channel. Requires VectorCraft to be installed with control port 7979 enabled. The plugin checks that the desktop app and local bridge are reachable before editing, discovers available commands before execution, and keeps the project visible in the desktop application.",
+    "longDescription": "Create and edit vector artwork, manage artboards, and export designs through the local VectorCraft desktop control channel. Requires VectorCraft to be installed and running with its control port enabled (vectorcraft --control 7979); the bundled MCP server connects to it with mcp --connect 127.0.0.1:7979. The control channel is loopback-only and unauthenticated, so no token is required. The plugin confirms the desktop app is reachable before editing, discovers available commands before execution, and keeps the project visible in the desktop application.",
     "developerName": "Nexts AI",
     "category": "Creativity",
     "capabilities": [
+      "Skill",
       "Interactive",
       "Read",
       "Write"
     ],
     "defaultPrompt": [
       "Open VectorCraft and help me work on the current project.",
-      "Use VectorCraft to create or edit a project and show the result."
+      "Design a poster in VectorCraft and export it to the workspace.",
+      "Create a matching icon set in VectorCraft across several artboards.",
+      "Recolor the current VectorCraft artwork and export a set of sizes."
     ],
     "logo": "./assets/icon.webp",
     "composerIcon": "./assets/icon.webp"

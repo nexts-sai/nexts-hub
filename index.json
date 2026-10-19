@@ -7,14 +7,14 @@
       "path": "./skills/skills",
       "registry": "./skills/.agents/skills/marketplace.json",
       "installTo": "skills",
-      "hash": "sha256:8fc659d27093919d0ce9b3d66183b9d8a98d4b35033db9befe6bfd39c0a135b5"
+      "hash": "sha256:8c268bf8e62db4ba5c6f3fc3bf3f3fb3cdd8143896b0537bace64aa91b7b927d"
     },
     "plugins": {
-      "version": 2,
+      "version": 3,
       "path": "./plugins/plugins",
       "registry": "./plugins/.agents/plugins/marketplace.json",
       "installTo": "plugins",
-      "hash": "sha256:e5a4f10e31b38d3887917904e926ac1ebfeb130f8d8ed7b4e1dafd5cd67c8afa"
+      "hash": "sha256:51a8330b6300374e1363a3fd339f1b739404edabb5a9eb09c7d3e8e173207b6e"
     },
     "assistants": {
       "version": 1,

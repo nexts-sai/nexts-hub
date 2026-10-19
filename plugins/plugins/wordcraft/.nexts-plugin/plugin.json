@@ -11,9 +11,13 @@
   "license": "MIT",
   "keywords": [
     "wordcraft",
+    "document",
+    "word-processor",
+    "writing",
+    "editor",
+    "docx",
     "desktop",
-    "mcp",
-    "bridge"
+    "mcp"
   ],
   "skills": "./skills/",
   "mcpServers": "./.mcp.json",
@@ -38,17 +42,20 @@
   "interface": {
     "displayName": "WordCraft",
     "shortDescription": "Connect Nexts to the local WordCraft desktop app.",
-    "longDescription": "Create and edit documents, format text, and manage tracked changes and comments through the local WordCraft desktop control channel. Requires WordCraft to be installed with control port 7981 enabled. The plugin checks that the desktop app and local bridge are reachable before editing, discovers available commands before execution, and keeps the project visible in the desktop application.",
+    "longDescription": "Create and edit documents, format text, and manage tracked changes and comments through the local WordCraft desktop control channel. Requires WordCraft to be installed and running with its control port enabled (wordcraft --control 7981); the bundled MCP server connects to it with mcp --connect 127.0.0.1:7981. The control channel is loopback-only and authenticated, but the app generates its own per-start key and the bridge reads it automatically, so no token needs to be configured. The plugin confirms the desktop app is reachable before editing, discovers available commands before execution, and keeps the document visible in the desktop application.",
     "developerName": "Nexts AI",
     "category": "Productivity",
     "capabilities": [
+      "Skill",
       "Interactive",
       "Read",
       "Write"
     ],
     "defaultPrompt": [
-      "Open WordCraft and help me work on the current project.",
-      "Use WordCraft to create or edit a project and show the result."
+      "Open WordCraft and help me edit the current document.",
+      "Create a letter in WordCraft and save it to the workspace.",
+      "Draft a report in WordCraft with headings and a table, then export it.",
+      "Format and proofread the open WordCraft document."
     ],
     "logo": "./assets/icon.webp",
     "composerIcon": "./assets/icon.webp"

@@ -1,5 +1,6 @@
 ---
 name: imap-smtp-email
+version: 1.0.1
 description: Read and send email via IMAP/SMTP. Check for new/unread messages, fetch content, search mailboxes, mark as read/unread, and send emails with attachments. Supports multiple accounts. Works with any IMAP/SMTP server including Gmail, Outlook, 163.com, vip.163.com, 126.com, vip.126.com, 188.com, and vip.188.com.
 metadata:
   openclaw:
@@ -20,6 +21,57 @@ metadata:
 Read, search, and manage email via IMAP protocol. Send email via SMTP. Supports Gmail, Outlook, 163.com, vip.163.com, 126.com, vip.126.com, 188.com, vip.188.com, and any standard IMAP/SMTP server.
 
 ## Configuration
+
+### Configuring from credentials provided in conversation (agents start here)
+
+Most users just give their account details directly in the chat (provider +
+email + password/authorization code, or custom host/port). When they do,
+**configure the account yourself — do NOT run `bash setup.sh`.** `setup.sh` is
+interactive (it `read`s from a terminal) and cannot be driven in a
+non-interactive agent shell; running it there will hang or fail.
+
+Instead:
+
+1. Install deps if missing: `npm install --production` (only when there is no
+   `node_modules` in the skill directory).
+2. Write the account into `~/.config/mail-skills/.env`. For a **known
+   provider**, only `PROVIDER`/`USERNAME`/`PASSWORD` are needed — server
+   settings auto-fill from the preset:
+
+   ```bash
+   mkdir -p -m 700 ~/.config/mail-skills
+   cat >> ~/.config/mail-skills/.env << 'EOF'
+
+   # qq account
+   QQ_PROVIDER=qq
+   QQ_USERNAME=2741438035@qq.com
+   QQ_PASSWORD=<authorization-code>
+   EOF
+   chmod 600 ~/.config/mail-skills/.env
+   ```
+
+   - **Default account:** no prefix (`PROVIDER=`/`USERNAME=`/`PASSWORD=`).
+     **Named account:** uppercase `NAME_` prefix (letters/digits only), then
+     pass `--account <name>` on every command.
+   - **Custom server:** also add `*_IMAP_HOST`, `*_IMAP_PORT`, `*_IMAP_TLS`,
+     `*_SMTP_HOST`, `*_SMTP_PORT`, `*_SMTP_SECURE` (see the custom example
+     below). Use `*_SMTP_SECURE=true` for port 465, `false` for 587.
+   - If the account already exists in `.env`, **update it in place** — do not
+     append a duplicate.
+3. Verify before sending:
+   `node scripts/smtp.js --account <name> list-accounts`, then
+   `node scripts/smtp.js --account <name> test`.
+
+Provider presets accept these `PROVIDER` values: `163`, `vip.163`, `126`,
+`vip.126`, `188`, `vip.188`, `yeah`, `gmail`, `outlook`, `qq`, `exmail.qq`,
+`icloud`, `fastmail`, `netease-enterprise-north`, `netease-enterprise-east`,
+`custom`.
+
+**Security:** never echo the password/authorization code back into the chat.
+If the secret was pasted into a shared or visible conversation, tell the user
+to revoke and regenerate it after you finish.
+
+### Interactive setup (humans at a terminal)
 
 Run the setup script to install dependencies and configure your email account:
 

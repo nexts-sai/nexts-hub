@@ -11,9 +11,13 @@
   "license": "MIT",
   "keywords": [
     "deckcraft",
+    "presentation",
+    "slides",
+    "deck",
+    "pptx",
+    "export",
     "desktop",
-    "mcp",
-    "bridge"
+    "mcp"
   ],
   "skills": "./skills/",
   "mcpServers": "./.mcp.json",
@@ -38,17 +42,20 @@
   "interface": {
     "displayName": "DeckCraft",
     "shortDescription": "Connect Nexts to the local DeckCraft desktop app.",
-    "longDescription": "Create and edit presentations, manage slides and shapes, and export decks through the local DeckCraft desktop control channel. Requires DeckCraft to be installed with control port 7990 enabled. The plugin checks that the desktop app and local bridge are reachable before editing, discovers available commands before execution, and keeps the project visible in the desktop application.",
+    "longDescription": "Create and edit presentations, manage slides and shapes, and export decks through the local DeckCraft desktop control channel. Requires DeckCraft to be installed and running with its control port enabled (deckcraft --control 7990); the bundled MCP server connects to it with mcp --connect 7990. The control channel is loopback-only and unauthenticated, so no token needs to be configured. The plugin confirms the desktop app is reachable before editing, discovers available commands before execution, and keeps the deck visible in the desktop application.",
     "developerName": "Nexts AI",
     "category": "Creativity",
     "capabilities": [
+      "Skill",
       "Interactive",
       "Read",
       "Write"
     ],
     "defaultPrompt": [
-      "Open DeckCraft and help me work on the current project.",
-      "Use DeckCraft to create or edit a project and show the result."
+      "Open DeckCraft and help me edit the current presentation.",
+      "Create a short pitch deck in DeckCraft and export it to PPTX.",
+      "Add a slide with a chart and a table to the open DeckCraft deck.",
+      "Clean up the layout and formatting of the current DeckCraft slides."
     ],
     "logo": "./assets/icon.webp",
     "composerIcon": "./assets/icon.webp"

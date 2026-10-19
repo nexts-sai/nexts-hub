@@ -11,9 +11,14 @@
   "license": "MIT",
   "keywords": [
     "effectcraft",
+    "motion-graphics",
+    "compositing",
+    "vfx",
+    "animation",
+    "video-effects",
+    "render",
     "desktop",
-    "mcp",
-    "bridge"
+    "mcp"
   ],
   "skills": "./skills/",
   "mcpServers": "./.mcp.json",
@@ -38,17 +43,20 @@
   "interface": {
     "displayName": "EffectCraft",
     "shortDescription": "Connect Nexts to the local EffectCraft desktop app.",
-    "longDescription": "Create compositions, animate layers, apply effects, and render frames through the local EffectCraft desktop control channel. Requires EffectCraft to be installed with control port 9877 enabled. The plugin checks that the desktop app and local bridge are reachable before editing, discovers available commands before execution, and keeps the project visible in the desktop application.",
+    "longDescription": "Create compositions, animate layers, apply effects, and render frames through the local EffectCraft desktop control channel. Requires EffectCraft to be installed and running with its control port enabled (effectcraft --control 9877); the bundled MCP server connects to it with mcp --bridge 9877. The control channel is loopback-only and unauthenticated, so no token needs to be configured. The plugin confirms the desktop app is reachable before editing, discovers available commands before execution, and keeps the composition visible in the desktop application.",
     "developerName": "Nexts AI",
     "category": "Creativity",
     "capabilities": [
+      "Skill",
       "Interactive",
       "Read",
       "Write"
     ],
     "defaultPrompt": [
-      "Open EffectCraft and help me work on the current project.",
-      "Use EffectCraft to create or edit a project and show the result."
+      "Open EffectCraft and help me edit the current composition.",
+      "Create a composition in EffectCraft, animate a title, and render a preview.",
+      "Add and adjust effects on a layer in EffectCraft, then render frames.",
+      "Build a short motion-graphics animation in EffectCraft and export it."
     ],
     "logo": "./assets/icon.webp",
     "composerIcon": "./assets/icon.webp"
