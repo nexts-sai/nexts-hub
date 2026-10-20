@@ -5,13 +5,6 @@
   },
   "skills": [
     {
-      "name": "ask-matt",
-      "source": {
-        "source": "local",
-        "path": "./skills/ask-matt"
-      }
-    },
-    {
       "name": "book-to-skill",
       "source": {
         "source": "local",
@@ -33,31 +26,10 @@
       }
     },
     {
-      "name": "code-review",
-      "source": {
-        "source": "local",
-        "path": "./skills/code-review"
-      }
-    },
-    {
-      "name": "codebase-design",
-      "source": {
-        "source": "local",
-        "path": "./skills/codebase-design"
-      }
-    },
-    {
       "name": "contract-review",
       "source": {
         "source": "local",
         "path": "./skills/contract-review"
-      }
-    },
-    {
-      "name": "diagnosing-bugs",
-      "source": {
-        "source": "local",
-        "path": "./skills/diagnosing-bugs"
       }
     },
     {
@@ -68,13 +40,6 @@
       }
     },
     {
-      "name": "domain-modeling",
-      "source": {
-        "source": "local",
-        "path": "./skills/domain-modeling"
-      }
-    },
-    {
       "name": "find-skills",
       "source": {
         "source": "local",
@@ -82,59 +47,10 @@
       }
     },
     {
-      "name": "grill-me",
-      "source": {
-        "source": "local",
-        "path": "./skills/grill-me"
-      }
-    },
-    {
-      "name": "grill-with-docs",
-      "source": {
-        "source": "local",
-        "path": "./skills/grill-with-docs"
-      }
-    },
-    {
-      "name": "grilling",
-      "source": {
-        "source": "local",
-        "path": "./skills/grilling"
-      }
-    },
-    {
-      "name": "handoff",
-      "source": {
-        "source": "local",
-        "path": "./skills/handoff"
-      }
-    },
-    {
       "name": "imap-smtp-email",
       "source": {
         "source": "local",
         "path": "./skills/imap-smtp-email"
-      }
-    },
-    {
-      "name": "implement",
-      "source": {
-        "source": "local",
-        "path": "./skills/implement"
-      }
-    },
-    {
-      "name": "implement-spec",
-      "source": {
-        "source": "local",
-        "path": "./skills/implement-spec"
-      }
-    },
-    {
-      "name": "improve-codebase-architecture",
-      "source": {
-        "source": "local",
-        "path": "./skills/improve-codebase-architecture"
       }
     },
     {
@@ -159,27 +75,6 @@
       }
     },
     {
-      "name": "pr",
-      "source": {
-        "source": "local",
-        "path": "./skills/pr"
-      }
-    },
-    {
-      "name": "prototype",
-      "source": {
-        "source": "local",
-        "path": "./skills/prototype"
-      }
-    },
-    {
-      "name": "research",
-      "source": {
-        "source": "local",
-        "path": "./skills/research"
-      }
-    },
-    {
       "name": "resume-screen",
       "source": {
         "source": "local",
@@ -187,101 +82,10 @@
       }
     },
     {
-      "name": "retro",
-      "source": {
-        "source": "local",
-        "path": "./skills/retro"
-      }
-    },
-    {
-      "name": "setup-matt-pocock-skills",
-      "source": {
-        "source": "local",
-        "path": "./skills/setup-matt-pocock-skills"
-      }
-    },
-    {
       "name": "skill-creator",
       "source": {
         "source": "local",
         "path": "./skills/skill-creator"
-      }
-    },
-    {
-      "name": "tdd",
-      "source": {
-        "source": "local",
-        "path": "./skills/tdd"
-      }
-    },
-    {
-      "name": "teach",
-      "source": {
-        "source": "local",
-        "path": "./skills/teach"
-      }
-    },
-    {
-      "name": "to-questionnaire",
-      "source": {
-        "source": "local",
-        "path": "./skills/to-questionnaire"
-      }
-    },
-    {
-      "name": "to-spec",
-      "source": {
-        "source": "local",
-        "path": "./skills/to-spec"
-      }
-    },
-    {
-      "name": "to-tickets",
-      "source": {
-        "source": "local",
-        "path": "./skills/to-tickets"
-      }
-    },
-    {
-      "name": "triage",
-      "source": {
-        "source": "local",
-        "path": "./skills/triage"
-      }
-    },
-    {
-      "name": "wait-what",
-      "source": {
-        "source": "local",
-        "path": "./skills/wait-what"
-      }
-    },
-    {
-      "name": "wayfinder",
-      "source": {
-        "source": "local",
-        "path": "./skills/wayfinder"
-      }
-    },
-    {
-      "name": "wizard",
-      "source": {
-        "source": "local",
-        "path": "./skills/wizard"
-      }
-    },
-    {
-      "name": "workflow-authoring",
-      "source": {
-        "source": "local",
-        "path": "./skills/workflow-authoring"
-      }
-    },
-    {
-      "name": "writing-for-agents",
-      "source": {
-        "source": "local",
-        "path": "./skills/writing-for-agents"
       }
     }
   ]
