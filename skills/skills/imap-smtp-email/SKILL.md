@@ -44,7 +44,7 @@ Instead:
 
    # qq account
    QQ_PROVIDER=qq
-   QQ_USERNAME=2741438035@qq.com
+   QQ_USERNAME=your-account@qq.com
    QQ_PASSWORD=<authorization-code>
    EOF
    chmod 600 ~/.config/mail-skills/.env
