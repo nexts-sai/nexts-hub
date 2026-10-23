@@ -1,7 +1,7 @@
 {
   "name": "filmcraft",
-  "version": "0.1.4",
-  "description": "Create complete short-form videos with storyboard planning, Nexts Auto image and video generation, ElevenLabs narration, subtitles, and local FilmCraft editing and export.",
+  "version": "0.1.8",
+  "description": "Edit or create videos with FilmCraft. Start with the filmcraft skill to route naturally to talking-head cleanup, captions, interviews, promos, montage, generation or export.",
   "author": { "name": "Nexts AI", "url": "https://nexts.ai/" },
   "homepage": "https://getartcraft.com/",
   "repository": "https://getartcraft.com/",
@@ -52,7 +52,7 @@
       "Edit an explainer video in FilmCraft with clear chapters, on-screen diagrams, visual proof, and synchronized captions.",
       "Edit an interview in FilmCraft with story-first selects, clean dialogue, contextual B-roll, and accurate captions.",
       "Build a music-led montage in FilmCraft with beat-aware cuts, visual continuity, and controlled transitions.",
-      "Edit a talking-head video in FilmCraft with clean pacing, B-roll, captions, and emphasis graphics."
+      "Clean up existing talking-head footage in FilmCraft, synchronize captions to the finished cut, and export MP4, SRT, and an editable project."
     ]
   }
 }

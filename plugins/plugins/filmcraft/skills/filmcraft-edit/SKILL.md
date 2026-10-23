@@ -1,13 +1,13 @@
 ---
 name: filmcraft-edit
-description: Assemble, inspect and export FilmCraft timelines; discover available commands and parameters before command_run or command_batch, and diagnose command errors.
+description: Execute FilmCraft timeline inspection, editing and export with live command discovery and host-managed readiness. For general FilmCraft requests, first load the filmcraft entry skill to select the editorial workflow.
 ---
 
 # FilmCraft editing
 
 ## Mandatory activation order
 
-When this Skill is selected or the user mentions `@FilmCraft`, follow this order exactly:
+For a general `@FilmCraft` request, first read the [FilmCraft entry skill](../filmcraft/SKILL.md) to select the workflow. This editing skill provides shared execution rules for every specialist; do not route back to the entry skill when a specialist has already selected it as a dependency. Before actual FilmCraft tool use, follow this order:
 
 1. Load this Skill and its referenced command/workspace guidance before selecting any FilmCraft tool.
 2. Ask the host to perform the FilmCraft readiness step: check `127.0.0.1:9876`; if it is not listening, start the visible `filmcraft.exe --control 9876`, wait for the control port, and start one MCP bridge session.

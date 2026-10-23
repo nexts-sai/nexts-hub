@@ -1,13 +1,13 @@
 ---
 name: filmcraft-produce
-description: Coordinate a complete FilmCraft video production or resume an existing production, from brief and storyboard through generated assets, narration, captions and export.
+description: Coordinate an explicitly requested multi-stage FilmCraft production with new generated assets and narration, or resume that production. For general FilmCraft requests, existing-footage cleanup, subtitles only or export only, load the filmcraft entry skill first.
 ---
 
 # FilmCraft production
 
 ## Mandatory activation order
 
-When this Skill is selected or the user mentions `@FilmCraft`, follow this order exactly:
+For a general `@FilmCraft` request, first read the [FilmCraft entry skill](../filmcraft/SKILL.md) to select the workflow. Use this production coordinator only when the request needs its stages. Once production is selected and actual tool use is needed, follow this order:
 
 1. Load `filmcraft-produce` and its referenced FilmCraft editing/workspace guidance before selecting any FilmCraft tool.
 2. Ask the host to perform the FilmCraft readiness step: check `127.0.0.1:9876`; if it is not listening, start the visible `filmcraft.exe --control 9876`, wait for the control port, and start one MCP bridge session.
