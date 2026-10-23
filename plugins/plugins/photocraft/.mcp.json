@@ -7,7 +7,11 @@
         "--bridge",
         "127.0.0.1:7878"
       ],
-      "env": {}
+      "env": {
+        "PHOTOCRAFT_CONTROL_TOKEN": "52e883e18bd211ba81b731099504a5f6276bc7f8d65c9f7cc82b2c0cc5905737",
+        "PHOTOCRAFT_AUTOMATION_READ_ROOT": "${NEXTS_PLUGIN_ROOT}/../../workspaces",
+        "PHOTOCRAFT_AUTOMATION_WRITE_ROOT": "${NEXTS_PLUGIN_ROOT}/../../workspaces"
+      }
     }
   }
 }
