@@ -31,9 +31,9 @@
     "websiteURL": "https://github.com/icebird1998/scientific-illustrator",
     "privacyPolicyURL": "https://github.com/icebird1998/scientific-illustrator/blob/main/PRIVACY.md",
     "defaultPrompt": [
-      "在 PowerPoint 中分面板复刻这张参考图，优先使用原生可编辑对象，并反复检查修正后保存。",
-      "在 draw.io 中逐步复刻这张参考图，保持文字、图形、表格、图表和连接线可编辑。",
-      "根据研究内容选择 draw.io 或 PowerPoint，设计一张布局整齐、箭头清晰的可编辑科学插图。"
+      "Recreate this reference figure panel by panel in PowerPoint, preferring native editable objects, and review and fix it before saving.",
+      "Recreate this reference figure step by step in draw.io, keeping text, shapes, tables, charts, and connectors editable.",
+      "Choose draw.io or PowerPoint based on the research content and design a clean, well-laid-out editable scientific figure with clear arrows."
     ],
     "brandColor": "#F08705",
     "composerIcon": "./assets/icon.png",

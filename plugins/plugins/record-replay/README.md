@@ -20,7 +20,7 @@ Artifacts default to `%LOCALAPPDATA%/Nexts/record-replay` on Windows, or `~/.loc
 
 ## Use
 
-Ask “帮我录制一个浏览器操作”. The assistant checks dependencies, opens the recorder and waits while **you** demonstrate. Tell it to finish; it saves and compiles the recording. Supply fields as parameters at recording time to change their values on replay. Ask to replay a workflow with your desired URL and parameters, then inspect the result.
+Ask “Record a browser task for me”. The assistant checks dependencies, opens the recorder and waits while **you** demonstrate. Tell it to finish; it saves and compiles the recording. Supply fields as parameters at recording time to change their values on replay. Ask to replay a workflow with your desired URL and parameters, then inspect the result.
 
 Tools: `flow_status`, `flow_list`, `flow_record`, `flow_stop_recording`, `flow_compile`, `flow_replay`, `flow_job`, `flow_cancel`, `flow_export`.
 
