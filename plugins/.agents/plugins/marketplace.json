@@ -255,6 +255,54 @@
         "authentication": "NONE"
       },
       "category": "Productivity"
+    },
+    {
+      "name": "chatcut",
+      "source": {
+        "source": "local",
+        "path": "./plugins/chatcut"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Creativity"
+    },
+    {
+      "name": "remotion",
+      "source": {
+        "source": "local",
+        "path": "./plugins/remotion"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "NONE"
+      },
+      "category": "Creativity"
+    },
+    {
+      "name": "hyperframes",
+      "source": {
+        "source": "local",
+        "path": "./plugins/hyperframes"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "NONE"
+      },
+      "category": "Creativity"
+    },
+    {
+      "name": "auto-editor",
+      "source": {
+        "source": "local",
+        "path": "./plugins/auto-editor"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "NONE"
+      },
+      "category": "Creativity"
     }
   ]
 }

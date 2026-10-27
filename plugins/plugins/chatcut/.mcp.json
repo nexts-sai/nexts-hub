@@ -1,0 +1,22 @@
+{
+  "mcpServers": {
+    "chatcut": {
+      "transport": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote@0.15.2",
+        "https://api.chatcut.io/api/external-mcp/mcp",
+        "--resource",
+        "https://api.chatcut.io/api/external-mcp/mcp",
+        "--transport",
+        "http-only",
+        "--header",
+        "x-chatcut-mcp-surface:codex",
+        "--header",
+        "x-chatcut-plugin-version:1.10.21"
+      ],
+      "env": {}
+    }
+  }
+}

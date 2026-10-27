@@ -1,0 +1,212 @@
+{
+  "repository": "https://github.com/ChatCut-Inc/agent-plugin",
+  "revision": "06e83c224aecb5c0d8d467ee2c1c607bf3f22a73",
+  "version": "1.10.21",
+  "adaptedOn": "2026-10-27",
+  "files": [
+    {
+      "path": "skills/asset-import/scripts/serve-local-media.mjs",
+      "sha256": "e376de96ca56d274cb74ec179ceb897cc3a956e2eaa89ab7a5e49dd830962813"
+    },
+    {
+      "path": "skills/asset-import/scripts/upload-media.mjs",
+      "sha256": "3ce47ba56d498ba96380addc5e852b04570fdbba852e6a6650387ddec2740117"
+    },
+    {
+      "path": "skills/asset-import/SKILL.md",
+      "sha256": "8c2a3f03b906460e0db39df411f0320c9457a34b9b3e2e060750f0c3ae4ee95c"
+    },
+    {
+      "path": "skills/chatcut-plugin-basics/references/connection-diagnostics.md",
+      "sha256": "ac8c8ffb7db31a844da3ff1a6d9721beedcd3616d5e2e551b868ad14f0045513"
+    },
+    {
+      "path": "skills/chatcut-plugin-basics/scripts/mcp-doctor.mjs",
+      "sha256": "b07ea216a37966314b22049dfa408b00fb07b35dd24f3a691689e7b05c069c9a"
+    },
+    {
+      "path": "skills/chatcut-plugin-basics/scripts/mcp-evidence.mjs",
+      "sha256": "57f7471599a0068f15626cbcbe27701867a5a57fc39ecafcfe91560113b53d3e"
+    },
+    {
+      "path": "skills/chatcut-plugin-basics/scripts/mcp-failure.mjs",
+      "sha256": "7ea5a8b5577fb6de6ac0b39d21d5ea9ec55263dda7ccc1ea321efbf56b957f78"
+    },
+    {
+      "path": "skills/chatcut-plugin-basics/scripts/mcp-wire.mjs",
+      "sha256": "5d0d2a2bad2fc7f47b262e0839c43206b6d7f882c0c85b3a5219d9f2c69a618d"
+    },
+    {
+      "path": "skills/chatcut-plugin-basics/SKILL.md",
+      "sha256": "67d1e9635acdd6b5efd9ea8a9cbbfb7b6c0193745d1989c13dc760087538a4a3"
+    },
+    {
+      "path": "skills/create-motion-graphics/references/font-matching.md",
+      "sha256": "8a81315429a473bb2320d9315a3520d851c61dbcc6725f7e7a018fa7004fcc5e"
+    },
+    {
+      "path": "skills/create-motion-graphics/references/overlay-composition.md",
+      "sha256": "b57f65e28cf9fff663c49dc38d8a98b6d89d03dbec1ce7e8a2d2f9ee70be67c3"
+    },
+    {
+      "path": "skills/create-motion-graphics/SKILL.md",
+      "sha256": "3d1dbf69c6f998e582d8588aa1a18288af9018852fda7b606c365b9e58f6737a"
+    },
+    {
+      "path": "skills/digital-human/SKILL.md",
+      "sha256": "ac3012192febead95964b52d8767ad52306b83f5aad8ec263a81b52d30f00543"
+    },
+    {
+      "path": "skills/export/SKILL.md",
+      "sha256": "653fdd4d5d66f47729716bcd624b53ad76dc25c11807a2193469e9f5afd46b95"
+    },
+    {
+      "path": "skills/known-errors/SKILL.md",
+      "sha256": "51f384a73c237b01c4e416d68f1f1fe74bca341388415546490f62c736be6009"
+    },
+    {
+      "path": "skills/multicam-sync/scripts/transcript-offset.mjs",
+      "sha256": "e7ebeceeaafefe113891940f215ad15104806b268be011c0a70ac0341b0fe69d"
+    },
+    {
+      "path": "skills/multicam-sync/SKILL.md",
+      "sha256": "1ba8d57374da8e5b4d8f9e2041d604c50d3cafcbfee1ace4604c04bf1ce1346b"
+    },
+    {
+      "path": "skills/music/references/song.md",
+      "sha256": "1dc254a3a605bf7bc1c7f0ceec9c4e1c21057733d4a1903a73f969500540ee74"
+    },
+    {
+      "path": "skills/music/SKILL.md",
+      "sha256": "df4429bb9f8567f8ce7033b3cd48c7aa0caad5cf510f50b49da346447e2d1a10"
+    },
+    {
+      "path": "skills/product-help/SKILL.md",
+      "sha256": "aa92c6b9279ac04b18e348ef7cb590e0d6b44e9859da788452fb4a7a2e55d8f9"
+    },
+    {
+      "path": "skills/shader-gen/examples/cube-rotate.md",
+      "sha256": "6ff39478061609371a32067f3c68efa77c103a4fb04c0ce9daa6aa32907cc4fd"
+    },
+    {
+      "path": "skills/shader-gen/examples/door-open.md",
+      "sha256": "11aa76129dc2c615b7ef4ad9a63a71474f2b5ba35f59c2b5bb28418076910ae3"
+    },
+    {
+      "path": "skills/shader-gen/examples/page-curl.md",
+      "sha256": "0aa59d84b96957ef6f96d058bc2433e642e627e79e877b46334654ae29ea08ec"
+    },
+    {
+      "path": "skills/shader-gen/references/design-principles.md",
+      "sha256": "32f9f7d986f595409db3037459fef0c02eee9dffba08c0d080771666e86f268c"
+    },
+    {
+      "path": "skills/shader-gen/references/property-changes.md",
+      "sha256": "3240957b19c60e2a278bdb2a7568a4e2887d080f2d0d69b353a60ab4eba4a3ea"
+    },
+    {
+      "path": "skills/shader-gen/SKILL.md",
+      "sha256": "4c53075793f231f1e8913349d857b48e269eafbbb8f495171e11e8fec4e0fffc"
+    },
+    {
+      "path": "skills/talking-head-guide/references/audio-and-music.md",
+      "sha256": "cfcfc32bea5183ad6d8ab209c316ebdaad585b58aaa4cfcedcedcdfe614068ab"
+    },
+    {
+      "path": "skills/talking-head-guide/references/b-roll.md",
+      "sha256": "029bb9897ecf3834979afff685e8be8f53c5cc2757c67c3a23c54c84d9176bc6"
+    },
+    {
+      "path": "skills/talking-head-guide/references/captions.md",
+      "sha256": "3bb115d46db9ca663d69a622f3b661c4f9d54b06c3e5dd22b3c68264dd8a99a5"
+    },
+    {
+      "path": "skills/talking-head-guide/references/motion-graphics.md",
+      "sha256": "a248e71ce3c394f357a5fce87fd76996488b050e9b814735e0215ff9259ea59b"
+    },
+    {
+      "path": "skills/talking-head-guide/references/multicam.md",
+      "sha256": "29d35d68fb03bfefcf5ddc0ad0cc44e013d023dcf17f828b9e5c8f8abb392a84"
+    },
+    {
+      "path": "skills/talking-head-guide/references/other-a-roll-editing-scenarios.md",
+      "sha256": "32858ce9bc20cf52fb6991897a8b04b5a45f3d64b8f3b8cb8c0a7d26a02ee72f"
+    },
+    {
+      "path": "skills/talking-head-guide/SKILL.md",
+      "sha256": "503bbe3db4d761d99784189f867279d882117c461320065ca4b335490892be64"
+    },
+    {
+      "path": "skills/transcription/SKILL.md",
+      "sha256": "0289126ac47cdb5efac9da448864f3b19569e9634b23a6e121fdc9e3c6e5d7cb"
+    },
+    {
+      "path": "skills/verification/SKILL.md",
+      "sha256": "eecd3aa6565def170320a7cd3238b351c5f4751d07235d67948b68d0508d19c9"
+    },
+    {
+      "path": "skills/video-gen/references/kling.md",
+      "sha256": "9acaede3de90b4ae8f456d250b40c522d0e2a6065f0db5780973f397bd830554"
+    },
+    {
+      "path": "skills/video-gen/references/minimax-h3-max.md",
+      "sha256": "20b93e1783ec1a617470013c15eb27c0789cc094a206b9670a214ff6c82a7bb6"
+    },
+    {
+      "path": "skills/video-gen/references/minimax-h3.md",
+      "sha256": "b0ca2e80ba49b2e1a1f0211c5928014a9b1c3872befd236c8e6933ac15d7f7a5"
+    },
+    {
+      "path": "skills/video-gen/references/omni.md",
+      "sha256": "4a6874b772642b58111c072d5d0c7b2361b9660e2eed3dd9e1e50eacd782dc5a"
+    },
+    {
+      "path": "skills/video-gen/references/seedance2.md",
+      "sha256": "2274e4120dff1cb94c69ba3aeae70312d6068a0fed19634d8262d64a1a4fa7cf"
+    },
+    {
+      "path": "skills/video-gen/references/seedance25.md",
+      "sha256": "3ca05e15159e8c82e2ac29ae4daab25fa56ac691889d440a3f8eebb202da6a0a"
+    },
+    {
+      "path": "skills/video-gen/SKILL.md",
+      "sha256": "4b549573428460a9b0be2d9a4d99bd6db20e5c040273f656145298cca5fdac82"
+    },
+    {
+      "path": "skills/video-translation/SKILL.md",
+      "sha256": "52ae81188da3bed5e1f185af80ea4f331acf83b5b0ff8c34b8ac2ab5f8b491b2"
+    },
+    {
+      "path": "skills/visual-analysis/scripts/concat-images.mjs",
+      "sha256": "69cb3d9ca8386ec2dad55dd8e59149121b115477093e6b81d56c0f544f5e5443"
+    },
+    {
+      "path": "skills/visual-analysis/SKILL.md",
+      "sha256": "b79fb8922500376ab90a5442367d92f5cc52f547e1cef5ee48fd1b4f521ed8fa"
+    },
+    {
+      "path": "skills/voice/references/fix-spoken-mistakes.md",
+      "sha256": "f7e200611c2ab1ed3023b7257a76584a69e195d75ed941610b764bb948cdd7e3"
+    },
+    {
+      "path": "skills/voice/references/video-sync.md",
+      "sha256": "212f1994f7d2e4c552c6d7ce89686ba8fd286f2a9e1683687b6b4c538f25b043"
+    },
+    {
+      "path": "skills/voice/SKILL.md",
+      "sha256": "d2f386109bae4751db2bb18bfd15227dab50261f401abaf0c2da045fe6d29987"
+    },
+    {
+      "path": "skills/widget-forms/SKILL.md",
+      "sha256": "a43916852a06e00d1ad77bf8c2fff8b0936c21a7ecff5d440e7f70a9b2ebfcc9"
+    },
+    {
+      "path": "assets/logo-light.png",
+      "sha256": "521cc2088a18d6d38211e34dcf816a52ad8cfd06a0583ace65f6307d49f0b26e"
+    },
+    {
+      "path": "assets/widget-media/manifest.json",
+      "sha256": "3ffc99ff0860b4f97d2b36bc06a6d0dd4093abef0503ecf3d9638fae2533e615"
+    }
+  ]
+}

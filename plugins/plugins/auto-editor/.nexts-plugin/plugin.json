@@ -1,0 +1,27 @@
+{
+  "name": "auto-editor",
+  "version": "0.1.0",
+  "description": "Local rough cuts for talking-head and screen recordings: remove silence or accelerate pauses while preserving speech speed.",
+  "author": { "name": "Nexts AI", "url": "https://nexts.ai/" },
+  "homepage": "https://auto-editor.com/",
+  "repository": "https://github.com/WyattBlue/auto-editor",
+  "license": "Unlicense",
+  "keywords": ["video", "audio", "silence", "rough-cut", "talking-head", "screen-recording", "auto-editor"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Auto-Editor",
+    "shortDescription": "去除静音、缩短停顿，为口播和录屏做本地粗剪",
+    "longDescription": "使用本地 Auto-Editor CLI 分析音量，删除静音或加速停顿；保持讲话原速，保留原文件，先检查剪辑统计，再输出粗剪文件。支持口播、课程和录屏素材，注意保留无旁白的有效操作。需另外安装官方 Auto-Editor CLI，无需账号或 MCP。",
+    "developerName": "Nexts AI · Auto-Editor by WyattBlue",
+    "category": "Creativity",
+    "capabilities": ["Read", "Write"],
+    "websiteURL": "https://auto-editor.com/",
+    "logo": "./assets/icon.svg",
+    "composerIcon": "./assets/icon.svg",
+    "defaultPrompt": [
+      "去掉这段口播中的静音，保留自然呼吸和原始文件。",
+      "把这个录屏中的停顿加速到 4 倍，讲话保持原速。",
+      "先分析这段视频能剪掉多少静音，暂时不要导出。"
+    ]
+  }
+}

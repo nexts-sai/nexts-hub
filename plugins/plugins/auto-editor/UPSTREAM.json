@@ -1,0 +1,9 @@
+{
+  "repository": "https://github.com/WyattBlue/auto-editor",
+  "revision": "deb8737a9a8486111811abcdafe2a69904efc7f8",
+  "verifiedRuntimeVersion": "31.7.2",
+  "adaptedOn": "2026-10-27",
+  "license": "Unlicense",
+  "references": ["README.md", "skills/auto-editor/SKILL.md", "src/cli.nim", "LICENSE"],
+  "adaptation": "Focused Nexts-authored local rough-cut workflow. No runtime binary, recording, transcription, MCP server or credentials included."
+}
