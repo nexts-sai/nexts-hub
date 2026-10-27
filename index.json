@@ -10,18 +10,18 @@
       "hash": "sha256:fe2125ef2f1a30f4cda05f52c49812dbe8889451d3deae0e2a3f4b1990619d1a"
     },
     "plugins": {
-      "version": 4,
+      "version": 5,
       "path": "./plugins/plugins",
       "registry": "./plugins/.agents/plugins/marketplace.json",
       "installTo": "plugins",
-      "hash": "sha256:c99ca1e683bdf121a79626670ecba2d9c163805fe614f872b5c584328604c41a"
+      "hash": "sha256:8e529de2c98f82d7ee4f46370fcd2a4c985842fc0ddf62535055092f0143a955"
     },
     "assistants": {
-      "version": 2,
+      "version": 3,
       "path": "./assistants",
       "registry": "./assistants/.agents/assistants/marketplace.json",
       "installTo": "assistants",
-      "hash": "sha256:7b088719a8d3dead68848086bfda0e8080e5700d3415d90baa70ba33666e86d6"
+      "hash": "sha256:6b5b10723aa336bf587ba3f56c349d0db936162b550a06d59c7c5e3c5b89b9fa"
     },
     "mcp": {
       "version": 6,

@@ -1,6 +1,6 @@
 # CLI recipes
 
-Verified against official Auto-Editor 31.7.2. Plugin version 0.1.0 is separate from the executable version. Confirm installed help before using these on other releases.
+Verified against official Auto-Editor 31.7.2. Plugin version 0.1.1 is separate from the executable version. Confirm installed help before using these on other releases.
 
 ## Install and inspect
 

@@ -9,7 +9,7 @@ const root = resolve('plugins/plugins/auto-editor');
 test('Auto-Editor is an independent skill plugin with complete local resources', () => {
   const manifest = JSON.parse(readFileSync(join(root,'.nexts-plugin/plugin.json')));
   assert.equal(manifest.name,'auto-editor');
-  assert.equal(manifest.version,'0.1.0');
+  assert.equal(manifest.version,'0.1.1');
   assert.equal(manifest.mcpServers,undefined);
   for(const file of ['LICENSE','README.md','UPSTREAM.json',manifest.interface.logo,'skills/auto-editor/SKILL.md','skills/auto-editor/references/cli.md']) assert.ok(existsSync(join(root,file)),file);
   const registry=JSON.parse(readFileSync('plugins/.agents/plugins/marketplace.json'));
