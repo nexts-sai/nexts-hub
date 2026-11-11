@@ -3,25 +3,25 @@
   "description": "Unified content hub for Nexts: skills, plugins, assistants, and MCP servers.",
   "categories": {
     "skills": {
-      "version": 6,
+      "version": 7,
       "path": "./skills/skills",
       "registry": "./skills/.agents/skills/marketplace.json",
       "installTo": "skills",
-      "hash": "sha256:b12ee5fc9ac1f51d0602eaf021b7da9dd7f58e277bde2d70bd40a64e8bbc8268"
+      "hash": "sha256:02287e3b2b2b5f2585ab93db08ae8d10d121c655f57a718c68f95d60488d7ba2"
     },
     "plugins": {
-      "version": 3,
+      "version": 8,
       "path": "./plugins/plugins",
       "registry": "./plugins/.agents/plugins/marketplace.json",
       "installTo": "plugins",
-      "hash": "sha256:51a8330b6300374e1363a3fd339f1b739404edabb5a9eb09c7d3e8e173207b6e"
+      "hash": "sha256:48e9ed049d33ceb22c7f25fdbe36a60b2f9df6e6d2ebbf4f0d8a8170b813cb53"
     },
     "assistants": {
-      "version": 1,
+      "version": 4,
       "path": "./assistants",
       "registry": "./assistants/.agents/assistants/marketplace.json",
       "installTo": "assistants",
-      "hash": "sha256:03e7a6451159e516b91d706e93e7c60e54c86160a9db951b75bda0f5feb90b64"
+      "hash": "sha256:e3d397666b775c83eba72998c9c9743669655c48e2981aad17b6da6c8ad5dd92"
     },
     "mcp": {
       "version": 6,

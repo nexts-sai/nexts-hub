@@ -33,6 +33,13 @@
       }
     },
     {
+      "name": "dbskill",
+      "source": {
+        "source": "local",
+        "path": "./skills/dbskill"
+      }
+    },
+    {
       "name": "diagram-design",
       "source": {
         "source": "local",
@@ -51,13 +58,6 @@
       "source": {
         "source": "local",
         "path": "./skills/imap-smtp-email"
-      }
-    },
-    {
-      "name": "jianying-edit",
-      "source": {
-        "source": "local",
-        "path": "./skills/jianying-edit"
       }
     },
     {

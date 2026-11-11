@@ -1,0 +1,37 @@
+{
+  "name": "instagram-agent",
+  "description": "Instagram content planning and writing: Reels, captions, carousels, stories, profile audits, research, and local text scoring tools.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Jake Schincariol",
+    "url": "https://opusjake.ai"
+  },
+  "homepage": "https://github.com/Jakeschincariol/instagram-agent-skill",
+  "repository": "https://github.com/Jakeschincariol/instagram-agent-skill",
+  "license": "MIT",
+  "keywords": [
+    "instagram",
+    "reels",
+    "content",
+    "writing",
+    "humanizer",
+    "social",
+    "marketing"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Instagram Agent",
+    "shortDescription": "Instagram 内容策划、脚本创作与文案优化，包含 13 个技能",
+    "longDescription": "提供 Reels 脚本、爆款研究、文案、轮播图、快拍、主页诊断、周计划、评论与私信草稿、内容复用及数据复盘。附本地 Python 评分和文本检查工具；不自动发布或发送消息。",
+    "developerName": "Jake Schincariol",
+    "category": "Productivity",
+    "capabilities": [
+      "Skill"
+    ],
+    "defaultPrompt": [
+      "帮我把这个选题写成 Instagram Reel 脚本，并评估开头和时长。",
+      "帮我规划一周的 Instagram 内容。"
+    ],
+    "websiteURL": "https://github.com/Jakeschincariol/instagram-agent-skill"
+  }
+}

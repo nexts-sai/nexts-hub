@@ -14,6 +14,7 @@ This catalog follows the local Codex Desktop plugin cache at the package, direct
 
 | Codex package | Codex shape observed locally | Nexts package | Current parity | Notes |
 | --- | --- | --- | --- | --- |
+| `ego-browser` | standalone skill, install script, references, site learnings | `plugins/ego-browser` | Skill packaged/adapted | Local installed skill `1.2.3` (2026-06-25); ego attribution retained; Nexts manifest and PowerShell usage added. Browser installed separately. |
 | `pdf` | plugin manifest, README, icon/logo assets, `skills/pdf`, agent config, PDF asset | `plugins/pdf` | Cache copied/adapted | Source `openai-primary-runtime/pdf/26.623.12021`. |
 | `documents` | docx skill with render script, OOXML references, tasks, examples, troubleshooting | `plugins/documents` | Cache copied/adapted | Source `openai-primary-runtime/documents/26.623.12021`. |
 | `spreadsheets` | spreadsheet skill with charts, style, routing, and domain guides | `plugins/spreadsheets` | Cache copied/adapted | Source `openai-primary-runtime/spreadsheets/26.623.12021`. |

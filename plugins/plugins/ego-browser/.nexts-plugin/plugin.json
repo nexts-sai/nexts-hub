@@ -1,0 +1,32 @@
+{
+  "name": "ego-browser",
+  "version": "1.2.3",
+  "description": "Use ego lite for browser automation in isolated task spaces with the user’s existing login state.",
+  "author": {
+    "name": "ego",
+    "url": "https://lite.ego.app/"
+  },
+  "homepage": "https://lite.ego.app/",
+  "keywords": [
+    "browser",
+    "ego",
+    "automation",
+    "task-spaces"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "ego Browser",
+    "shortDescription": "在独立任务空间中浏览网页、填写表单、截图和提取数据",
+    "longDescription": "通过 ego lite 提供的 ego-browser CLI 执行网页自动化，复用登录状态，支持任务空间、语义快照、视觉操作与控制权交接。需先安装 ego lite 并完成首次引导。",
+    "developerName": "ego",
+    "category": "Productivity",
+    "capabilities": [
+      "Skill"
+    ],
+    "defaultPrompt": [
+      "使用 ego-browser 帮我浏览网页并提取需要的信息。",
+      "使用 ego-browser 检查网页交互并截图。"
+    ],
+    "websiteURL": "https://lite.ego.app/"
+  }
+}

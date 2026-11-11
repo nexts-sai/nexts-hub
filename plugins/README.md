@@ -13,6 +13,7 @@ This repository defines the NextsAI plugin catalog shape: each plugin lives unde
 - `plugins/template-creator` - Build reusable Nexts artifact-template skills from user files.
 - `plugins/browser` - Control the Nexts in-app browser for local web app inspection and testing.
 - `plugins/chrome` - Control the user's Chrome session when logged-in browser state is required.
+- `plugins/ego-browser` - Automate ego lite in isolated task spaces using the user’s login state; includes CLI workflows and installation guidance.
 - `plugins/computer-use` - Host-level desktop observation and controlled Windows input workflows.
 - `plugins/gmail` - The official NextsAI Gmail plugin, including the `gmail` and `gmail-inbox-triage` skills.
 - `plugins/google-calendar` - Calendar briefs, scheduling, availability, meeting prep, and time cleanup workflows.

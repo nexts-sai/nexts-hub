@@ -1,10 +1,12 @@
 # FilmCraft editorial techniques
 
+Start with the [technique classification](technique-catalog.md) to select content, structure, camera, picture, sound, caption and finishing specialists. Follow the [shared execution contract](workflow-contract.md). The suggestions below apply only to requested stages; they do not authorize adding every enhancement.
+
 Use this reference with one of the style Skills. It describes editorial decisions; `filmcraft-edit` discovers the actual FilmCraft MCP commands and applies them.
 
 ## Shared workflow
 
-Before writing plans or outputs, follow [workspace resolution](production.md#resolve-the-actual-nexts-workspace-before-writing). All six editing styles use the active Nexts workspace, not a system temp folder.
+Before writing plans or outputs, follow [workspace resolution](production.md#resolve-the-actual-nexts-workspace-before-writing). All editing styles use the active Nexts workspace, not a system temp folder.
 
 1. Inspect media metadata and the current project before editing. For source footage, identify speech, pauses, repeated takes, key actions, usable B-roll, music beats, and continuity risks.
 2. Write a compact edit plan before mutation: keep/drop ranges, shot order, target duration, aspect ratio, captions, graphics, audio layers, and export requirements. Keep decisions and review outputs in the current Nexts temporary workspace.
@@ -22,8 +24,8 @@ Before writing plans or outputs, follow [workspace resolution](production.md#res
 
 ## Audio and captions
 
-Keep dialogue or narration intelligible above music and effects. Use J-cuts and room tone to hide edits in speech. Captions must follow actual audio timing, fit the frame safe area, and remain readable at the target resolution. Mark estimated timings as unreviewed until listened to.
+Keep dialogue or narration intelligible above music and effects. Use J-cuts and room tone to hide edits in speech. Captions must follow actual audio timing, fit the frame safe area, and remain readable at the target resolution. Require verified speech timestamps and source-to-sequence mapping for synchronized captions; do not import guessed timings.
 
 ## Review boundary
 
-The Skill may propose several candidates for a look, cut, card, or motion treatment. Apply a candidate only after its required command and parameters are discovered. If FilmCraft lacks a requested effect, report the missing capability and choose a simpler supported treatment; do not simulate success with an undocumented command.
+The Skill may propose several candidates for a look, cut, card, or motion treatment. Apply a candidate only after its required command and parameters are discovered. If FilmCraft lacks a requested effect, report the missing capability and resolve a materially different simpler treatment with the user; do not simulate success with an undocumented command.

@@ -23,3 +23,9 @@ Use for 10-45 second product clips, vertical social videos, and ecommerce demons
 5. Render a vertical preview, check hook clarity, product continuity, text cropping, audio, and exact duration before export.
 
 Do not stretch a short source with black frames or invent product features to fill time.
+
+## Compose only requested techniques
+
+Use the [technique classification](../../references/editing-techniques.md) and [shared contract](../../references/workflow-contract.md). Genre suggestions are candidates, not permission to add every enhancement. Finish structure/timing before supporting stages; preserve explicit review scope and continue authorized stages to verification and requested export.
+
+Load the relevant specialist for [story restructuring](../filmcraft-story-edit/SKILL.md), [multicam](../filmcraft-multicam/SKILL.md), [B-roll](../filmcraft-broll/SKILL.md), [audio](../filmcraft-audio/SKILL.md), [captions](../filmcraft-captions/SKILL.md), [motion graphics](../filmcraft-motion/SKILL.md), [effects](../filmcraft-effects/SKILL.md), [verification](../filmcraft-verify/SKILL.md) or [export](../filmcraft-export/SKILL.md). Do not reread unrelated specialists or restart their routing when used as dependencies.

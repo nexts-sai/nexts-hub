@@ -1,0 +1,3 @@
+[submodule "upstream/dbskill"]
+	path = upstream/dbskill
+	url = https://github.com/dontbesilent2025/dbskill.git

@@ -1,8 +1,11 @@
 {
   "name": "filmcraft",
-  "version": "0.1.8",
-  "description": "Edit or create videos with FilmCraft. Start with the filmcraft skill to route naturally to talking-head cleanup, captions, interviews, promos, montage, generation or export.",
-  "author": { "name": "Nexts AI", "url": "https://nexts.ai/" },
+  "version": "0.2.3",
+  "description": "One FilmCraft entry for source-based speech cleanup, story edits, shorts, multicam, B-roll, audio, captions, motion graphics, effects, verification and export.",
+  "author": {
+    "name": "Nexts AI",
+    "url": "https://nexts.ai/"
+  },
   "homepage": "https://getartcraft.com/",
   "repository": "https://getartcraft.com/",
   "license": "MIT",
@@ -21,38 +24,46 @@
   "skills": "./skills/",
   "mcpServers": "./.mcp.json",
   "contributes": {
-    "mcpServers": [{
-      "id": "filmcraft",
-      "title": "FilmCraft",
-      "description": "Connect to the local FilmCraft desktop app for visible project inspection, editing, and export.",
-      "enabled": true,
-      "transport": "stdio",
-      "command": "C:/Program Files/FilmCraft/filmcraft-cli.exe",
-      "args": ["mcp", "--bridge", "127.0.0.1:9876"],
-      "env": {}
-    }]
+    "mcpServers": [
+      {
+        "id": "filmcraft",
+        "title": "FilmCraft",
+        "description": "Connect to the local FilmCraft desktop app for visible project inspection, editing, and export.",
+        "enabled": true,
+        "transport": "stdio",
+        "command": "C:/Program Files/FilmCraft/filmcraft-cli.exe",
+        "args": [
+          "mcp",
+          "--bridge",
+          "127.0.0.1:9876"
+        ],
+        "env": {}
+      }
+    ]
   },
   "interface": {
     "displayName": "FilmCraft",
-    "shortDescription": "Storyboard, generate, narrate, subtitle, edit, and export videos",
-    "longDescription": "FilmCraft coordinates a complete local video workflow: storyboard a concept, generate images and videos through the signed-in Nexts Auto routes, create ElevenLabs narration through the configured backend Voice route, prepare reviewed subtitles, and assemble an editable FilmCraft project with a final export. Production files stay in the current Nexts temporary workspace and are never placed on the Desktop by default.",
+    "shortDescription": "Edit speech, shorts, multicam, B-roll, audio, captions and graphics",
+    "longDescription": "Select FilmCraft and describe the result. The main English skill composes editorial workflows adapted from pinned ChatCut originals, executed through the visible local FilmCraft editor. Source snapshots, licenses, adaptation boundaries and a consolidated acceptance checklist are included. Specific editor features require live command capability; this package does not add avatar, cloning or lip-sync generation services. Existing Nexts production workflows remain available.",
     "developerName": "Nexts AI",
     "category": "Creativity",
-    "capabilities": ["Skill", "Read", "Write"],
+    "capabilities": [
+      "Skill",
+      "Read",
+      "Write"
+    ],
     "websiteURL": "https://getartcraft.com/",
     "logo": "./assets/icon.webp",
     "composerIcon": "./assets/icon.webp",
     "brandColor": "#111827",
     "screenshots": [],
     "defaultPrompt": [
-      "Create a short product video with FilmCraft, including generated visuals, ElevenLabs narration, subtitles, and a local export.",
-      "Continue the previous FilmCraft production from its existing assets and export an editable project and final video.",
-      "Make a vertical product short in FilmCraft with a fast hook, a clear product demo, readable captions, and a compact CTA.",
-      "Cut a promo video in FilmCraft with a strong hook, benefit-led structure, product proof, and a clear call to action.",
-      "Edit an explainer video in FilmCraft with clear chapters, on-screen diagrams, visual proof, and synchronized captions.",
-      "Edit an interview in FilmCraft with story-first selects, clean dialogue, contextual B-roll, and accurate captions.",
-      "Build a music-led montage in FilmCraft with beat-aware cuts, visual continuity, and controlled transitions.",
-      "Clean up existing talking-head footage in FilmCraft, synchronize captions to the finished cut, and export MP4, SRT, and an editable project."
+      "Clean this presenter recording, preserve meaning, add accurate subtitles and export it.",
+      "Make three complete short excerpts from this lecture with subtitles.",
+      "Reorder this interview by topic, synchronize the two cameras and cut to the speaker.",
+      "Add these B-roll clips, a quiet music bed and chapter titles without changing the speech.",
+      "Only translate the subtitles; preserve the existing cut and audio.",
+      "Export the current FilmCraft sequence and verify the actual output file."
     ]
   }
 }

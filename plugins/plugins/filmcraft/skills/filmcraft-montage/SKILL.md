@@ -23,3 +23,9 @@ Use for mixed footage, travel reels, event recaps, mood films, and music-led edi
 5. Review rhythm, visual repetition, audio peaks, and the final emotional landing before export.
 
 Do not add random transitions or claim beat sync without measurable audio or an explicit editorial decision.
+
+## Compose only requested techniques
+
+Use the [technique classification](../../references/editing-techniques.md) and [shared contract](../../references/workflow-contract.md). Genre suggestions are candidates, not permission to add every enhancement. Finish structure/timing before supporting stages; preserve explicit review scope and continue authorized stages to verification and requested export.
+
+Load the relevant specialist for [story restructuring](../filmcraft-story-edit/SKILL.md), [multicam](../filmcraft-multicam/SKILL.md), [B-roll](../filmcraft-broll/SKILL.md), [audio](../filmcraft-audio/SKILL.md), [captions](../filmcraft-captions/SKILL.md), [motion graphics](../filmcraft-motion/SKILL.md), [effects](../filmcraft-effects/SKILL.md), [verification](../filmcraft-verify/SKILL.md) or [export](../filmcraft-export/SKILL.md). Do not reread unrelated specialists or restart their routing when used as dependencies.

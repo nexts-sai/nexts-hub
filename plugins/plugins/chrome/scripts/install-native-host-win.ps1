@@ -81,7 +81,14 @@ if (-not $HasBundledHostExe) {
 New-Item -ItemType Directory -Path $SupportNativeDir -Force | Out-Null
 New-Item -ItemType Directory -Path $SupportSkillRuntimeDir -Force | Out-Null
 if ($HasBundledHostExe) {
-    Copy-Item -Path $BundledHostExeSrc -Destination $HostExe -Force
+    # Chrome keeps the native host executable open while a bridge is connected.
+    $needsCopy = -not (Test-Path -LiteralPath $HostExe -PathType Leaf)
+    if (-not $needsCopy) {
+        $needsCopy = (Get-FileHash -LiteralPath $BundledHostExeSrc).Hash -ne (Get-FileHash -LiteralPath $HostExe).Hash
+    }
+    if ($needsCopy) {
+        Copy-Item -LiteralPath $BundledHostExeSrc -Destination $HostExe -Force
+    }
 } else {
     Copy-Item -Path (Join-Path $RootDir "native\host.py") -Destination $HostPy -Force
 }

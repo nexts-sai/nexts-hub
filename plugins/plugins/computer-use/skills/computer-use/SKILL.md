@@ -24,7 +24,7 @@ This plugin is host-managed. Do not use PowerShell, shell screenshot scripts, Se
 
 ## Visual-First Coordinate Logic
 
-Computer Use is primarily visual. For coordinate-based actions, first capture the target screen or window with `get_window_state({ window_id, include_screenshot: true })` or `screenshot({})`, inspect the image, and choose coordinates from what is visibly shown. The screenshot is forwarded by the host into the next multimodal model turn as an image attachment.
+Prefer UI Automation semantic actions for accessible controls; use visual input when controls are unavailable. For coordinate-based actions, first capture the target screen or window with `get_window_state({ window_id, include_screenshot: true })` or `screenshot({})`, inspect the image, and choose coordinates from what is visibly shown. The screenshot is forwarded by the host into the next multimodal model turn as an image attachment.
 
 Use `get_accessibility_tree` as an auxiliary semantic signal for buttons, menus, text fields, lists, and other UI Automation controls. Do not depend on the accessibility tree for canvas, drawing, video, game, webview, custom-rendered, or weakly accessible apps. If the tree is empty or sparse, continue from the screenshot instead of blocking.
 
@@ -58,6 +58,9 @@ Requests user-approved Computer Use access for the current conversation session.
 Use `get_state` when you need a compact status snapshot before acting. It returns availability, foreground window, cursor position, and visible window count. Use `list_apps` to discover running apps and their visible windows. Use `get_window_state` to inspect a selected window and capture a screenshot for visual reasoning. Use passive observation before input whenever possible.
 
 ### App/Window Lifecycle
+
+- `focus_window({ id })` restores and activates an observed target window. Call before physical keyboard input to a different window. If Windows refuses focus, do not type; ask the user to activate that window.
+- `get_window_state` returns `interaction_strategy`; a sparse control tree automatically includes a screenshot. `get_accessibility_tree` also supplies visual fallback when no actionable controls exist. Window-center entries are not application controls.
 
 - `launch_app({ app })`
 

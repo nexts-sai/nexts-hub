@@ -1,0 +1,102 @@
+{
+  "repository": "https://github.com/ChatCut-Inc/agent-plugin",
+  "commit": "0de8a5cc44b0072793a4aa07a02141a3542c874a",
+  "retrieved_on": "2026-10-23",
+  "sources": [
+    {
+      "upstream_path": "grok/skills/talking-head-guide/references/captions.md",
+      "snapshot": "captions.original.txt",
+      "sha256": "647342b1af6e613c8cd8498a8254400585e002aab515edd431ca983d0846a8a0"
+    },
+    {
+      "upstream_path": "grok/skills/talking-head-guide/references/other-a-roll-editing-scenarios.md",
+      "snapshot": "other-a-roll-editing-scenarios.original.txt",
+      "sha256": "eebea47a06fc36b89e7e971212da5560063c1caab520a4c0dee5704e87dd83b1"
+    },
+    {
+      "upstream_path": "grok/LICENSE",
+      "snapshot": "LICENSE",
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    },
+    {
+      "upstream_path": "grok/skills/asset-import/SKILL.md",
+      "snapshot": "originals/asset-import/skill.txt",
+      "sha256": "b8165a2c83b1c3c8e3046bb40e1ba0a411049aacc1d9d9e733fd5d59e7c40a8c"
+    },
+    {
+      "upstream_path": "grok/skills/transcription/SKILL.md",
+      "snapshot": "originals/transcription/skill.txt",
+      "sha256": "b037443b44b51fd24eb0481b30233fdf3815baba93dbd7c8bcc03ecf8ad39ab9"
+    },
+    {
+      "upstream_path": "grok/skills/export/SKILL.md",
+      "snapshot": "originals/export/skill.txt",
+      "sha256": "45bf8a7ef8ee60e56035c147a93087fca801c3c234bb875777325210f7b58bac"
+    },
+    {
+      "upstream_path": "grok/skills/verification/SKILL.md",
+      "snapshot": "originals/verification/skill.txt",
+      "sha256": "4782715f92bab7ef629542f2ca1d772e821062126eaa3f712e325b0922328a33"
+    },
+    {
+      "upstream_path": "grok/skills/talking-head-guide/SKILL.md",
+      "snapshot": "originals/talking-head-guide/skill.txt",
+      "sha256": "bc4ea295fad9316c9232247d0cfe7e51a9be03467fa5d018d56d3fd0c1ae6516"
+    },
+    {
+      "upstream_path": "grok/skills/talking-head-guide/references/b-roll.md",
+      "snapshot": "originals/talking-head-guide/references/b-roll.txt",
+      "sha256": "2c8cc8cc522852c9f54c818b0e1936c65495401b6283c7439385a6a03d9e6416"
+    },
+    {
+      "upstream_path": "grok/skills/talking-head-guide/references/audio-and-music.md",
+      "snapshot": "originals/talking-head-guide/references/audio-and-music.txt",
+      "sha256": "14673375742334942764f1cd55ade114bae633c63e3cfb75698bf494d84855b8"
+    },
+    {
+      "upstream_path": "grok/skills/talking-head-guide/references/motion-graphics.md",
+      "snapshot": "originals/talking-head-guide/references/motion-graphics.txt",
+      "sha256": "23eebabbf1a715e6dec1e513f443a425bba8433184ab790d7b568cae4a817489"
+    },
+    {
+      "upstream_path": "grok/skills/talking-head-guide/references/multicam.md",
+      "snapshot": "originals/talking-head-guide/references/multicam.txt",
+      "sha256": "3a83303c246456d8580d0ae4154dee0aeb79b6050ed837403e98da303b494aa6"
+    },
+    {
+      "upstream_path": "grok/skills/multicam-sync/SKILL.md",
+      "snapshot": "originals/multicam-sync/skill.txt",
+      "sha256": "ebe751680298397f17d575430ae22e4765fb1a719ff310907c95943184339ae4"
+    },
+    {
+      "upstream_path": "grok/skills/multicam-sync/scripts/transcript-offset.mjs",
+      "snapshot": "originals/multicam-sync/scripts/transcript-offset.mjs.txt",
+      "sha256": "beed595a130dc74dc077c4874278e451f88b7ae4687ab2dbf55735b32f9f8da4"
+    },
+    {
+      "upstream_path": "grok/skills/music/SKILL.md",
+      "snapshot": "originals/music/skill.txt",
+      "sha256": "0410eae851bc4aeedac003dc4cc167a6da0c9f62f7e77af900663a0b0719a3c7"
+    },
+    {
+      "upstream_path": "grok/skills/music/references/song.md",
+      "snapshot": "originals/music/references/song.txt",
+      "sha256": "1ce5968206d315d21524d0ad0e57df8509ac5809eedd2ba0a4c81ba10b2fff91"
+    },
+    {
+      "upstream_path": "grok/skills/create-motion-graphics/SKILL.md",
+      "snapshot": "originals/create-motion-graphics/skill.txt",
+      "sha256": "9bdf5b5605989f9d2268f1969eebdb077a93ff43efa0240a14590bce360c78ad"
+    },
+    {
+      "upstream_path": "grok/skills/shader-gen/SKILL.md",
+      "snapshot": "originals/shader-gen/skill.txt",
+      "sha256": "04000041d00b1ae32dca4f310f39f3c6eaa409412ce4a9bd4c6c12f2bf4ce028"
+    },
+    {
+      "upstream_path": "grok/skills/voice/references/video-sync.md",
+      "snapshot": "originals/voice/references/video-sync.txt",
+      "sha256": "de7c4f6595313f70be52765cecc1818d2af06ad099c8814b09e4a6ea30700ad0"
+    }
+  ]
+}

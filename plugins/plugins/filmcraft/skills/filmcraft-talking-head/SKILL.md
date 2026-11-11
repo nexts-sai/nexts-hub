@@ -1,9 +1,11 @@
 ---
 name: filmcraft-talking-head
-description: Use FilmCraft MCP to edit existing talking-head footage. Clean speech conservatively, build captions on the finished cut, and deliver a verified local video with its editable project. Also supports requests for only captions or export.
+description: Use FilmCraft MCP to clean existing talking-head speech conservatively, then add requested captions and deliver a verified local video with its editable project. Subtitle-only requests use filmcraft-captions; extracting short versions uses filmcraft-shorts.
 ---
 
 # FilmCraft Talking-Head Cleanup, Captions and Export
+
+For a subtitle-only request, load [FilmCraft Captions](../filmcraft-captions/SKILL.md) directly and skip speech cleanup. For highlight extraction or short versions, use [FilmCraft Shorts](../filmcraft-shorts/SKILL.md); when that skill loads this one as a timing/cleanup dependency, return to its selected workflow rather than routing again.
 
 Use the FilmCraft MCP bundled with this Nexts plugin. Before selecting tools, read [FilmCraft editing](../filmcraft-edit/SKILL.md), its [command discovery protocol](../../references/commands.md), and [workspace resolution](../../references/production.md#resolve-the-actual-nexts-workspace-before-writing). Follow the existing host-managed readiness order, then read [the speech command and verification reference](references/filmcraft-workflow.md).
 
@@ -40,14 +42,9 @@ At the end of cleanup, verify sentence continuity and the edited opening, each m
 
 ## 2. Add captions to the finished cut
 
-1. Confirm the target sequence remains active and its speech edits are final. Read its current transcript, timeline and `captions.list`. Do not reuse pre-cut timestamps. If the source transcript is not correctly projected onto the edited timeline, transcribe the final sequence or obtain a verified mapping before generating captions.
-2. Reuse the intended existing caption track. Do not invoke `transcript.createCaptions` repeatedly on retries. When captions already exist, inspect and update the requested track; replace a track only within the user's scope, preserving manual work and other languages. If an API cannot target that scope safely, report the limitation instead of deleting all captions.
-3. With no target captions, call `transcript.createCaptions` using parameters discovered for this version. For Chinese talking-head footage, start around 16 characters per line, up to two lines, and roughly 1–5 seconds per caption, then adapt to the actual speech and frame size. These settings must be checked in the output; they are not guaranteed layout behavior.
-4. Correct recognition errors against the recording and supplied terminology. Never invent words or align a reference script that the speaker did not say. Use caption text/time commands for display corrections; only repair a source transcript when its underlying recognized words are wrong and the supported operation preserves alignment.
-5. Apply a readable style using `captions.setStyle` and an available font covering the spoken language. Respect existing user styling; otherwise use a restrained high-contrast treatment in a safe lower-frame position. Check actual rendered pixels for missing Chinese glyphs, wrapping, edge clipping, subject obstruction and legibility; avoid unverified font names or fixed pixel sizes across all resolutions.
-6. Read captions back. Check positive duration, ordered timing, unintended overlap, alignment after cuts and no captions beyond the final speech/sequence. Inspect the opening, cut boundaries, a long caption and the ending with `render_preview`/`render_frame`. A successful render response alone is not visual verification until its pixels are examined.
+After speech timing is final, load [FilmCraft Captions](../filmcraft-captions/SKILL.md) for caption creation, wording, timing, translation, styling and validation. Caption-only requests go directly to that skill and preserve the media cut. Use the current final sequence and verified transcript mapping; never reuse pre-cut timestamps or duplicate caption tracks on retries.
 
-If speech timing changes again, revalidate all affected caption timing before export. Do not append another caption track as a repair shortcut.
+If speech timing changes again, revalidate affected captions before export. Continue to the export stage below only when requested; the caption specialist's export reference does not restart this cleanup workflow.
 
 ## 3. Save, export and deliver
 
@@ -67,3 +64,7 @@ If speech timing changes again, revalidate all affected caption timing before ex
 The workflow is adapted from ChatCut's speech-led editing guidance; source links, differences and command evidence are in the reference. B-roll, music, generated assets and motion graphics are outside this skill's default scope.
 
 For explicitly requested B-roll, punch-ins, emphasis graphics or music, retain the broader [editorial techniques](../../references/editing-techniques.md) and [FilmCraft editing](../filmcraft-edit/SKILL.md) workflow. Finish speech timing first; these additions are not prerequisites for cleanup, captions or export.
+
+## Requested finishing techniques
+
+Use [B-roll](../filmcraft-broll/SKILL.md), [audio](../filmcraft-audio/SKILL.md), [motion graphics](../filmcraft-motion/SKILL.md) and [effects](../filmcraft-effects/SKILL.md) for explicitly requested finishing. For narrative order changes use [story editing](../filmcraft-story-edit/SKILL.md); for same-take angles use [multicam](../filmcraft-multicam/SKILL.md). Follow the [shared continuation contract](../../references/workflow-contract.md); do not stop after cleanup when downstream stages are already authorized.

@@ -1,38 +1,39 @@
-# FilmCraft Studio for Nexts
+# FilmCraft for Nexts — 0.2.3
 
-The [FilmCraft entry skill](skills/filmcraft/SKILL.md) routes natural requests to specialist workflows for existing-footage editing, captions, export, or new production. Users select FilmCraft and describe their task; they do not need specialist skill names. Image and video use your existing Nexts backend Auto routing; no vendor model names or keys are bundled. Additional platforms can implement the provider contract without changing the production format.
+One FilmCraft plugin with an English [main entry skill](skills/filmcraft/SKILL.md). Select or mention FilmCraft and describe the result; the agent chooses and combines editorial techniques without requiring internal skill names.
 
-## Requirements and use
+## Editing techniques
 
-- Nexts with host tools `generate_image`, `generate_video`, and `generate_speech`. The latter is added in the accompanying Nexts `nexts-runtime/src/agent/runtime/media_gen.rs` change; rebuild/update the host before using narration.
-- A signed-in Nexts account, enabled Image/Video routes and ElevenLabs configuration in the backend. Host tools use the existing session; the plugin never receives its tokens.
-- Installed FilmCraft CLI (verified against 0.7.2) and Node 18+. The plugin includes and registers the FilmCraft MCP for interactive editing; the bundled scripts can be used headlessly only when explicitly requested.
+The [technique catalog](references/technique-catalog.md) classifies speech cleanup, highlights/short versions, narrative restructuring, target-script assembly, multicam, B-roll/PiP, music/dialogue mixing, narration sync, captions, motion graphics, transitions and color/LUT work. Import, transcription, verification and export are shared stages. Existing product-short, promo, explainer, interview, montage and generated-production templates remain available.
 
-Install the FilmCraft plugin from the Nexts plugin catalog or its local ZIP. Installation registers its bundled FilmCraft MCP automatically. Ask: “Create a 15-second product short with FilmCraft, using the Nexts image and video routes, ElevenLabs narration, and subtitles.” The agent keeps production content in the current Nexts temporary workspace, with an optional task-specific folder, generates assets through host tools, records their paths, checks subtitle timings, opens or creates the project through the visible FilmCraft bridge, and keeps the timeline visible while editing. Headless assembly is reserved for an explicit headless/CLI request; outputs remain in the workspace-local `output/` folder beside `production.json`, never Desktop by default.
+The new technique instructions adapt actual [pinned ChatCut originals](references/chatcut-adaptation/README.md), not website descriptions. Original snapshots, hashes, license and a section-to-workflow mapping are included. ChatCut has no standalone long-video-to-shorts skill at that commit; its highlight/version branches are extracted from the original A-roll reference. Adapted texts and the multicam arithmetic helper retain Apache-2.0. Other plugin components retain their existing licenses. Pre-existing Nexts genre templates are not claimed ChatCut originals.
 
-See [production format and commands](references/production.md), [provider routing](references/providers.md), and [video modes](references/modes.md). Initial automated assembly is a sequential cuts-only montage; captions are editable in FilmCraft and burned into MP4. Narration must fit each shot. TTS does not supply word alignment; captions require a timing review or timestamped transcription before export. No music, transition automation or automatic publishing is included.
+## Requirements and boundaries
 
-## Existing talking-head footage
+Existing-footage editing needs Nexts, the installed FilmCraft desktop companion, its host-managed visible MCP bridge and available command capabilities. Node 18+ is needed for the bridge/helper. The command reference was originally inspected against CLI 0.7.2; discover current schemas at runtime. Never run a second bridge or silently replace visible editing with headless CLI.
 
-The [talking-head skill](skills/filmcraft-talking-head/SKILL.md) supports speech cleanup, captions on the finished cut, and local MP4/SRT/editable-project delivery. It also handles captions-only, export-only and preview-only requests. Existing-footage editing uses the bundled FilmCraft MCP and does not require generation services or ElevenLabs. Nexts manages the visible editor startup; outputs stay in the active Nexts workspace.
+Image/video/TTS generation separately requires the configured Nexts host generation tools and account/provider access. None is required merely to edit supplied footage or existing captions. The plugin adds instructions, not missing engine/provider services: avatar creation, voice cloning, lip-sync and dubbing services are outside this editing release. Native graphics/effects/multicam operations remain conditional on actual command support.
 
-For local testing, package the plugin with `node scripts/package-plugins.mjs --plugin filmcraft` from the hub root and import `dist/extend/plugins/filmcraft/0.1.8/filmcraft-0.1.8.zip` through Nexts' local plugin ZIP installation. Enable FilmCraft in the test project and ask: "Clean up this talking-head video, preserve meaningful pauses and connective words, add accurate captions, and export MP4, SRT, and the editable project." Use a disposable project and explicit source footage. Inspect the resulting timeline, captions, exported files and QA report; command discovery alone does not verify media quality.
+Use `load_workspace_dependencies` before helper/media inspection; it distinguishes managed, system and missing dependencies. Python does not imply an FFmpeg executable. Working projects and outputs stay in the verified active Nexts workspace unless explicitly directed elsewhere. Source media and original sequences remain intact. No guessed speech timestamps, unsupported command parameters or automatic completion at job submission.
 
-The workflow reference records the ChatCut sources and includes their license. Runtime speech-editing acceptance remains pending; the existing synthetic adapter tests do not establish Chinese ASR or live ripple-edit correctness.
-
-## Validation commands
+## One consolidated test installation
 
 From the hub root:
 
 ```text
-node --test scripts/test-filmcraft.mjs
+node --test scripts/test-filmcraft.mjs scripts/test-filmcraft-multicam.mjs
 node scripts/package-plugins.mjs --plugin filmcraft
 ```
 
-The local FilmCraft smoke test uses synthetic video/audio fixtures to verify import, timeline placement, captions, export, duration, dimensions and audio presence. It does not prove that the live account's cloud generators succeeded. Integration fixtures and generated projects stay outside the plugin package. Standalone backend adapter tests use mocked transport; live generation requires the running updated Nexts host and account.
+Import `dist/extend/plugins/filmcraft/0.2.3/filmcraft-0.2.3.zip` through Nexts local plugin ZIP installation and enable FilmCraft. Follow the [unified acceptance checklist](references/unified-acceptance.md) in a disposable project. Examples after selecting FilmCraft:
 
-## Automatic workflow selection
+- Clean this presenter, add accurate subtitles and export.
+- Only translate these subtitles; preserve the cut and original voice.
+- Make three complete topic shorts from this lecture.
+- Reorder this interview by topic, align both cameras and cut to the speaker.
+- Add these cutaways, a music bed and chapter titles; keep the speech unchanged.
+- Export the current timeline and check the actual output file.
 
-Select or mention FilmCraft and describe the task naturally. The main `filmcraft` skill routes requests before tools or generation: speech cleanup to talking-head editing, subtitles-only to its caption stage, export-only to editing/export, multi-speaker edits to interview, and new generated productions to the production coordinator. Explicit stages and preview-only requests take priority over content type.
+Routing is instruction-based; verify actual skill selection in a Nexts chat. Synthetic adapter/helper tests, metadata/link checks and packaging do not establish live edit quality, ASR accuracy or completed exports. Capture structural, visual/audio, save/reopen and artifact evidence in the consolidated runtime pass.
 
-To test routing without modifying media, ask: "FilmCraft: I have a presenter recording with repeated takes and long pauses. Tell me how you would clean it and add subtitles; do not edit yet." Check that the agent reads `skills/filmcraft/SKILL.md` and the talking-head specialist. Also test "only export the current timeline" and "only add subtitles to this interview"; neither should start generation or recut speech. This is instruction-based routing, not a deterministic host dispatch API; verify the selected skill in a real Nexts chat.
+See [production contract](references/production.md) and [provider routing](references/providers.md) for the existing generated-production workflow. Headless scripts remain reserved for an explicit CLI/headless request.

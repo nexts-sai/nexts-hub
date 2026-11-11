@@ -73,6 +73,13 @@
         "source": "local",
         "path": "./spreadsheet_helper"
       }
+    },
+    {
+      "name": "video_editing",
+      "source": {
+        "source": "local",
+        "path": "./video_editing"
+      }
     }
   ]
 }

@@ -8,8 +8,8 @@ This repository defines the NextsAI skill catalog shape: skills live under `skil
 
 - `calendar` - Manage the local Nexts calendar, events, recurrence, and availability. This Skill is also bundled with Nexts as a built-in capability.
 - `contract-review` - Review contracts for risks and proposed revisions.
+- [`dbskill`](skills/dbskill/SKILL.md) - Use or install the business and content skills from [dontbesilent’s original toolbox](https://github.com/dontbesilent2025/dbskill).
 - `find-skills` - Discover and install agent skills.
-- `jianying-edit` - Edit and export Jianying drafts on a compatible Apple Silicon Mac (private core required).
 - `meeting-minutes` - Turn notes or transcripts into structured meeting minutes.
 - `resume-screen` - Score resumes against a job description.
 - `skill-creator` - Create and maintain effective skills.

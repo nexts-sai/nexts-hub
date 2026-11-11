@@ -1,6 +1,6 @@
 {
   "name": "computer-use",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Control desktop apps on Windows from Nexts through Computer Use.",
   "author": {
     "name": "Nexts AI",
@@ -134,7 +134,7 @@
     },
     {
       "name": "get_window_state",
-      "description": "Return a window-level state snapshot with cursor and optional screenshot after access is granted.",
+      "description": "Return a window-level state snapshot with cursor and optional screenshot after access is granted. Returns interaction_strategy. If UIA has no actionable controls, includes a screenshot even when include_screenshot is false.",
       "parameters": {
         "type": "object",
         "properties": {
@@ -186,7 +186,7 @@
     },
     {
       "name": "get_accessibility_tree",
-      "description": "Return an indexed Windows UI Automation control tree with opaque element_ref values, supported semantic patterns, and control state for a target window after access is granted. Falls back to visible-window pseudo-elements if UIA is unavailable.",
+      "description": "Return an indexed Windows UI Automation control tree with opaque element_ref values, supported semantic patterns, and control state for a target window after access is granted. Falls back to visible-window pseudo-elements if UIA is unavailable. When no actionable UIA controls are found, also returns a screenshot and visual interaction guidance.",
       "parameters": {
         "type": "object",
         "properties": {
@@ -569,6 +569,23 @@
         "required": [
           "text"
         ]
+      },
+      "requires_confirmation": true
+    },
+    {
+      "name": "focus_window",
+      "description": "Restore and activate an observed desktop window before physical keyboard input. Returns the focused window; fails if the target is stale or Windows refuses focus. Do not type after failure.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "id"
+        ],
+        "additionalProperties": false
       },
       "requires_confirmation": true
     }
