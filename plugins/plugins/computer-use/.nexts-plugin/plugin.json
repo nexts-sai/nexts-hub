@@ -1,6 +1,6 @@
 {
   "name": "computer-use",
-  "version": "1.2.0",
+  "version": "1.5.0",
   "description": "Control desktop apps on Windows from Nexts through Computer Use.",
   "author": {
     "name": "Nexts AI",
@@ -15,14 +15,13 @@
     "desktop-control",
     "windows",
     "automation",
-    "node-repl",
     "accessibility"
   ],
   "skills": "./skills/",
   "interface": {
     "displayName": "Computer Use",
     "shortDescription": "Control Windows apps from Nexts",
-    "longDescription": "Windows Computer Use lets Nexts inspect and control local desktop apps through host-approved tools. It may capture screenshots while working, but screenshots stay local and are used only for the current task. You stay in control: access is requested per session, input actions require confirmation, and you can stop actions at any time.",
+    "longDescription": "Control Windows apps through the Nexts Computer Use plugin. The desktop client reuses Nexts Primary Runtime Node and its built-in native driver. No Codex, external Node, npm installation or separate Computer Use download is required. Nexts prepares the shared runtime automatically when necessary. Screenshots may be sent to the selected vision model for the current task; they are never sent to the account service. App access is session-scoped and can be stopped at any time.",
     "developerName": "Nexts AI",
     "category": "Productivity",
     "capabilities": [
@@ -51,6 +50,14 @@
         "properties": {
           "reason": {
             "type": "string"
+          },
+          "api_version": {
+            "type": "string",
+            "enum": [
+              "window2",
+              "native"
+            ],
+            "description": "Use window2 for the Nexts-managed Node bridge and built-in native driver. Older callers omit this to retain legacy screen-coordinate behavior."
           }
         },
         "required": [
@@ -61,7 +68,7 @@
     },
     {
       "name": "get_state",
-      "description": "Return Computer Use availability, foreground window, cursor position, and visible window count after access is granted.",
+      "description": "Return active driver diagnostics and discover visible target windows. Legacy mode additionally reports cursor and foreground window state. Discovery invalidates earlier observations.",
       "parameters": {
         "type": "object",
         "properties": {}
@@ -70,7 +77,7 @@
     },
     {
       "name": "list_apps",
-      "description": "List running desktop apps grouped from visible windows after access is granted.",
+      "description": "List running applications and returned window objects. Listing invalidates earlier input observations. Launch an explicit app identifier/path if it is not running.",
       "parameters": {
         "type": "object",
         "properties": {}
@@ -85,6 +92,9 @@
         "properties": {
           "id": {
             "type": "integer"
+          },
+          "app": {
+            "type": "string"
           }
         },
         "required": [
@@ -134,7 +144,7 @@
     },
     {
       "name": "get_window_state",
-      "description": "Return a window-level state snapshot with cursor and optional screenshot after access is granted. Returns interaction_strategy. If UIA has no actionable controls, includes a screenshot even when include_screenshot is false.",
+      "description": "Observe a selected window. nexts-window2: provide the returned window object; screenshot defaults true and include_text defaults false. Returns bounded screenshots with ids plus optional focused/selected/document text. nexts-native: use window_id and the legacy screen-coordinate state.",
       "parameters": {
         "type": "object",
         "properties": {
@@ -143,6 +153,31 @@
           },
           "include_screenshot": {
             "type": "boolean"
+          },
+          "window": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "app": {
+                "type": "string"
+              },
+              "title": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "app"
+            ],
+            "additionalProperties": false,
+            "description": "Exact window object returned by list_windows, list_apps, or get_window. Never invent one."
+          },
+          "include_text": {
+            "type": "boolean",
+            "default": false
           }
         }
       },
@@ -192,6 +227,27 @@
         "properties": {
           "window_id": {
             "type": "integer"
+          },
+          "window": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "app": {
+                "type": "string"
+              },
+              "title": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "app"
+            ],
+            "additionalProperties": false,
+            "description": "Exact window object returned by list_windows, list_apps, or get_window. Never invent one."
           }
         }
       },
@@ -265,6 +321,27 @@
           "element_index": {
             "type": "integer",
             "minimum": 0
+          },
+          "window": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "app": {
+                "type": "string"
+              },
+              "title": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "app"
+            ],
+            "additionalProperties": false,
+            "description": "Exact window object returned by list_windows, list_apps, or get_window. Never invent one."
           }
         },
         "required": [
@@ -481,7 +558,7 @@
     },
     {
       "name": "scroll",
-      "description": "Scroll from a screen coordinate after access is granted. Positive scroll_y scrolls down.",
+      "description": "nexts-window2: scroll inside the observed window using window-relative coordinates and the latest screenshotId, then refresh. nexts-native: legacy screen-coordinate arguments apply.",
       "parameters": {
         "type": "object",
         "properties": {
@@ -498,6 +575,36 @@
           },
           "scroll_y": {
             "type": "integer"
+          },
+          "window": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "app": {
+                "type": "string"
+              },
+              "title": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "app"
+            ],
+            "additionalProperties": false,
+            "description": "Exact window object returned by list_windows, list_apps, or get_window. Never invent one."
+          },
+          "screenshotId": {
+            "type": "string"
+          },
+          "scrollX": {
+            "type": "integer"
+          },
+          "scrollY": {
+            "type": "integer"
           }
         },
         "required": [
@@ -509,7 +616,7 @@
     },
     {
       "name": "drag",
-      "description": "Drag from one screen coordinate to another after access is granted.",
+      "description": "nexts-window2: drag inside the observed window using window-relative coordinates and the latest screenshotId, then refresh. nexts-native: legacy screen-coordinate arguments apply.",
       "parameters": {
         "type": "object",
         "properties": {
@@ -528,6 +635,30 @@
           "to_y": {
             "type": "integer",
             "minimum": 0
+          },
+          "window": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "app": {
+                "type": "string"
+              },
+              "title": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "app"
+            ],
+            "additionalProperties": false,
+            "description": "Exact window object returned by list_windows, list_apps, or get_window. Never invent one."
+          },
+          "screenshotId": {
+            "type": "string"
           }
         },
         "required": [
@@ -548,6 +679,27 @@
           "key": {
             "type": "string",
             "description": "Key or chord such as Enter, Escape, Tab, Ctrl+A."
+          },
+          "window": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "app": {
+                "type": "string"
+              },
+              "title": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "app"
+            ],
+            "additionalProperties": false,
+            "description": "Exact window object returned by list_windows, list_apps, or get_window. Never invent one."
           }
         },
         "required": [
@@ -564,6 +716,27 @@
         "properties": {
           "text": {
             "type": "string"
+          },
+          "window": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "app": {
+                "type": "string"
+              },
+              "title": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "app"
+            ],
+            "additionalProperties": false,
+            "description": "Exact window object returned by list_windows, list_apps, or get_window. Never invent one."
           }
         },
         "required": [
@@ -584,6 +757,243 @@
         },
         "required": [
           "id"
+        ],
+        "additionalProperties": false
+      },
+      "requires_confirmation": true
+    },
+    {
+      "name": "request_app_access",
+      "description": "Approve the exact app requested by the nexts-window2 driver for this session. This does not execute the blocked action. Re-observe the window afterward.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "app": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "app"
+        ],
+        "additionalProperties": false
+      },
+      "requires_confirmation": true
+    },
+    {
+      "name": "click",
+      "description": "nexts-window2: click a control from the latest accessibility state, or a window-relative coordinate with its screenshotId. Perform one action, then observe again.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "window": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "app": {
+                "type": "string"
+              },
+              "title": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "app"
+            ],
+            "additionalProperties": false,
+            "description": "Exact window object returned by list_windows, list_apps, or get_window. Never invent one."
+          },
+          "element_index": {
+            "type": "integer"
+          },
+          "x": {
+            "type": "integer"
+          },
+          "y": {
+            "type": "integer"
+          },
+          "screenshotId": {
+            "type": "string"
+          },
+          "click_count": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 3
+          },
+          "mouse_button": {
+            "type": "string",
+            "enum": [
+              "left",
+              "right",
+              "middle"
+            ]
+          }
+        },
+        "required": [
+          "window"
+        ],
+        "additionalProperties": false
+      },
+      "requires_confirmation": true
+    },
+    {
+      "name": "press_key",
+      "description": "nexts-window2: send a key/chord to the observed target window. Refresh state after every input.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "window": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "app": {
+                "type": "string"
+              },
+              "title": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "app"
+            ],
+            "additionalProperties": false,
+            "description": "Exact window object returned by list_windows, list_apps, or get_window. Never invent one."
+          },
+          "key": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "window",
+          "key"
+        ],
+        "additionalProperties": false
+      },
+      "requires_confirmation": true
+    },
+    {
+      "name": "activate_window",
+      "description": "nexts-window2: activate a returned target window. Refresh get_window_state afterward before input.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "window": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "app": {
+                "type": "string"
+              },
+              "title": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "app"
+            ],
+            "additionalProperties": false,
+            "description": "Exact window object returned by list_windows, list_apps, or get_window. Never invent one."
+          }
+        },
+        "required": [
+          "window"
+        ],
+        "additionalProperties": false
+      },
+      "requires_confirmation": true
+    },
+    {
+      "name": "set_value",
+      "description": "nexts-window2: replace the value of an indexed editable control from the latest include_text observation.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "window": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "app": {
+                "type": "string"
+              },
+              "title": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "app"
+            ],
+            "additionalProperties": false,
+            "description": "Exact window object returned by list_windows, list_apps, or get_window. Never invent one."
+          },
+          "element_index": {
+            "type": "integer"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "window",
+          "element_index",
+          "value"
+        ],
+        "additionalProperties": false
+      },
+      "requires_confirmation": true
+    },
+    {
+      "name": "perform_secondary_action",
+      "description": "nexts-window2: perform an action label shown in the latest accessibility state, such as Expand, Collapse or Scroll Down.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "window": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "app": {
+                "type": "string"
+              },
+              "title": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "app"
+            ],
+            "additionalProperties": false,
+            "description": "Exact window object returned by list_windows, list_apps, or get_window. Never invent one."
+          },
+          "element_index": {
+            "type": "integer"
+          },
+          "action": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "window",
+          "element_index",
+          "action"
         ],
         "additionalProperties": false
       },

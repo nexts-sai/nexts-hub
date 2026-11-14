@@ -1,13 +1,70 @@
-﻿---
+---
 name: computer-use
 description: Control Windows apps from Nexts
 ---
 
 # Computer Use
 
-Use this skill when the user asks Nexts to inspect or control the local Windows desktop.
+Use the host-managed computer-use plugin tools for Windows desktop tasks.
+Nexts reuses its managed Node runtime and built-in native driver. The host prepares
+the shared runtime automatically when needed. Never ask the user to download a
+Computer Use ZIP, install Node/npm, or install Codex. Use the plugin tools directly;
+do not import private Sky modules or use Codex node_repl pipes.
+Screenshots are cached locally and may be sent to the selected vision model for
+this task. Never send desktop content to the account service.
 
-This plugin is host-managed. Do not use PowerShell, shell screenshot scripts, SendKeys, Node REPL, Sky APIs, or ad hoc UI automation as a fallback before using the `computer-use` plugin tools. Private screenshots and desktop state stay local.
+## Select the active driver
+
+Call request_access({ reason, api_version: "window2" }). The current Windows driver
+is nexts-window2, runtime_source nexts-primary-runtime, runtime_engine node,
+with window-relative coordinates.
+Only a returned nexts-native driver uses the later legacy workflow. Never switch
+to legacy coordinates after an error in a window2 session.
+
+## Window2 workflow
+
+1. Discover with list_windows or list_apps and select one exact returned window.
+   Lists contain running apps. For a missing app, launch_app({ app }) accepts an
+   explicit app identifier/path, then discover again.
+2. Observe get_window_state({ window, include_screenshot: true }). For controls
+   or text input add include_text: true; inspect the screenshot and reported tree.
+3. If app approval is required, call request_app_access with the exact returned
+   app identifier and wait for approval. This does not execute the blocked action.
+   Observe again afterward.
+4. Perform one action, always supplying the returned window. Coordinate actions
+   require the latest screenshotId and physical-pixel coordinates relative to the
+   captured visible window frame. Negative desktop origins do not change this.
+5. Re-observe after each input, including failure. Moved/resized windows, expired
+   observations and stale controls must be observed again. Never replay input
+   after timeout or uncertain outcome.
+6. Confirm the visible result with a fresh observation before claiming completion.
+
+Supported actions:
+
+- click({ window, x, y, screenshotId, mouse_button?, click_count? })
+- click({ window, element_index }) from the latest text observation
+- scroll({ window, x, y, scrollX, scrollY, screenshotId }); positive Y is down
+- drag({ window, from_x, from_y, to_x, to_y, screenshotId })
+- press_key({ window, key }); Return, Tab, Control_L+a and KP_0 are supported
+- type_text({ window, text }) after observing the focused editable control
+- set_value({ window, element_index, value })
+- perform_secondary_action({ window, element_index, action }) using a label from
+  the latest tree (Focus, Raise, Expand, Collapse, Scroll Down, and others)
+- activate_window({ window }); observe again before input
+- get_window({ id, app? }) for a previously discovered window
+
+Each screenshot captures only the selected window with Windows Graphics Capture.
+Select a separate popup window explicitly when necessary. If another window
+covers the input point, activate the intended window, re-observe and reconsider.
+Never substitute the foreground window for a missing target. Physical input may
+activate the target. Stop on revoked access or locked desktop. Password values
+are excluded from accessibility reads and input.
+
+Legacy whole-desktop screenshot, move_mouse, left_click/right_click, run_sequence
+and perform_semantic_action are not available in window2 mode. Browser integration
+remains separate; this plugin does not claim identical Codex/Sky implementation.
+
+## Legacy nexts-native workflow
 
 ## Required Workflow
 
