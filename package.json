@@ -14,6 +14,7 @@
     "validate": "node scripts/validate.mjs",
     "test:hashes": "node scripts/test-sync-hashes.mjs",
     "test:plugin-packages": "node --test scripts/test-package-plugins.mjs",
+    "test:skill-packages": "node --test scripts/test-package-skills.mjs",
     "test:mcp-packages": "node --test scripts/test-package-mcp-servers.mjs",
     "package:plugins": "node scripts/package-plugins.mjs --all",
     "publish:plugins": "node scripts/package-plugins.mjs --all --publish",

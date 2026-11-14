@@ -62,3 +62,9 @@ node scripts/package-plugins.mjs --all --publish --env-file /path/to/protected.e
 - 优先用脚手架:`npm run new:skill -- <id>`(同理 `new:plugin` / `new:assistant` / `new:mcp`),然后 `npm run sync`、`npm run validate`。详见 `docs/DEVELOPMENT.md`。
 - 每次发布内容变更,**同步递增 `index.json` 里对应类目的 version**,app 靠它判断是否需要更新。
 - 编码:UTF-8 无 BOM(含中文的文件尤其注意)。
+
+## 录制操作生成技能
+
+[record-skill 技能](skills/skills/record-skill/SKILL.md) 已作为 Nexts Windows 内置技能。在聊天输入 **`/record-skill`**，或从技能菜单选择后发送，点击 **允许一次** 才开始录制；各语言下的技能 ID 和命令均保持英文。可拖拽的小工具条默认以原始分辨率录制主屏，不需要选择屏幕或录制规格。点击 **结束录制** 后会保存文件，并自动在原会话请求所选 AI 生成技能；请求、技能 ID、默认描述和指令使用英文，界面描述和结果说明跟随 Nexts 当前语言。无需安装独立插件、回看或再点生成按钮。可选历史面板顶部仅保留一排“新录制”按钮和历史下拉框，所有界面共用应用语言。材料保存到原会话所属项目或临时工作空间的 `.nexts/tmp/skill-recordings/<id>/`。
+
+[skill-recorder 配套包说明](plugins/plugins/skill-recorder/README.md) 包含本地引擎准备方法及英语、意大利语、中文使用流程。Hub 只分发自有适配器和扩展，不分发私有原生模块；仅安装 Skill 不会自动安装采集引擎。当前不录制麦克风，也不会在完成后自动回放操作。

@@ -62,3 +62,9 @@ Content in the data directory is a **runtime copy**. User-created content (custo
 - Prefer the scaffolding scripts: `npm run new:skill -- <id>` (likewise `new:plugin` / `new:assistant` / `new:mcp`), then `npm run sync` and `npm run validate`. See `docs/DEVELOPMENT.md`.
 - On every content release, **bump the matching category `version` in `index.json`** — the app relies on it to decide whether to update.
 - Encoding: UTF-8 without BOM (especially for files containing Chinese).
+
+## Record a workflow
+
+The [record-skill Skill](skills/skills/record-skill/SKILL.md) is built into Nexts Windows. Use `/record-skill` in any app language, send the request, then **Allow once**. A small draggable toolbar records the primary screen at physical resolution; no display/quality setup. **Finish recording** saves the evidence and automatically requests a Skill from the selected Agent in the original chat. The request, Skill ID, default description and instructions use English; interface descriptions and the result explanation follow the current app language. No separate plugin installation, review or Generate button is required. The optional history panel has a single-row New recording button/history dropdown and shares the app language. Files are stored in the source conversation's project or temporary workspace under `.nexts/tmp/skill-recordings/<id>/`.
+
+The [skill-recorder companion package](plugins/plugins/skill-recorder/README.md) documents the local runtime prerequisite and English/Italian/Chinese usage. It ships only the owned adapter/extension, not proprietary native modules. Installing the Skill alone does not install the capture engine. No microphone is recorded, and completion does not automatically replay the demonstrated task.

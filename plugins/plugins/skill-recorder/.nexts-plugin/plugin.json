@@ -1,0 +1,24 @@
+{
+  "name": "skill-recorder",
+  "version": "0.6.2",
+  "description": "Companion adapter and browser DOM extension for the built-in Record a workflow Skill in Nexts. Consent in chat, primary-screen capture and local evidence for your selected Agent.",
+  "author": {
+    "name": "Nexts AI"
+  },
+  "license": "Nexts Proprietary",
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Skill Recorder",
+    "shortDescription": "Demonstrate a task. Create a reusable Skill.",
+    "longDescription": "Use $record-skill and allow once in chat. The compact toolbar records the primary display at physical resolution. Finish saves local evidence and sends an English request to the selected Agent in the original chat to create a reusable Skill with an English ID, description and instructions. Interface descriptions and the result explanation follow the app language (English, Italian or Chinese). Optional history/step editing and browser DOM pairing. A pinned local runtime must be prepared; proprietary engine modules are not bundled.",
+    "category": "Productivity",
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "$record-skill Record my workflow and turn it into a reusable Skill."
+    ]
+  }
+}

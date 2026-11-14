@@ -16,11 +16,13 @@ function frontmatter(markdown, key) {
   return block.match(new RegExp(`^${key}:\\s*(.+)$`, "m"))?.[1]?.trim().replace(/^['"]|['"]$/g, "") ?? "";
 }
 
-async function discover() {
+export async function discoverSkills(skillsRoot = sourceRoot, requested = []) {
+  const selectedIds = new Set(requested);
   const skills = [];
-  for (const entry of (await readdir(sourceRoot, { withFileTypes: true })).sort((a, b) => a.name.localeCompare(b.name))) {
+  for (const entry of (await readdir(skillsRoot, { withFileTypes: true })).sort((a, b) => a.name.localeCompare(b.name))) {
     if (!entry.isDirectory()) continue;
-    const directory = join(sourceRoot, entry.name);
+    if (selectedIds.size > 0 && !selectedIds.has(entry.name)) continue;
+    const directory = join(skillsRoot, entry.name);
     const markdown = await readFile(join(directory, "SKILL.md"), "utf8");
     skills.push({ id: entry.name, version: frontmatter(markdown, "version") || "1.0.0", directory });
   }
@@ -43,7 +45,7 @@ export async function run(argv = process.argv.slice(2)) {
   const apiIndex = argv.indexOf("--api-base");
   const outputIndex = argv.indexOf("--out");
   const output = outputIndex >= 0 ? resolve(argv[outputIndex + 1]) : defaultOutput;
-  const discovered = await discover();
+  const discovered = await discoverSkills(sourceRoot, requested);
   const selected = discovered.filter((item) => requested.length === 0 || requested.includes(item.id));
   const missing = requested.filter((id) => !discovered.some((item) => item.id === id));
   if (missing.length) throw new Error(`Unknown skill(s): ${missing.join(", ")}`);
