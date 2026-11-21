@@ -128,7 +128,7 @@ export function parseEnvFile(content) {
 }
 
 export function apiBaseUrl(values, override) {
-  const configured = override || values.NEXTS_ACCOUNT_API_BASE_URL || values.ACCOUNT_PUBLIC_BASE_URL || "https://nexts.ai";
+  const configured = override || values.NEXTS_ACCOUNT_API_BASE_URL || values.ACCOUNT_PUBLIC_BASE_URL || "https://account.nexts.ai";
   const normalized = configured.replace(/\/+$/, "");
   return normalized.endsWith("/api/v1") ? normalized : `${normalized}/api/v1`;
 }

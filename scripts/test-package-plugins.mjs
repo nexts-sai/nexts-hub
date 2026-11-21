@@ -6,6 +6,7 @@ import { join } from "node:path";
 import { tmpdir } from "node:os";
 import test from "node:test";
 import {
+  apiBaseUrl,
   defaultOutputRoot,
   discoverPlugins,
   packagePlugin,
@@ -67,7 +68,7 @@ test("environment files are parsed without exposing values", () => {
   assert.deepEqual(parseEnvFile("A=one\nB=\"two words\"\n# comment\n"), { A: "one", B: "two words" });
 });
 
-test("publishes a package without a signature field", async () => {
+test("publishes a package to the account subdomain by default without a signature field", async () => {
   const root = await mkdtemp(join(tmpdir(), "nexts-plugin-publish-test-"));
   try {
     const packagePath = join(root, "demo.zip");
@@ -82,9 +83,9 @@ test("publishes a package without a signature field", async () => {
     };
     await publishPlugin(
       { id: "demo", version: "1.0.0", packagePath, manifest: { name: "demo", version: "1.0.0" } },
-      { apiBase: "https://nexts.test/api/v1", accessToken: "secret", fetchImpl },
+      { apiBase: apiBaseUrl({}), accessToken: "secret", fetchImpl },
     );
-    assert.equal(request.url, "https://nexts.test/api/v1/admin/plugins/catalog/demo/package");
+    assert.equal(request.url, "https://account.nexts.ai/api/v1/admin/plugins/catalog/demo/package");
     assert.equal(request.init.body.has("package"), true);
     assert.equal(request.init.body.has("signature"), false);
     assert.equal(JSON.parse(request.init.body.get("manifest")).source, undefined);

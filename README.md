@@ -46,7 +46,7 @@ npm run package:plugins
 Packages are written to the ignored `dist/extend/plugins/<plugin>/<version>/` directory. Published objects use the matching `extend/plugins/<plugin>/<version>/` namespace. The sibling `extend/skills/` and `extend/mcp/` namespaces are reserved for their corresponding extension assets. To publish plugin packages through the authenticated Nexts account-service package API:
 
 ```bash
-node scripts/package-plugins.mjs --all --publish --env-file /path/to/protected.env --api-base https://nexts.ai/api/v1
+node scripts/package-plugins.mjs --all --publish --env-file /path/to/protected.env --api-base https://account.nexts.ai/api/v1
 ```
 
 The protected environment must provide `NEXTS_ADMIN_ACCESS_TOKEN`, or `NEXTS_ADMIN_EMAIL` and `NEXTS_ADMIN_PASSWORD` (the existing `ADMIN_BOOTSTRAP_EMAIL` and `ADMIN_BOOTSTRAP_PASSWORD` names are also accepted). The account service uploads each ZIP and its SHA-256 checksum to configured S3-compatible storage and updates `packageUrl`. This publisher intentionally does not create or upload digital signature files.
