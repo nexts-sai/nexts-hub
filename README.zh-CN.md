@@ -65,6 +65,13 @@ node scripts/package-plugins.mjs --all --publish --env-file /path/to/protected.e
 
 ## 录制操作生成技能
 
-[record-skill 技能](skills/skills/record-skill/SKILL.md) 已作为 Nexts Windows 内置技能。在聊天输入 **`/record-skill`**，或从技能菜单选择后发送，点击 **允许一次** 才开始录制；各语言下的技能 ID 和命令均保持英文。可拖拽的小工具条默认以原始分辨率录制主屏，不需要选择屏幕或录制规格。点击 **结束录制** 后会保存文件，并自动在原会话请求所选 AI 生成技能；请求、技能 ID、默认描述和指令使用英文，界面描述和结果说明跟随 Nexts 当前语言。无需安装独立插件、回看或再点生成按钮。可选历史面板顶部仅保留一排“新录制”按钮和历史下拉框，所有界面共用应用语言。材料保存到原会话所属项目或临时工作空间的 `.nexts/tmp/skill-recordings/<id>/`。
+[record-skill 技能](skills/skills/record-skill/SKILL.md) 已包含自有 Windows 屏幕／输入采集器和本地证据处理脚本。安装或复制时须保留**整个技能目录**，包括 `scripts`、`references`、`agents` 和 `assets`。只需 Windows PowerShell 5.1、Node.js 18+ 和支持 libx264 的 FFmpeg，即可独立运行；无需安装 Claude Desktop、Electron、Nexts 或另行准备录制引擎。
 
-[skill-recorder 配套包说明](plugins/plugins/skill-recorder/README.md) 包含本地引擎准备方法及英语、意大利语、中文使用流程。Hub 只分发自有适配器和扩展，不分发私有原生模块；仅安装 Skill 不会自动安装采集引擎。当前不录制麦克风，也不会在完成后自动回放操作。
+```powershell
+& ./skills/skills/record-skill/scripts/record.ps1 -Diagnose
+& ./skills/skills/record-skill/scripts/record.ps1 -ListMonitors
+# 仅在用户要求录制后启动：
+& ./skills/skills/record-skill/scripts/record.ps1 -Monitor 0 -Seconds 60
+```
+
+可选的 [skill-recorder 配套包](plugins/plugins/skill-recorder/README.md) 使用同一套引擎，为 Nexts 提供聊天授权、工具条控制及原会话证据交接。此集成需要支持独立引擎的 Nexts 版本；仅更新 Hub 内容不能替换旧版 Nexts 可执行程序。在 Nexts 中发送 `/record-skill` 并点击**允许一次**后开始录制，**结束录制**会保存证据并在原会话请求生成技能。当前不录制麦克风，也不会自动回放操作。普通键入内容会参数化，屏幕中可见的文本仍会出现在视频和关键帧中。

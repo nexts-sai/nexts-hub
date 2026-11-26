@@ -1,6 +1,6 @@
 # Third-party notices
 
-The browser extension bundles the dependencies listed below. The local runtime imports selected original modules from an installed Claude Desktop 5.11492.5 and downloads pinned Electron 45.3.2. These Claude artifacts are not included in this plugin package. Their original ownership is unchanged. Electron retains its bundled LICENSE and LICENSES.chromium.html. FFmpeg is supplied by Nexts or the user.
+The browser extension bundles the dependencies listed below. The screen/input collector and action processor are included as source. Windows APIs and Windows PowerShell are supplied by the operating system. Node.js and FFmpeg are supplied by the host or user; no third-party desktop application modules are bundled or imported.
 
 ## react
 

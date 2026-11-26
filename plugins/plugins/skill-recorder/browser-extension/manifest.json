@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Nexts Skill Recorder",
-  "version": "0.6.2",
+  "version": "0.9.0",
   "description": "Pair selected browser tabs with the local Nexts skill recorder.",
   "permissions": [
     "storage",

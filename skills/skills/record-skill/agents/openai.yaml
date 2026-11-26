@@ -1,0 +1,4 @@
+interface:
+  display_name: "Skill Recorder"
+  short_description: "Record demonstrations and create Skills from reviewed evidence"
+  default_prompt: "Use $record-skill to record and review a task demonstration."
